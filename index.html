@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina &mdash; The Designer Light Store | Lakhimpur Kheri</title>
+  <meta name="description" content="Lumina is your destination for premium designer lighting &mdash; chandeliers, pendant lights, wall sconces, table lamps, floor lamps, and custom bespoke fixtures. Located in Lakhimpur Kheri, UP." />
+  <meta name="keywords" content="designer lights, chandeliers, pendant lights, luxury lighting, Lakhimpur Kheri, Lumina, custom lights, wall sconces" />
+  <meta property="og:title" content="Lumina &mdash; The Designer Light Store" />
+  <meta property="og:description" content="Transform your space with handcrafted designer lights from Lumina, Lakhimpur Kheri." />
+  <meta property="og:type" content="website" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ========================= NAVBAR ========================= -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="Lumina Home">
+          <span class="nav-logo-name">LUMINA</span>
+          <span class="nav-logo-tag">The Designer Light Store</span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#hero" class="active" id="nav-home">Home</a></li>
+          <li><a href="#collections" id="nav-collections">Collections</a></li>
+          <li><a href="#about" id="nav-about">About</a></li>
+          <li><a href="#testimonials" id="nav-testimonials">Reviews</a></li>
+          <li><a href="#faq" id="nav-faq">FAQ</a></li>
+          <li><a href="#contact" id="nav-contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a href="#contact" class="btn-primary" id="nav-quote-btn">
+            <span><i class="fa-solid fa-paper-plane"></i> Get a Quote</span>
+          </a>
+          <button class="hamburger" id="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div class="mobile-nav" id="mobile-nav" role="menu">
+        <a href="#hero" role="menuitem">Home</a>
+        <a href="#collections" role="menuitem">Collections</a>
+        <a href="#about" role="menuitem">About Us</a>
+        <a href="#testimonials" role="menuitem">Reviews</a>
+        <a href="#faq" role="menuitem">FAQ</a>
+        <a href="#contact" role="menuitem">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================= HERO ========================= -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Floating Particles -->
+    <div class="hero-particles" id="hero-particles" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow" data-reveal>
+          <span class="hero-eyebrow-line"></span>
+          <span class="hero-eyebrow-text">Luxury Designer Lighting</span>
+        </div>
+
+        <h1 class="hero-title" data-reveal>
+          Illuminate<br />
+          Your <em>World</em>
+        </h1>
+
+        <p class="hero-subtitle" data-reveal>
+          Handcrafted designer lights that transform spaces into extraordinary experiences. From grand chandeliers to bespoke custom creations &mdash; every piece tells a story of light.
+        </p>
+
+        <div class="hero-ctas" data-reveal>
+          <a href="#collections" class="btn-primary" id="hero-explore-btn">
+            <span><i class="fa-solid fa-sparkles"></i> Explore Collections</span>
+          </a>
+          <a href="#contact" class="btn-outline" id="hero-custom-btn">
+            <i class="fa-regular fa-envelope"></i> Custom Orders
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ========================= COLLECTIONS ========================= -->
+  <section id="collections" aria-labelledby="collections-title">
+    <div class="container">
+      <div class="collections-header reveal">
+        <span class="section-label">Our Collections</span>
+        <h2 class="section-title" id="collections-title">Light as Art, Art as Light</h2>
+        <div class="gold-divider"></div>
+        <p class="section-subtitle">
+          Each collection is curated to complement your space &mdash; from statement chandeliers to subtle sconces. Discover the perfect light for every room.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" role="tablist" aria-label="Filter collections">
+        <button class="filter-tab active" role="tab" data-filter="all" id="filter-all" aria-selected="true">All</button>
+        <button class="filter-tab" role="tab" data-filter="indoor" id="filter-indoor" aria-selected="false">Indoor</button>
+        <button class="filter-tab" role="tab" data-filter="outdoor" id="filter-outdoor" aria-selected="false">Outdoor</button>
+
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="category-grid">
+        <!-- Categories will be injected here by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ABOUT ========================= -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img src="images/about.png" alt="Lumina Designer Light Store Showroom" class="about-img" />
+          <div class="about-img-accent">
+            <span class="about-img-accent-num">8+</span>
+            <span class="about-img-accent-label">Product<br/>Categories</span>
+          </div>
+        </div>
+
+        <div class="about-text reveal">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title" id="about-title">Where Light<br />Becomes <em style="font-style:italic; background: linear-gradient(135deg, #e8c96a, #C9A84C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Art</em></h2>
+          <div class="gold-divider"></div>
+
+          <p class="section-subtitle" style="max-width:100%">
+            I grew up watching how a single well-placed lamp could change the entire mood of a room. Light, I discovered early, is the most underestimated element of any interior &mdash; it shapes how we feel in a space far more than furniture or paint ever could.
+          </p>
+          <br/>
+
+          <!-- Owner quote callout -->
+          <blockquote class="about-quote">
+            <span class="about-quote-mark">"</span>
+            I didn't start Lumina to sell lights. I started it to help people fall in love with their own spaces &mdash; one carefully chosen light at a time.
+            <footer class="about-quote-footer">&mdash; Shikhar Gupta, Founder</footer>
+          </blockquote>
+
+          <br/>
+          <p class="section-subtitle" style="max-width:100%">
+            Lumina was born right here in Lakhimpur Kheri &mdash; a city I'm proud to call home. My vision was simple: to bring the kind of world-class designer lighting you'd find in a Mumbai or Delhi luxury showroom, directly to the people of our region. Every piece in our collection is handpicked by me personally, chosen not just for its beauty, but for the story it tells and the feeling it creates.
+          </p>
+          <br/>
+          <p class="section-subtitle" style="max-width:100%">
+            Whether you're furnishing a new home, renovating a cherished space, or dreaming of something entirely unique &mdash; I'm here to guide you. At Lumina, you don't just walk out with a light fitting; you walk out with a piece of design that will define your space for years to come.
+          </p>
+
+          <div class="about-pillars">
+            <div class="pillar">
+              <div class="pillar-icon">&#128161;</div>
+              <div class="pillar-title">Premium Quality</div>
+              <p class="pillar-text">Every piece handpicked for quality and lasting beauty</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">&#127942;</div>
+              <div class="pillar-title">Curated Selection</div>
+              <p class="pillar-text">Handpicked from India's finest lighting brands and designers</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">&#129309;</div>
+              <div class="pillar-title">Personal Touch</div>
+              <p class="pillar-text">Shikhar personally assists every client's journey</p>
+            </div>
+          </div>
+
+          <!-- Owner signature -->
+          <div class="about-signature">
+            <div class="about-signature-text">Shikhar Gupta</div>
+            <div class="about-signature-role">Founder & Owner, Lumina</div>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <a href="#contact" class="btn-primary" id="about-contact-btn">
+              <span><i class="fa-solid fa-store"></i> Visit Our Showroom</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TESTIMONIALS ========================= -->
+  <section id="testimonials" aria-labelledby="testimonials-title">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-label">Client Reviews</span>
+        <h2 class="section-title" id="testimonials-title">What Our Clients Say</h2>
+        
+        <!-- Google Reviews Badge (Dynamic from JSON) -->
+        <div class="google-reviews-badge" id="google-rating-badge">
+          <i class="fa-brands fa-google"></i>
+          <span class="badge-rating">5.0</span>
+          <span class="badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="badge-count">from Google Reviews</span>
+        </div>
+
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="testimonials-track-wrap reveal">
+        <div class="testimonials-track" id="testimonials-track">
+
+          <div class="testimonial-card active">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">The chandelier we bought from Lumina completely transformed our living room. It's the first thing guests notice when they walk in. Absolutely stunning quality and the team was incredibly helpful in choosing the right piece.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RG</div>
+              <div>
+                <div class="testimonial-name">Rajesh Gupta</div>
+                <div class="testimonial-location">Lakhimpur Kheri, UP</div>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">We ordered a custom light for our restaurant and the result was beyond our expectations. Lumina truly understood our vision and created something unique. Our customers constantly ask about it &mdash; it's become a talking point!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">PS</div>
+              <div>
+                <div class="testimonial-name">Priya Sharma</div>
+                <div class="testimonial-location">Lucknow, UP</div>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Lumina's pendant lights for our kitchen are absolutely perfect. The warm glow they create during family dinners is magical. Superb quality at a fair price and delivered on time. Highly recommended!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AM</div>
+              <div>
+                <div class="testimonial-name">Anita Mehta</div>
+                <div class="testimonial-location">Sitapur, UP</div>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">The outdoor garden lights from Lumina have made our courtyard look like a five-star resort at night. Premium quality, beautiful design, and the installation advice was spot on. Will definitely buy again.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">VK</div>
+              <div>
+                <div class="testimonial-name">Vikram Kumar</div>
+                <div class="testimonial-location">Pilibhit, UP</div>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">I was looking for a unique floor lamp for my home office and Lumina had exactly what I needed. The design is elegant and the light quality is perfect for working. Great store, great experience!</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SK</div>
+              <div>
+                <div class="testimonial-name">Sunita Kapoor</div>
+                <div class="testimonial-location">Bahraich, UP</div>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="testimonials-nav">
+        <button class="testimonials-btn" id="testimonials-prev" aria-label="Previous testimonial">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="testimonials-dots" id="testimonials-dots"></div>
+        <button class="testimonials-btn" id="testimonials-next" aria-label="Next testimonial">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="testimonials-footer reveal" style="text-align: center; margin-top: 2rem;">
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJnTSSS3U1nzkRxrINf2zE658" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          <i class="fa-brands fa-google"></i> Read all reviews on Google
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FAQ ========================= -->
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="faq-grid">
+        <div class="faq-sidebar reveal">
+          <span class="section-label">Got Questions?</span>
+          <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+          <div class="gold-divider"></div>
+          <p class="section-subtitle">
+            Find answers to our most common questions below. Can't find what you're looking for? Reach out to us directly.
+          </p>
+          <br/>
+          <div class="faq-contact-note">
+            <p>Still have questions? We're happy to help you choose the perfect light for your space.</p>
+            <a href="#contact" class="btn-outline" style="font-size:0.85rem;">
+              <i class="fa-solid fa-message"></i> Contact Us
+            </a>
+          </div>
+        </div>
+
+        <div class="faq-list reveal" id="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">What brands and styles of lights do you carry?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                We carry a wide range of designer lighting styles &mdash; from classical crystal chandeliers and Art Deco pieces to modern geometric fixtures and contemporary LED designs. Our collection is sourced from premium manufacturers across India and spans all major categories: chandeliers, pendants, wall sconces, table lamps, floor lamps, ceiling lights, and outdoor fixtures.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">Do you deliver outside of Lakhimpur Kheri?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Yes, we deliver across Uttar Pradesh and can arrange shipping to other states across India as well. Delivery timelines and charges vary by location. Please contact us for a delivery quote to your area.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">What materials are your lights made from?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Our lights are crafted from premium materials including crystal, brass, stainless steel, iron, aluminium, fabric, and hand-blown glass. Each product listing specifies the materials used. We prioritise durable, high-quality materials that ensure both beauty and longevity.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">Do you provide installation services?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                We can recommend trusted electricians and installation professionals in Lakhimpur Kheri and nearby areas. For out-of-city orders, we provide detailed installation guides with each product. All our fixtures are designed for straightforward installation by a qualified electrician.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">What is your return and exchange policy?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                We accept returns and exchanges within 7 days of delivery for products that are unused and in their original packaging. Please contact us immediately if you receive a damaged or defective product and we'll resolve it promptly.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">Can I visit your showroom to see the lights in person?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Absolutely! We warmly welcome you to our showroom at Ram Nagar Colony, Near Green Field Academy, Lakhimpur Kheri, UP. Seeing the lights in person &mdash; glowing and installed &mdash; is truly the best way to appreciate their beauty. No appointment needed, just walk in during business hours.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false">
+              <span class="faq-q-text">Do you cater to bulk or commercial orders?</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+            </div>
+            <div class="faq-answer" role="region">
+              <div class="faq-answer-inner">
+                Absolutely! We regularly supply lighting to hotels, restaurants, offices, banquet halls, and residential projects. For bulk orders, we offer special pricing and dedicated assistance from Shikhar to help you choose the right fixtures for each space. Please contact us directly with your project details for a quote.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACT ========================= -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title" id="contact-title">Let's Light Up Your Space</h2>
+        <div class="gold-divider" style="margin: 1.5rem auto;"></div>
+        <p class="section-subtitle" style="margin: 0 auto;">
+          Have a question, want to see our collection, or need help choosing the right light? We'd love to hear from you.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info reveal">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="contact-info-label">Our Showroom</div>
+              <div class="contact-info-value">
+                Ram Nagar Colony, Near Green Field Academy,<br />
+                Lakhimpur Kheri, Uttar Pradesh &mdash; 262701
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact-info-label">Call Us</div>
+              <div class="contact-info-value">
+                <a href="tel:+919452088014">+91 9452088014</a><br />
+                <a href="tel:+918317036078">+91 8317036078</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact-info-label">Email Us</div>
+              <div class="contact-info-value">
+                <a href="mailto:shikhar.gupta2096@gmail.com">shikhar.gupta2096@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="contact-info-label" style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.75rem;">Follow Us</div>
+            <div class="contact-socials">
+              <a href="https://instagram.com/lumina_thedesigner_lightstore" target="_blank" rel="noopener noreferrer" class="contact-social-btn" id="contact-instagram" aria-label="Lumina on Instagram">
+                <i class="fa-brands fa-instagram"></i> Instagram
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61590450866408" target="_blank" rel="noopener noreferrer" class="contact-social-btn" id="contact-facebook" aria-label="Lumina on Facebook">
+                <i class="fa-brands fa-facebook-f"></i> Facebook
+              </a>
+              <a href="https://wa.me/918317036078" target="_blank" rel="noopener noreferrer" class="contact-social-btn contact-social-btn--wa" id="contact-whatsapp" aria-label="Chat with Lumina on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Google Map -->
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d834.6579042539076!2d80.76910943573517!3d27.941056745571654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399f35754b92349d%3A0x9febc46c7f0db2c6!2sLumina%20The%20Designer%20Light%20Store!5e1!3m2!1sen!2sin!4v1783767252496!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Lumina Store Location &mdash; Lakhimpur Kheri">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Inquiry Form -->
+        <div class="contact-form-wrap reveal">
+          <h3 class="contact-form-title">Send an Inquiry</h3>
+          <p class="contact-form-subtitle">Fill out the form and our team will get back to you within 24 hours.</p>
+
+          <form id="inquiry-form" action="mailto:shikhar.gupta2096@gmail.com" method="get" enctype="text/plain" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="form-name">Your Name</label>
+                <input type="text" id="form-name" name="name" class="form-input" placeholder="e.g. Rahul Sharma" required />
+                <div class="form-error" id="name-error" style="color: #ff5050; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="form-phone">Phone Number</label>
+                <input type="tel" id="form-phone" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" />
+                <div class="form-error" id="phone-error" style="color: #ff5050; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-email">Email Address</label>
+              <input type="email" id="form-email" name="email" class="form-input" placeholder="you@example.com" />
+              <div class="form-error" id="email-error" style="color: #ff5050; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-product">Product Interest</label>
+              <select id="form-product" name="product_interest" class="form-select">
+                <option value="" disabled selected>Select a category...</option>
+                <option value="Chandeliers">Chandeliers</option>
+                <option value="Pendant Lights">Pendant Lights</option>
+                <option value="Wall Sconces">Wall Sconces</option>
+                <option value="Table Lamps">Table Lamps</option>
+                <option value="Floor Lamps">Floor Lamps</option>
+                <option value="Ceiling Lights">Ceiling Lights / Flush Mounts</option>
+                <option value="Outdoor Lights">Outdoor &amp; Garden Lights</option>
+                <option value="Industrial &amp; Architectural Lights">Industrial &amp; Architectural Lights</option>
+
+                <option value="General Inquiry">General Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-message">Your Message</label>
+              <textarea id="form-message" name="message" class="form-textarea" placeholder="Describe your space, requirements, or any questions you have..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
+              <span><i class="fa-solid fa-paper-plane"></i> Send Inquiry</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-brand-name">LUMINA</div>
+          <div class="footer-brand-tag">The Designer Light Store</div>
+          <p class="footer-brand-desc">
+            Transforming spaces with handcrafted designer lights. From grand chandeliers to bespoke creations &mdash; where light becomes art.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/lumina_thedesigner_lightstore" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61590450866408" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="tel:+919452088014" class="footer-social" aria-label="Call Us">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+            <a href="mailto:shikhar.gupta2096@gmail.com" class="footer-social" aria-label="Email Us">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-col-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Collections</div>
+          <ul class="footer-col-links">
+            <li><a href="#collections">Chandeliers</a></li>
+            <li><a href="#collections">Pendant Lights</a></li>
+            <li><a href="#collections">Wall Sconces</a></li>
+            <li><a href="#collections">Table Lamps</a></li>
+            <li><a href="#collections">Floor Lamps</a></li>
+            <li><a href="#collections">Outdoor Lights</a></li>
+            <li><a href="#collections">Ceiling Lights</a></li>
+            <li><a href="#collections">Industrial &amp; Architectural</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2026 <span>Lumina &mdash; The Designer Light Store</span>. All rights reserved.
+        </p>
+        <p class="footer-tagline">Where Light Becomes Art</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================= MODAL ========================= -->
+  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img src="" alt="" class="modal-img" id="modal-img" />
+      <div class="modal-body">
+        <p class="modal-tag" id="modal-tag"></p>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-cta">
+          <a href="#contact" class="btn-primary" id="modal-enquire-btn" onclick="closeModal()">
+            <span><i class="fa-solid fa-paper-plane"></i> Send Inquiry</span>
+          </a>
+          <a href="tel:+919452088014" class="btn-outline" id="modal-call-btn">
+            <i class="fa-solid fa-phone"></i> Call Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= DYNAMIC PRODUCT LISTING POPUP ========================= -->
+  <div class="listing-backdrop" id="product-listing" role="dialog" aria-modal="true" aria-labelledby="listing-title" aria-hidden="true">
+    <div class="listing-panel">
+
+      <!-- Listing Header (populated by JS) -->
+      <div class="listing-header">
+        <div class="listing-header-left">
+          <span class="section-label" style="margin-bottom:0.3rem;">Lumina Collection</span>
+          <h2 class="listing-title" id="listing-title"></h2>
+          <p class="listing-subtitle" id="listing-subtitle"></p>
+        </div>
+        <button class="listing-close" id="listing-close" aria-label="Close product listing">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Listing Grid (populated by JS) -->
+      <div class="listing-grid" id="listing-grid"></div>
+
+      <!-- Footer CTA -->
+      <div class="listing-footer">
+        <p>Can't find the perfect piece? <strong>Contact us</strong> &mdash; we'll help you source it from our wider network of lighting suppliers.</p>
+        <a href="#contact" class="btn-primary" onclick="closeProductListing()" id="listing-contact-btn">
+          <span><i class="fa-solid fa-phone"></i> Get in Touch</span>
+        </a>
+      </div>
+
+    </div><!-- /listing-panel -->
+  </div><!-- /product-listing -->
+
+  <!-- Application Script -->
+  <script>
+    // Fetch products.json natively to replace the old products.js approach
+    fetch('products.json?v=' + new Date().getTime())
+      .then(r => r.json())
+      .then(data => {
+        window.PRODUCT_DB = data;
+        // Inject script.js after data is loaded so it has access to PRODUCT_DB
+        const s = document.createElement('script');
+        s.src = 'script.js';
+        document.body.appendChild(s);
+      })
+      .catch(e => console.error("Error loading products.json. Ensure you are running a local web server (e.g. python -m http.server)", e));
+  </script>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/918317036078" target="_blank" rel="noopener noreferrer"
+     class="whatsapp-fab" id="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-fab-label">Chat with us</span>
+  </a>
+
+</body>
+</html>

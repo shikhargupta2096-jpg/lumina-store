@@ -1,0 +1,57 @@
+backend:
+  name: github
+  repo: your-username/lumina # The user will need to update this to their actual repo
+  branch: main # Branch to update
+
+# Media files will be saved in the images directory
+media_folder: "images"
+public_folder: "images"
+
+# Configure the single products.json file
+collections:
+  - name: "database"
+    label: "Store Database"
+    files:
+      - label: "Products & Categories"
+        name: "products_db"
+        file: "products.json"
+        description: "Manage all categories and products in the store."
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "ID", name: "id", widget: "string", hint: "e.g., table-lamps"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "string"}
+              - {label: "Short Description", name: "shortDesc", widget: "text"}
+              - {label: "Long Description", name: "longDesc", widget: "text"}
+              - {label: "Category Type", name: "categoryType", widget: "string"}
+              - {label: "Tag", name: "tag", widget: "string"}
+              - {label: "Image", name: "img", widget: "image"}
+              
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.name}} ({{fields.categoryId}})"
+            fields:
+              - {label: "ID", name: "id", widget: "string"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Category ID", name: "categoryId", widget: "string", hint: "Must match a Category ID above"}
+              - {label: "Badge Text", name: "badge", widget: "string", required: false}
+              - {label: "Badge Class", name: "badgeClass", widget: "select", required: false, options: ["", "new", "premium"]}
+              - {label: "Description", name: "desc", widget: "text"}
+              - {label: "Image", name: "img", widget: "image"}
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field: {label: "Tag", name: "tag", widget: "string"}
+              - label: "Specifications"
+                name: "specs"
+                widget: "list"
+                field: {label: "Spec", name: "spec", widget: "string"}
