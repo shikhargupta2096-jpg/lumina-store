@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lumina | Virtual Showroom</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; }
+    #ui-layer {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px 25px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+    }
+    #ui-layer h1 { margin: 0 0 10px 0; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;}
+    #ui-layer p { margin: 0; font-size: 0.9rem; color: #ccc; line-height: 1.5; }
+    #ui-layer .key { background: #333; padding: 2px 6px; border-radius: 4px; border: 1px solid #555; }
+    #exit-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background 0.3s;
+    }
+    #exit-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- UI Overlay -->
+  <div id="ui-layer">
+    <h1>Lumina Grand Hall</h1>
+    <p>Use <span class="key">W</span> <span class="key">A</span> <span class="key">S</span> <span class="key">D</span> to walk.</p>
+    <p>Click and drag mouse to look around.</p>
+  </div>
+  
+  <button id="exit-btn" onclick="window.close()">Close Window</button>
+
+  <a-scene shadow="type: pcfsoft" renderer="colorManagement: true; physicallyCorrectLights: true;">
+    
+    <!-- Camera / Player Rig with Movement -->
+    <a-entity id="rig" movement-controls="speed: 0.3; constrainToNavMesh: false;" position="0 1.6 20">
+      <a-entity camera look-controls="pointerLockEnabled: false"></a-entity>
+    </a-entity>
+
+    <!-- Environment: The Grand Hall -->
+    <!-- Floor -->
+    <a-plane position="0 0 0" rotation="-90 0 0" width="40" height="60" color="#1a1a1c" material="roughness: 0.2; metalness: 0.1" shadow="receive: true"></a-plane>
+    <!-- Ceiling -->
+    <a-plane position="0 20 0" rotation="90 0 0" width="40" height="60" color="#0a0a0c" shadow="receive: true"></a-plane>
+    
+    <!-- Walls -->
+    <a-box position="0 10 -30" width="40" height="20" depth="1" color="#2a2a2d" material="roughness: 0.8" shadow="receive: true"></a-box> <!-- Front -->
+    <a-box position="0 10 30" width="40" height="20" depth="1" color="#2a2a2d" material="roughness: 0.8" shadow="receive: true"></a-box> <!-- Back -->
+    <a-box position="-20 10 0" width="1" height="20" depth="60" color="#1f1f22" material="roughness: 0.8" shadow="receive: true"></a-box> <!-- Left -->
+    <a-box position="20 10 0" width="1" height="20" depth="60" color="#1f1f22" material="roughness: 0.8" shadow="receive: true"></a-box> <!-- Right -->
+
+    <!-- Left Staircase -->
+    <a-entity position="-15 0 -10">
+      <!-- Base platform -->
+      <a-box position="0 2 -5" width="8" height="4" depth="10" color="#333" shadow="cast: true; receive: true"></a-box>
+      <!-- Steps up to the platform -->
+      <a-box position="3 0.5 -1.5" width="2" height="1" depth="3" color="#444" shadow="cast: true; receive: true"></a-box>
+      <a-box position="3 1.5 -2.5" width="2" height="3" depth="5" color="#444" shadow="cast: true; receive: true"></a-box>
+      <!-- A glowing sconce on the landing -->
+      <a-sphere position="0 5 -5" radius="0.4" color="#ffddaa" material="emissive: #ffcc88; emissiveIntensity: 0.5" shadow="cast: false"></a-sphere>
+      <a-light type="point" position="0 5 -5" distance="15" intensity="0.5" color="#ffddaa" shadow="cast: true"></a-light>
+    </a-entity>
+
+    <!-- Right Staircase -->
+    <a-entity position="15 0 -10">
+      <!-- Base platform -->
+      <a-box position="0 2 -5" width="8" height="4" depth="10" color="#333" shadow="cast: true; receive: true"></a-box>
+      <!-- Steps up to the platform -->
+      <a-box position="-3 0.5 -1.5" width="2" height="1" depth="3" color="#444" shadow="cast: true; receive: true"></a-box>
+      <a-box position="-3 1.5 -2.5" width="2" height="3" depth="5" color="#444" shadow="cast: true; receive: true"></a-box>
+      <!-- A glowing sconce on the landing -->
+      <a-sphere position="0 5 -5" radius="0.4" color="#ffddaa" material="emissive: #ffcc88; emissiveIntensity: 0.5" shadow="cast: false"></a-sphere>
+      <a-light type="point" position="0 5 -5" distance="15" intensity="0.5" color="#ffddaa" shadow="cast: true"></a-light>
+    </a-entity>
+
+
+    <!-- Central Chandelier Assembly -->
+    <a-entity position="0 15 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 60000; easing: linear">
+      
+      <!-- Main hanging rod -->
+      <a-cylinder position="0 2.5 0" radius="0.05" height="5" color="#c3a35e" material="metalness: 0.8; roughness: 0.2" shadow="cast: true"></a-cylinder>
+      
+      <!-- Top Ring -->
+      <a-torus position="0 0 0" radius="3" radius-tubular="0.05" rotation="90 0 0" color="#c3a35e" material="metalness: 0.8; roughness: 0.2" shadow="cast: true"></a-torus>
+      
+      <!-- Bottom Ring -->
+      <a-torus position="0 -1.5 0" radius="1.5" radius-tubular="0.05" rotation="90 0 0" color="#c3a35e" material="metalness: 0.8; roughness: 0.2" shadow="cast: true"></a-torus>
+
+      <!-- Connecting rods -->
+      <a-cylinder position="2.12 -0.75 2.12" radius="0.02" height="1.8" rotation="35 -45 0" color="#c3a35e"></a-cylinder>
+      <a-cylinder position="-2.12 -0.75 2.12" radius="0.02" height="1.8" rotation="35 45 0" color="#c3a35e"></a-cylinder>
+      <a-cylinder position="2.12 -0.75 -2.12" radius="0.02" height="1.8" rotation="-35 -45 0" color="#c3a35e"></a-cylinder>
+      <a-cylinder position="-2.12 -0.75 -2.12" radius="0.02" height="1.8" rotation="-35 45 0" color="#c3a35e"></a-cylinder>
+
+      <!-- Crystal / Light Elements on Top Ring -->
+      <!-- Let's add 8 glowing crystals -->
+      <a-entity position="3 0 0">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="-3 0 0">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="0 0 3">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="0 0 -3">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="2.12 0 2.12">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="-2.12 0 -2.12">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="2.12 0 -2.12">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+      <a-entity position="-2.12 0 2.12">
+        <a-cone radius-bottom="0.1" radius-top="0.01" height="0.6" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 0.8; transparent: true; opacity: 0.9"></a-cone>
+      </a-entity>
+
+      <!-- Center piece -->
+      <a-octahedron position="0 -1.5 0" radius="0.5" color="#ffffff" material="emissive: #ffeedd; emissiveIntensity: 1; transparent: true; opacity: 0.8" animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear"></a-octahedron>
+
+      <!-- Central Chandelier Light -->
+      <a-light type="point" distance="40" intensity="1.5" color="#ffe8cc" shadow="cast: true"></a-light>
+    </a-entity>
+
+    <!-- General Scene Lighting -->
+    <a-light type="ambient" color="#22222a" intensity="1"></a-light>
+    <!-- Soft fill light from the entrance -->
+    <a-light type="directional" position="0 10 20" intensity="0.2" color="#ffffff"></a-light>
+
+  </a-scene>
+</body>
+</html>

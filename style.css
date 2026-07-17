@@ -39,6 +39,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Accounts for fixed navbar */
   font-size: 16px;
 }
 
@@ -779,11 +780,12 @@ ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-  align-items: center;
+  align-items: start;
 }
 
 .about-img-wrap {
-  position: relative;
+  position: sticky;
+  top: 120px;
 }
 
 .about-img {
