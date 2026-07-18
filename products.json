@@ -140,63 +140,6 @@
             "badgeClass": ""
         },
         {
-            "id": "p_4",
-            "badge": "Premium",
-            "tags": [
-                "Art Deco",
-                "1920s",
-                "Gold & Glass"
-            ],
-            "img": "artdeco.png",
-            "name": "Art Deco Glamour Chandelier",
-            "categoryId": "chandeliers",
-            "specs": [
-                "80cm \u00d7 60cm",
-                "Gold-plated + Frosted Glass",
-                "8-12 bulbs"
-            ],
-            "desc": "Channel the golden age of Hollywood with this opulent Art Deco chandelier. Tiered geometric panels of frosted glass and polished gold frame create a dramatic statement piece.",
-            "badgeClass": "premium"
-        },
-        {
-            "id": "p_5",
-            "badge": "Trending",
-            "tags": [
-                "Contemporary",
-                "Glass Drops",
-                "Waterfall"
-            ],
-            "img": "raindrop.png",
-            "name": "Raindrop Cascade Chandelier",
-            "categoryId": "chandeliers",
-            "specs": [
-                "100cm diameter",
-                "Chrome + Glass Drops",
-                "LED integrated"
-            ],
-            "desc": "Hundreds of individually suspended glass teardrop pendants create a mesmerising waterfall of light. Each drop catches and scatters light uniquely, filling the room with shimmering, dancing reflections.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_6",
-            "badge": "",
-            "tags": [
-                "Antique",
-                "Wrought Iron",
-                "Classic"
-            ],
-            "img": "candle.png",
-            "name": "Antique Candle Chandelier",
-            "categoryId": "chandeliers",
-            "specs": [
-                "65cm diameter",
-                "Hand-forged Iron",
-                "8 candle bulbs"
-            ],
-            "desc": "Evoke old-world European grandeur with this hand-forged wrought iron chandelier. Candle-style bulb holders fan outward from a central column, casting a warm, intimate amber glow.",
-            "badgeClass": ""
-        },
-        {
             "id": "p_7",
             "badge": "Bestseller",
             "tags": [
@@ -251,63 +194,6 @@
                 "1 vintage filament bulb"
             ],
             "desc": "Individually hand-blown in borosilicate glass, each orb carries subtle swirls of amber and gold unique to that piece. A statement of artisanal craftsmanship.",
-            "badgeClass": ""
-        },
-        {
-            "id": "p_10",
-            "badge": "Trending",
-            "tags": [
-                "Natural",
-                "Rattan",
-                "Bohemian"
-            ],
-            "img": "artdeco.png",
-            "name": "Rattan Weave Pendant",
-            "categoryId": "pendant-lights",
-            "specs": [
-                "45cm diameter",
-                "Natural Rattan",
-                "1 Edison bulb"
-            ],
-            "desc": "Hand-woven rattan in a warm honey tone filters light into intricate dappled patterns. Brings texture, warmth, and organic charm indoors.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_11",
-            "badge": "Premium",
-            "tags": [
-                "Crystal",
-                "Luxury",
-                "Gold"
-            ],
-            "img": "raindrop.png",
-            "name": "Crystal Drop Pendant",
-            "categoryId": "pendant-lights",
-            "specs": [
-                "20cm diameter",
-                "Gold-plated + K9 Crystal",
-                "1-3 LED bulbs"
-            ],
-            "desc": "A single dramatic cascade of K9 crystal drops flowing from a polished gold frame - luxury pendant on a smaller scale.",
-            "badgeClass": "premium"
-        },
-        {
-            "id": "p_12",
-            "badge": "",
-            "tags": [
-                "Geometric",
-                "Wire Frame",
-                "Modern"
-            ],
-            "img": "candle.png",
-            "name": "Geometric Cage Pendant",
-            "categoryId": "pendant-lights",
-            "specs": [
-                "35cm \u00d7 45cm",
-                "Antique Brass Wire",
-                "1 large filament bulb"
-            ],
-            "desc": "An open geometric wire cage in a warm antique brass finish creates a sophisticated industrial-luxe look and beautiful shadow patterns.",
             "badgeClass": ""
         },
         {
@@ -368,63 +254,6 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_16",
-            "badge": "Trending",
-            "tags": [
-                "Modern",
-                "Brass",
-                "Minimalist"
-            ],
-            "img": "artdeco.png",
-            "name": "Brushed Brass Modern Sconce",
-            "categoryId": "wall-sconces",
-            "specs": [
-                "20cm projection",
-                "Brushed Brass",
-                "1 G9 LED bulb"
-            ],
-            "desc": "A sleek curved arm in brushed warm brass culminates in a small half-dome shade. Layers ambient light beautifully in bedrooms, reading nooks, and hotel-style corridors.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_17",
-            "badge": "",
-            "tags": [
-                "Marble",
-                "Luxury",
-                "Contemporary"
-            ],
-            "img": "raindrop.png",
-            "name": "Marble & Gold Wall Light",
-            "categoryId": "wall-sconces",
-            "specs": [
-                "20cm \u00d7 25cm",
-                "Marble + Gold Plated",
-                "2 G9 LED bulbs"
-            ],
-            "desc": "A solid marble backplate in natural white Carrara with gold-plated arms and sockets. Each piece is unique due to the natural marble veining.",
-            "badgeClass": ""
-        },
-        {
-            "id": "p_18",
-            "badge": "",
-            "tags": [
-                "Antique",
-                "Lantern",
-                "Bronze"
-            ],
-            "img": "candle.png",
-            "name": "Antique Lantern Sconce",
-            "categoryId": "wall-sconces",
-            "specs": [
-                "15cm \u00d7 35cm",
-                "Antique Bronze",
-                "1 candle bulb"
-            ],
-            "desc": "A miniature lantern in antiqued bronze with clear seeded glass panels. Brings a warm, historic charm to heritage homes, farmhouses, and verandas.",
-            "badgeClass": ""
-        },
-        {
             "id": "p_19",
             "badge": "Bestseller",
             "tags": [
@@ -482,63 +311,6 @@
             "badgeClass": "premium"
         },
         {
-            "id": "p_22",
-            "badge": "Trending",
-            "tags": [
-                "Copper",
-                "Hammered",
-                "Industrial"
-            ],
-            "img": "artdeco.png",
-            "name": "Hammered Copper Lamp",
-            "categoryId": "table-lamps",
-            "specs": [
-                "52cm height",
-                "Hammered Copper",
-                "1 E27 vintage bulb"
-            ],
-            "desc": "A hand-hammered copper base in warm burnished tones pairs with a complementary fabric shade. The hammered texture catches light and improves character with age.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_23",
-            "badge": "",
-            "tags": [
-                "Marble",
-                "Gold",
-                "Luxury"
-            ],
-            "img": "raindrop.png",
-            "name": "Marble & Gold Table Lamp",
-            "categoryId": "table-lamps",
-            "specs": [
-                "58cm height",
-                "Marble + Gold Plated Brass",
-                "1 E27 LED bulb"
-            ],
-            "desc": "A solid Italian marble base in white with natural grey veining, topped with a brushed gold neck and pleated cream shade. A timeless combination of the finest materials.",
-            "badgeClass": ""
-        },
-        {
-            "id": "p_24",
-            "badge": "",
-            "tags": [
-                "Modern",
-                "LED",
-                "Touch Control"
-            ],
-            "img": "candle.png",
-            "name": "LED Touch Dimmer Lamp",
-            "categoryId": "table-lamps",
-            "specs": [
-                "50cm height",
-                "ABS + Aluminium",
-                "Integrated 12W LED"
-            ],
-            "desc": "A contemporary touch-sensitive base lets you cycle through four levels of warm white brightness with a simple tap. Perfect for minimalist bedrooms and home offices.",
-            "badgeClass": ""
-        },
-        {
             "id": "p_25",
             "badge": "Bestseller",
             "tags": [
@@ -593,63 +365,6 @@
                 "1 E27 bulb, 360\u00b0 head"
             ],
             "desc": "A sleek matte-black pole culminates in an upward-facing bowl that bounces light off the ceiling for a broad, ambient glow. Perfect for dark corners needing diffused light.",
-            "badgeClass": ""
-        },
-        {
-            "id": "p_28",
-            "badge": "Premium",
-            "tags": [
-                "Crystal",
-                "Luxury",
-                "Statement"
-            ],
-            "img": "artdeco.png",
-            "name": "Crystal Column Floor Lamp",
-            "categoryId": "floor-lamps",
-            "specs": [
-                "180cm height",
-                "K9 Crystal Column + Gold Cap",
-                "1 E27 LED bulb"
-            ],
-            "desc": "A floor-to-ceiling column of stacked crystal discs creates a sculptural presence - equally a light source and a piece of fine art. Commands the room with quiet authority.",
-            "badgeClass": "premium"
-        },
-        {
-            "id": "p_29",
-            "badge": "Trending",
-            "tags": [
-                "Adjustable",
-                "Reading",
-                "Minimalist"
-            ],
-            "img": "raindrop.png",
-            "name": "Adjustable Reading Lamp",
-            "categoryId": "floor-lamps",
-            "specs": [
-                "145-185cm adjustable",
-                "Matt Steel",
-                "Integrated 10W LED"
-            ],
-            "desc": "Test Test A fully articulated arm with multi-point joints allows precise positioning of the reading head. A beloved choice for home libraries, studies, and bedside reading areas.",
-            "badgeClass": "premium"
-        },
-        {
-            "id": "p_30",
-            "badge": "",
-            "tags": [
-                "Globes",
-                "Cluster",
-                "Artistic"
-            ],
-            "img": "candle.png",
-            "name": "Globe Cascade Floor Lamp",
-            "categoryId": "floor-lamps",
-            "specs": [
-                "170cm height",
-                "Solid Brass + Opal Glass",
-                "5-7 globe bulbs"
-            ],
-            "desc": "Multiple brass arms branch from a central pole, each ending in a warm opal glass globe at varying heights. An artistic sculptural silhouette by day, a warm glow by night.",
             "badgeClass": ""
         },
         {
@@ -710,63 +425,6 @@
             "badgeClass": ""
         },
         {
-            "id": "p_34",
-            "badge": "Trending",
-            "tags": [
-                "Starlight",
-                "LED Points",
-                "Dramatic"
-            ],
-            "img": "artdeco.png",
-            "name": "Starlight LED Ceiling",
-            "categoryId": "ceiling-lights",
-            "specs": [
-                "60cm diameter",
-                "Fibre Optic Panel",
-                "Integrated LED, colour-changeable"
-            ],
-            "desc": "Hundreds of fibre-optic LED pinpoints recreate a night-sky effect on your ceiling. Creates a magical, immersive atmosphere in bedrooms, home theatres, and luxury master suites.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_35",
-            "badge": "Premium",
-            "tags": [
-                "Rose Gold",
-                "Petal",
-                "Contemporary"
-            ],
-            "img": "raindrop.png",
-            "name": "Rose Gold Petal Ceiling",
-            "categoryId": "ceiling-lights",
-            "specs": [
-                "70cm diameter",
-                "Brushed Rose Gold Steel",
-                "Integrated 42W LED, dimmable"
-            ],
-            "desc": "Overlapping petal-shaped panels in brushed rose gold radiate outward from a central LED source like an opening bloom. A contemporary sculptural centrepiece for any modern living room.",
-            "badgeClass": "premium"
-        },
-        {
-            "id": "p_36",
-            "badge": "",
-            "tags": [
-                "Vintage",
-                "Schoolhouse",
-                "Glass Globe"
-            ],
-            "img": "candle.png",
-            "name": "Schoolhouse Flush Mount",
-            "categoryId": "ceiling-lights",
-            "specs": [
-                "30cm diameter",
-                "Clear Glass + Antique Brass",
-                "1 E27 vintage bulb"
-            ],
-            "desc": "A classic globe-shaped clear glass shade on a polished antique brass ceiling plate - timeless in a heritage home or a modern Scandinavian-style flat.",
-            "badgeClass": ""
-        },
-        {
             "id": "p_37",
             "badge": "Bestseller",
             "tags": [
@@ -824,63 +482,6 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_40",
-            "badge": "New Arrival",
-            "tags": [
-                "Solar",
-                "Garden Spike",
-                "LED"
-            ],
-            "img": "artdeco.png",
-            "name": "Solar Spike Garden Light",
-            "categoryId": "outdoor-garden",
-            "specs": [
-                "60cm spike height",
-                "ABS + Stainless Steel",
-                "Integrated solar LED, IP65"
-            ],
-            "desc": "A ground-spike solar LED light that can be aimed at plants, trees, or garden features. Charges by day and illuminates automatically at dusk - zero running costs.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_41",
-            "badge": "",
-            "tags": [
-                "Bollard",
-                "Pathway",
-                "Modern"
-            ],
-            "img": "raindrop.png",
-            "name": "Pathway Bollard Light",
-            "categoryId": "outdoor-garden",
-            "specs": [
-                "40cm height",
-                "Brushed Aluminium",
-                "Integrated 6W LED, IP65"
-            ],
-            "desc": "A modern cylindrical bollard in brushed aluminium with a 360-degree frosted diffuser ring. Marks out pathways and driveways elegantly. Low-profile and highly visible.",
-            "badgeClass": ""
-        },
-        {
-            "id": "p_42",
-            "badge": "Premium",
-            "tags": [
-                "Outdoor Pendant",
-                "Rattan",
-                "Covered"
-            ],
-            "img": "candle.png",
-            "name": "Waterfall Outdoor Pendant",
-            "categoryId": "outdoor-garden",
-            "specs": [
-                "60cm diameter",
-                "Natural Rattan (covered use)",
-                "1 E27 LED bulb, IP20"
-            ],
-            "desc": "A large natural rattan pendant for covered outdoor spaces - pergolas, verandas, and alfresco dining areas. Creates a resort-style tropical ambience.",
-            "badgeClass": "premium"
-        },
-        {
             "id": "p_43",
             "badge": "Bestseller",
             "tags": [
@@ -935,63 +536,6 @@
                 "1 G125 globe bulb"
             ],
             "desc": "Inspired by old factory plumbing, this hand-assembled iron pipe wall bracket holds a vintage Edison globe bulb on an adjustable pivot arm. Raw, characterful, and unmistakably industrial - a favourite in loft apartments and creative offices.",
-            "badgeClass": ""
-        },
-        {
-            "id": "p_46",
-            "badge": "Trending",
-            "tags": [
-                "Linear",
-                "LED",
-                "Architectural"
-            ],
-            "img": "artdeco.png",
-            "name": "Linear LED Profile Strip",
-            "categoryId": "industrial-architectural",
-            "specs": [
-                "1m - 5m sections",
-                "Anodised Aluminium + LED",
-                "Integrated LED, dimmable, IP40"
-            ],
-            "desc": "A sleek aluminium extrusion profile housing a continuous LED strip delivers razor-sharp linear light for under-cabinet, cove, staircase, and perimeter lighting. Available in warm white, cool white, and RGB. The tool of choice for architectural lighting designers.",
-            "badgeClass": "new"
-        },
-        {
-            "id": "p_47",
-            "badge": "Premium",
-            "tags": [
-                "Dome",
-                "Factory",
-                "Gunmetal"
-            ],
-            "img": "raindrop.png",
-            "name": "Warehouse Dome Pendant",
-            "categoryId": "industrial-architectural",
-            "specs": [
-                "50cm dome diameter",
-                "Spun Steel + Gunmetal Finish",
-                "1 E27 bulb, up to 200W"
-            ],
-            "desc": "A wide, deep pressed-steel dome in a gunmetal grey finish hangs from an adjustable cable and canopy. Originally derived from early 20th-century factory and warehouse lighting, this pendant delivers powerful downward illumination with a broad, even spread.",
-            "badgeClass": "premium"
-        },
-        {
-            "id": "p_48",
-            "badge": "",
-            "tags": [
-                "Cluster",
-                "Edison",
-                "Multi-Bulb"
-            ],
-            "img": "candle.png",
-            "name": "Exposed Bulb Cluster Light",
-            "categoryId": "industrial-architectural",
-            "specs": [
-                "Configurable 5-12 drops",
-                "Antique Brass Rose + Fabric Cable",
-                "5-12 ST64 Edison bulbs"
-            ],
-            "desc": "Multiple Edison ST64 bulbs hang at varying lengths from a single ceiling rose on twisted fabric cables. Each bulb glows with warm amber filament light, creating a sculptural, artisanal cluster that is pure visual drama for high-ceiling dining rooms and hotel lobbies.",
             "badgeClass": ""
         }
     ]
