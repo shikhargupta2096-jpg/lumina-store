@@ -84,22 +84,21 @@
     "products": [
         {
             "id": "p_1",
-            "badge": "Bestseller",
+            "badge": "New Arrival",
             "tags": [
                 "Crystal",
                 "Royal",
                 "Gold Frame"
             ],
-            "img": "crystal.png",
-            "name": "Crystal Grand Chandelier",
+            "img": "LuxeRingGlow.jpg",
+            "name": "Luxe Ring Glow Chandelier",
             "categoryId": "chandeliers",
             "specs": [
-                "Available in 3 sizes",
-                "Brass + K9 Crystal",
-                "12-24 bulbs"
+                "K9 Crystal",
+                "LED Based illumination"
             ],
             "desc": "A breathtaking cascade of hand-cut crystals suspended from an ornate brass frame. Commands attention in ballrooms, grand foyers, and luxury dining rooms. Each crystal is precision-cut to refract light into thousands of shimmering reflections.",
-            "badgeClass": ""
+            "badgeClass": "new"
         },
         {
             "id": "p_2",
@@ -537,22 +536,6 @@
             ],
             "desc": "Inspired by old factory plumbing, this hand-assembled iron pipe wall bracket holds a vintage Edison globe bulb on an adjustable pivot arm. Raw, characterful, and unmistakably industrial - a favourite in loft apartments and creative offices.",
             "badgeClass": ""
-        }, {
-            "id": "p_25",
-            "badge": "New Arrival",
-            "tags": [
-                "Crystal",
-                "Royal",
-                "Gold Frame"
-            ],
-            "img": "LuxeRingGlow.jpg",
-            "name": "Luxe Ring Glow Chandelier",
-            "categoryId": "chandeliers",
-            "specs": ["K9 Crystal",
-                "LED Based illumination"
-            ],
-            "desc": "A breathtaking cascade of hand-cut crystals suspended from an ornate brass frame. Commands attention in ballrooms, grand foyers, and luxury dining rooms. Each crystal is precision-cut to refract light into thousands of shimmering reflections.",
-            "badgeClass": "new"
         }
     ]
 }
