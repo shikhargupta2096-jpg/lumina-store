@@ -140,7 +140,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_7",
+            "id": "p_4",
             "badge": "Bestseller",
             "tags": [
                 "Nordic",
@@ -159,7 +159,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_8",
+            "id": "p_5",
             "badge": "New Arrival",
             "tags": [
                 "Industrial",
@@ -178,7 +178,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_9",
+            "id": "p_6",
             "badge": "",
             "tags": [
                 "Art Glass",
@@ -197,7 +197,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_13",
+            "id": "p_7",
             "badge": "Bestseller",
             "tags": [
                 "Art Deco",
@@ -216,7 +216,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_14",
+            "id": "p_8",
             "badge": "Premium",
             "tags": [
                 "Crystal",
@@ -235,7 +235,7 @@
             "badgeClass": "premium"
         },
         {
-            "id": "p_15",
+            "id": "p_9",
             "badge": "New Arrival",
             "tags": [
                 "Industrial",
@@ -254,7 +254,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_19",
+            "id": "p_10",
             "badge": "Bestseller",
             "tags": [
                 "Tiffany",
@@ -273,7 +273,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_20",
+            "id": "p_11",
             "badge": "New Arrival",
             "tags": [
                 "Ceramic",
@@ -292,7 +292,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_21",
+            "id": "p_12",
             "badge": "Premium",
             "tags": [
                 "Crystal",
@@ -311,7 +311,7 @@
             "badgeClass": "premium"
         },
         {
-            "id": "p_25",
+            "id": "p_13",
             "badge": "Bestseller",
             "tags": [
                 "Arc",
@@ -330,7 +330,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_26",
+            "id": "p_14",
             "badge": "New Arrival",
             "tags": [
                 "Tripod",
@@ -349,7 +349,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_27",
+            "id": "p_15",
             "badge": "",
             "tags": [
                 "Industrial",
@@ -368,7 +368,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_31",
+            "id": "p_16",
             "badge": "Bestseller",
             "tags": [
                 "Crystal",
@@ -387,7 +387,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_32",
+            "id": "p_17",
             "badge": "New Arrival",
             "tags": [
                 "LED",
@@ -406,7 +406,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_33",
+            "id": "p_18",
             "badge": "",
             "tags": [
                 "Drum",
@@ -425,7 +425,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_37",
+            "id": "p_19",
             "badge": "Bestseller",
             "tags": [
                 "Post Lamp",
@@ -444,7 +444,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_38",
+            "id": "p_20",
             "badge": "",
             "tags": [
                 "Wall Lantern",
@@ -463,7 +463,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_39",
+            "id": "p_21",
             "badge": "Trending",
             "tags": [
                 "String Lights",
@@ -482,7 +482,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_43",
+            "id": "p_22",
             "badge": "Bestseller",
             "tags": [
                 "Industrial",
@@ -501,7 +501,7 @@
             "badgeClass": ""
         },
         {
-            "id": "p_44",
+            "id": "p_23",
             "badge": "New Arrival",
             "tags": [
                 "Track",
@@ -520,7 +520,7 @@
             "badgeClass": "new"
         },
         {
-            "id": "p_45",
+            "id": "p_24",
             "badge": "",
             "tags": [
                 "Pipe",
