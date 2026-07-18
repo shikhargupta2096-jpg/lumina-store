@@ -128,7 +128,8 @@ function debounce(fn, delay) {
   
     grid.innerHTML = data.categories.map(cat => {
       // Determine category data attribute string (used by CSS animations or sorting if needed)
-      const catTypeAttr = cat.categoryType || 'indoor';
+      const rawCat = cat.categoryType || 'indoor';
+      const catTypeAttr = rawCat.toLowerCase().includes('outdoor') ? 'outdoor' : 'indoor';
       
       return `
         <article class="product-card reveal" data-category="${catTypeAttr}" data-name="${cat.name}">
@@ -203,9 +204,8 @@ function debounce(fn, delay) {
    ========================================================= */
 (function initFilter() {
   const tabs = document.querySelectorAll('.filter-tab');
-  const cards = document.querySelectorAll('.product-card');
 
-  if (!tabs.length || !cards.length) return;
+  if (!tabs.length) return;
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -218,6 +218,7 @@ function debounce(fn, delay) {
       tab.setAttribute('aria-selected', 'true');
 
       const filter = tab.dataset.filter;
+      const cards = document.querySelectorAll('.product-card');
 
       cards.forEach(card => {
         const category = card.dataset.category;

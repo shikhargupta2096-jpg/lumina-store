@@ -796,6 +796,23 @@ ul {
   border: 1px solid var(--border-gold);
 }
 
+.about-img-secondary {
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 55%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 6px solid var(--bg-primary);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  z-index: 2;
+  transition: transform var(--transition);
+}
+
+.about-img-wrap:hover .about-img-secondary {
+  transform: translateY(-10px);
+}
+
 .about-img-accent {
   position: absolute;
   bottom: -1.5rem;
