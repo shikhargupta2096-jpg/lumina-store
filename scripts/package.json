@@ -1,0 +1,12 @@
+{
+  "name": "lumina-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "migrate": "node migrate-chandeliers.mjs"
+  },
+  "dependencies": {
+    "firebase": "^11.10.0"
+  }
+}

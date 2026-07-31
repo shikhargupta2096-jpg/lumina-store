@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina | Designer Lighting</title>
+  <link rel="stylesheet" href="modern.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Ambient Liquid Blobs -->
+  <div class="ambient-blob blob-1"></div>
+  <div class="ambient-blob blob-2"></div>
+
+  <!-- Navigation -->
+  <div class="navbar-wrapper">
+    <nav class="navbar liquid-reveal">
+      <a href="index.html" class="logo">LUMINA</a>
+      <div class="nav-links">
+        <a href="index.html">Classic Mode</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">Story</a>
+        <a href="#testimonials">Reviews</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero Section (Minimal Single Column) -->
+  <header class="hero">
+    <img src="images/hero_bg_1783767445178.png" alt="Lumina Showroom" class="hero-bg">
+    
+    <div class="hero-content liquid-reveal">
+      <span class="hero-tag">Luxury Designer Lighting</span>
+      <h1>Illuminate <br> Your World</h1>
+      <p>Handcrafted designer lights that transform spaces into extraordinary experiences. From grand chandeliers to bespoke custom creations — every piece tells a story of light.</p>
+      
+      <a href="#collections" class="btn-primary">Explore Collections</a>
+    </div>
+  </header>
+
+  <!-- Collections Section -->
+  <section class="container stagger-parent" id="collections">
+    <h2 class="section-title liquid-reveal" style="--stagger-idx: 0;">Curated Collections</h2>
+    <div class="collection-grid" id="collection-grid">
+      <!-- Categories injected via JS -->
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="container" id="about">
+    <div class="story-section liquid-reveal">
+      <h3 class="story-quote">"I didn't start Lumina to just sell lights. I started it to help people fall in love with their own spaces."</h3>
+      <p>Lumina was born right here in Lakhimpur Kheri. My vision was simple: to bring the kind of world-class designer lighting you'd find in a luxury showroom, directly to our region.</p>
+      <span class="founder">— Shikhar Gupta, Founder</span>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="container" id="testimonials">
+    <h2 class="section-title liquid-reveal">Client Stories</h2>
+    <div class="testimonial-list stagger-parent">
+      
+      <div class="test-row liquid-reveal" style="--stagger-idx: 1;">
+        <div class="test-avatar">RG</div>
+        <div class="test-content">
+          <p>"The chandelier we bought completely transformed our living room. The build quality is stunning, and it has become the focal point of our home."</p>
+          <span class="test-author">Rajesh Gupta • Homeowner</span>
+        </div>
+      </div>
+      
+      <div class="test-row liquid-reveal" style="--stagger-idx: 2;">
+        <div class="test-avatar">PS</div>
+        <div class="test-content">
+          <p>"We ordered custom lighting for our restaurant. The attention to detail and modern aesthetic exceeded all our expectations. Highly recommended."</p>
+          <span class="test-author">Priya Sharma • Restaurateur</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h2 class="liquid-reveal">Lumina</h2>
+    <div class="socials liquid-reveal">
+      <a href="https://instagram.com/lumina_thedesigner_lightstore"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61590450866408"><i class="fa-brands fa-facebook-f"></i></a>
+    </div>
+    <p class="footer-bottom liquid-reveal">&copy; 2026 Lumina — The Designer Light Store. All rights reserved.</p>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-title">Collection</h2>
+          <p id="modal-subtitle">Details</p>
+        </div>
+        <button class="close-btn" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Products injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat for static sites) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="modern.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina — Upload Data to Firestore</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0c; color: #fff; font-family: system-ui, sans-serif; padding: 60px 40px; }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    .subtitle { color: #888; margin-bottom: 40px; }
+    .log { background: #111; border: 1px solid #222; border-radius: 12px; padding: 24px; font-family: monospace; font-size: 0.9rem; line-height: 1.8; max-height: 500px; overflow-y: auto; white-space: pre-wrap; }
+    .log .ok { color: #4ade80; }
+    .log .warn { color: #facc15; }
+    .log .err { color: #f87171; }
+    .log .info { color: #60a5fa; }
+    button { background: #fff; color: #000; border: none; padding: 14px 32px; border-radius: 100px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 24px; transition: opacity 0.2s; }
+    button:hover { opacity: 0.8; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+
+  <h1>Upload products.json → Firestore</h1>
+  <p class="subtitle">This will read your local <code>products.json</code> and create documents in Firestore collections <code>categories</code> and <code>products</code>.</p>
+
+  <button id="upload-btn" onclick="startUpload()">Start Upload</button>
+
+  <div class="log" id="log"></div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAigaPZBTCHCETCjnnqmI531H6XPzprxaQ",
+      authDomain: "lumina-website-b5035.firebaseapp.com",
+      projectId: "lumina-website-b5035",
+      storageBucket: "lumina-website-b5035.firebasestorage.app",
+      messagingSenderId: "680162335951",
+      appId: "1:680162335951:web:111545f42277680459ebba",
+      measurementId: "G-GRYZQ1JJLD"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const logEl = document.getElementById('log');
+
+    function log(msg, type = 'info') {
+      const span = document.createElement('span');
+      span.className = type;
+      span.textContent = msg + '\n';
+      logEl.appendChild(span);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    async function startUpload() {
+      const btn = document.getElementById('upload-btn');
+      btn.disabled = true;
+      btn.textContent = 'Uploading...';
+      logEl.innerHTML = '';
+
+      try {
+        // 1. Load products.json
+        log('Fetching products.json...', 'info');
+        const response = await fetch('products.json?v=' + Date.now());
+        const data = await response.json();
+        log(`Loaded ${data.categories.length} categories and ${data.products.length} products.`, 'ok');
+
+        // 2. Upload Categories
+        log('\n--- Uploading Categories ---', 'info');
+        for (let i = 0; i < data.categories.length; i++) {
+          const cat = data.categories[i];
+          const docId = cat.id; // Use the existing id as the document ID
+          const docData = { ...cat, order: i }; // Add an order field for sorting
+          
+          await db.collection('categories').doc(docId).set(docData);
+          log(`  ✓ Category "${cat.name}" → categories/${docId}`, 'ok');
+        }
+
+        // 3. Upload Products
+        log('\n--- Uploading Products ---', 'info');
+        for (const prod of data.products) {
+          const docId = prod.id; // Use existing product id as the document ID
+          await db.collection('products').doc(docId).set(prod);
+          log(`  ✓ Product "${prod.name}" → products/${docId}`, 'ok');
+        }
+
+        log(`\n✅ Upload complete! ${data.categories.length} categories and ${data.products.length} products written to Firestore.`, 'ok');
+        log('You can now close this page and refresh modern.html.', 'info');
+
+      } catch (err) {
+        log(`\n❌ Error: ${err.message}`, 'err');
+        log('Make sure Firestore security rules allow writes. See instructions below.', 'warn');
+        log('\nTemporary Firestore rules for upload (Firebase Console → Firestore → Rules):', 'warn');
+        log('  rules_version = "2";', 'warn');
+        log('  service cloud.firestore {', 'warn');
+        log('    match /databases/{database}/documents {', 'warn');
+        log('      match /{document=**} {', 'warn');
+        log('        allow read, write: if true;', 'warn');
+        log('      }', 'warn');
+        log('    }', 'warn');
+        log('  }', 'warn');
+        log('\n⚠ After uploading, change "write: if true" to "write: if false" to lock down writes.', 'warn');
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Upload Again';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+.git
+.git/
+.agents
+admin/node_modules
+admin/public
+admin/src
+scripts/node_modules
+.DS_Store
