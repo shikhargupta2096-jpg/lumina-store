@@ -1,114 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumina | Designer Lighting</title>
-  <link rel="stylesheet" href="modern.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina - Architectural Lighting</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Metrophobic&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@100..900&family=Metrophobic:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#4d4635",
+                        "on-primary-fixed": "#241a00",
+                        "primary-container": "#d4af37",
+                        "on-error": "#690005",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#e9c349",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "background": "#131313",
+                        "primary": "#f2ca50",
+                        "inverse-primary": "#735c00",
+                        "inverse-on-surface": "#313030",
+                        "outline": "#99907c",
+                        "on-tertiary": "#303030",
+                        "on-tertiary-container": "#454544",
+                        "secondary": "#c6c7c2",
+                        "surface-bright": "#393939",
+                        "tertiary-container": "#b4b2b2",
+                        "on-background": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#ffe088",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#1b1b1c",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#3c2f00",
+                        "error-container": "#93000a",
+                        "surface-container": "#201f1f",
+                        "on-secondary-container": "#b8b9b4",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#c6c7c2",
+                        "on-secondary": "#2f312e",
+                        "on-secondary-fixed-variant": "#454744",
+                        "surface": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1a1c19",
+                        "tertiary": "#d0cdcd",
+                        "on-primary-container": "#554300",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#484a46",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed": "#e3e3de",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-fixed-variant": "#574500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["EB Garamond"],
+                        "headline-md": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-md": ["Metrophobic"],
+                        "label-caps": ["Metrophobic"],
+                        "body-lg": ["Metrophobic"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .ghost-border { border: 1px solid rgba(229, 226, 225, 0.1); }
+        .gold-border-hover:hover { border-color: #f2ca50; }
+        .gold-glow:hover { box-shadow: inset 0 1px 0 0 #f2ca50; background-color: rgba(242, 202, 80, 0.1); }
+    </style>
 </head>
-<body>
-
-  <!-- Ambient Liquid Blobs -->
-  <div class="ambient-blob blob-1"></div>
-  <div class="ambient-blob blob-2"></div>
-
-  <!-- Navigation -->
-  <div class="navbar-wrapper">
-    <nav class="navbar liquid-reveal">
-      <a href="index.html" class="logo">LUMINA</a>
-      <div class="nav-links">
-        <a href="index.html">Classic Mode</a>
-        <a href="#collections">Collections</a>
-        <a href="#about">Story</a>
-        <a href="#testimonials">Reviews</a>
-      </div>
-    </nav>
-  </div>
-
-  <!-- Hero Section (Minimal Single Column) -->
-  <header class="hero">
-    <img src="images/hero_bg_1783767445178.png" alt="Lumina Showroom" class="hero-bg">
-    
-    <div class="hero-content liquid-reveal">
-      <span class="hero-tag">Luxury Designer Lighting</span>
-      <h1>Illuminate <br> Your World</h1>
-      <p>Handcrafted designer lights that transform spaces into extraordinary experiences. From grand chandeliers to bespoke custom creations — every piece tells a story of light.</p>
-      
-      <a href="#collections" class="btn-primary">Explore Collections</a>
-    </div>
-  </header>
-
-  <!-- Collections Section -->
-  <section class="container stagger-parent" id="collections">
-    <h2 class="section-title liquid-reveal" style="--stagger-idx: 0;">Curated Collections</h2>
-    <div class="collection-grid" id="collection-grid">
-      <!-- Categories injected via JS -->
-    </div>
-  </section>
-
-  <!-- Story Section -->
-  <section class="container" id="about">
-    <div class="story-section liquid-reveal">
-      <h3 class="story-quote">"I didn't start Lumina to just sell lights. I started it to help people fall in love with their own spaces."</h3>
-      <p>Lumina was born right here in Lakhimpur Kheri. My vision was simple: to bring the kind of world-class designer lighting you'd find in a luxury showroom, directly to our region.</p>
-      <span class="founder">— Shikhar Gupta, Founder</span>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="container" id="testimonials">
-    <h2 class="section-title liquid-reveal">Client Stories</h2>
-    <div class="testimonial-list stagger-parent">
-      
-      <div class="test-row liquid-reveal" style="--stagger-idx: 1;">
-        <div class="test-avatar">RG</div>
-        <div class="test-content">
-          <p>"The chandelier we bought completely transformed our living room. The build quality is stunning, and it has become the focal point of our home."</p>
-          <span class="test-author">Rajesh Gupta • Homeowner</span>
-        </div>
-      </div>
-      
-      <div class="test-row liquid-reveal" style="--stagger-idx: 2;">
-        <div class="test-avatar">PS</div>
-        <div class="test-content">
-          <p>"We ordered custom lighting for our restaurant. The attention to detail and modern aesthetic exceeded all our expectations. Highly recommended."</p>
-          <span class="test-author">Priya Sharma • Restaurateur</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <h2 class="liquid-reveal">Lumina</h2>
-    <div class="socials liquid-reveal">
-      <a href="https://instagram.com/lumina_thedesigner_lightstore"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/profile.php?id=61590450866408"><i class="fa-brands fa-facebook-f"></i></a>
-    </div>
-    <p class="footer-bottom liquid-reveal">&copy; 2026 Lumina — The Designer Light Store. All rights reserved.</p>
-  </footer>
-
-  <!-- Product Modal -->
-  <div class="modal-overlay" id="product-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div>
-          <h2 id="modal-title">Collection</h2>
-          <p id="modal-subtitle">Details</p>
-        </div>
-        <button class="close-btn" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="modal-body">
-        <!-- Products injected via JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Firebase SDK (compat for static sites) -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="modern.js"></script>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-background dark:bg-background fixed top-0 w-full z-50 border-b border-on-surface/10">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<a class="font-headline-lg text-headline-lg text-primary dark:text-primary tracking-tight" href="index.html">Lumina</a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">Collections</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">About</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="hidden md:block font-label-caps text-label-caps text-primary border border-primary px-6 py-3 rounded-DEFAULT hover:text-primary transition-colors duration-300 gold-glow scale-95 active:opacity-80">
+                Inquiry
+            </button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] min-h-[600px] w-full flex items-center justify-center px-margin-mobile md:px-margin-desktop">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40" data-alt="A sweeping, highly architectural photograph of a monumental gallery space entirely defined by structural light. Deep, rich shadows contrast with precise, sharp beams of warm gold and white light cutting through the darkness. The aesthetic is extremely high-end, minimalist, and nocturnal. The composition is dramatic, highlighting the interplay between pure geometry and luminescence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6qsI-dQYlCWUcBjNin7OncuRnh2OqvQb3nyDtqOI1cxQfp02uQR04g2K4Uoo7jWeaemATIuXR8wb5rZfnqfbheoQhZcjt1r9jn6WKQH2kUo-6VWYuA9N6lDpy6oY01acLdI9JNv2sjcQhNTmaf7MKWhwmlJe_1hLgRnveMkzUC8Aa7nKwqngDt3gU36GJ5j7FmYgEBJ6xa5rHy3nBrBNeGZVmxd3yMs3pmwXejQ8x691X1XXlsFFWSw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+</div>
+<div class="relative z-10 text-center max-w-3xl mx-auto space-y-8 flex flex-col items-center">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface tracking-tight">Illuminate Your World</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Architectural lighting solutions designed to transform space, elevate mood, and redefine the modern environment through the pure essence of light.
+                </p>
+<button class="mt-8 font-label-caps text-label-caps text-primary border border-primary px-8 py-4 rounded-DEFAULT gold-glow tracking-widest transition-all duration-300">
+                    EXPLORE COLLECTIONS
+                </button>
+</div>
+</section>
+<!-- Masterworks (Categories) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-16 text-center md:text-left flex flex-col md:flex-row justify-between items-end">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Curated Collections</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-md">Precision-engineered fixtures designed for uncompromising spaces.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter" id="collection-grid">
+<!-- Chandelier -->
+<div class="group cursor-pointer">
+<div class="relative h-96 mb-6 overflow-hidden ghost-border">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A detail shot of an avant-garde, minimalist chandelier suspended in a vast, dark, architectural space. The fixture features impossibly thin, glowing brass rings and sharp geometric lines. Soft, warm amber light spills onto a deeply textured, dark charcoal concrete wall behind it. The mood is luxurious, silent, and highly engineered." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVy49bSyequkT2BSkqdeDR4hTJLpJAdo4sN932zX_DZUNvZMTqEpnlXqRXClXSxsMfocQ5cl47Xpm-Nes3hwNHxFsXWdq5U9zKxmlGual1imT_3ZYgeHf_6f0OOlRcW7nFE1GkbKklX-Y0yqVt0XkYuGW5b_Eix5aUq0Rt5qLWGLbX3vXKQLGm21lskfA2HLXXmJliT8jkgv0lneGBzZ_r0DD0H6vBbomJJS7PINCOz_tPR1A4Bxokhw"/>
+</div>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest">CHANDELIERS</h3>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Pendant -->
+<div class="group cursor-pointer">
+<div class="relative h-96 mb-6 overflow-hidden ghost-border">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A sleek, cylindrical pendant light hanging over a monolithic black marble island in a minimalist kitchen. The light is focused in a tight, precise pool of warm white illumination. The surrounding space falls away into deep, atmospheric shadows. The aesthetic is strictly modern, emphasizing verticality and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXKHpHm5qtn3j-usU_ws19yFHjepVYRZPDMCCraZCmDJfaYSpz8OEWvatAnvQYsPArRuWUPSl0fTMNo-ap9IRC2sj10BJLmbvVrufBo7ljbi2y79lcYMOLGgTIvuvxwZimBAKbkq4R53CP3KFjZt_zkk-avk___dlmp22eP3_CqIGVto6cidWTifgtQ_5dzpqiGkaxWIpEPatHNttgqroAUblvkxV21XEISOGe2-6JUeF8G7m_-DpNKA"/>
+</div>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest">PENDANT LIGHTS</h3>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Sconces -->
+<div class="group cursor-pointer">
+<div class="relative h-96 mb-6 overflow-hidden ghost-border">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A minimalist architectural wall sconce casting a sharp, asymmetric wash of golden light against a dark, matte plaster wall. The fixture itself is a pure, unadorned rectangle of brushed brass. The contrast between the intense, focused light and the pitch-black surrounding space creates a dramatic, gallery-like atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtGAUW8UMyUPlqnYLxnqUOhfWXXCf6dUyDraUdIwCJ2yHEoqMQ_94rxImKWyezYBhRBdFGwoBc530RklAS-3gvURgN_a_yC-nqhHaOhG1cb35mJpJ-DsmMQZ5ofC0Yq0vRpmjBWHTN9YY4Ujm-RwTilUpUpDX8e-3KK6_hsb8iHjBglB2Rn4fh9-K87GfchLfCm2JBfm7BPUAAta-9F1Jlz5Ty1EpRcTO_pJAd8Sr4Zr0hxSvpHbLvsQ"/>
+</div>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest">WALL SCONCES</h3>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Table Lamps -->
+<div class="group cursor-pointer">
+<div class="relative h-96 mb-6 overflow-hidden ghost-border">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A sculptural, minimalist table lamp resting on a low, dark oak console table. The lamp resembles a geometric abstraction of a classic form, radiating a diffuse, warm halo of light into a moody, shadowy corner of an elegant living space. The textures are rich, dark, and tactile, defining architectural minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXa3H2TyKI08t1VgIEQiKmuO1AUixNuVWFIINa3xj4PaY7f_9enXDi40s0SqD0KTnkQDDkc4pH6qdhd2jtRYqBOqzbLwEc9XHN2-5fcZygX1LpuEKMJLucb57Ia9iyI4_WecQZpCNR50gXyXLO7KaCOvLD_sL6wKsitpgEURr7j9e2NMWA0cF5vjZQwu6lUQqszmXdXxepPX6m2tdrWv0mKFgxGIQmM6Jh63rAoanuOsNpUV_wsl3PbQ"/>
+</div>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<h3 class="font-label-caps text-label-caps text-on-surface tracking-widest">TABLE LAMPS</h3>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest relative overflow-hidden">
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<blockquote class="font-headline-lg text-headline-lg md:text-[48px] md:line-height-[56px] text-on-surface leading-tight mb-8 font-light">
+                    "Light is not merely a utility. It is the silent architecture that shapes our perception of space, emotion, and time."
+                </blockquote>
+<cite class="font-label-caps text-label-caps text-primary tracking-[0.2em] block not-italic">— ELENA ROSTOVA</cite>
+</div>
+</section>
+<!-- Inquiry Form -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">Let's Light Up Your Space</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Connect with our design team for architectural lighting consultations.</p>
+</div>
+<form class="space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary">NAME</label>
+<input class="w-full bg-transparent border-0 border-b border-on-surface/20 focus:ring-0 focus:border-primary text-on-surface font-body-md px-0 py-2 transition-colors rounded-none" type="text"/>
+</div>
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary">EMAIL ADDRESS</label>
+<input class="w-full bg-transparent border-0 border-b border-on-surface/20 focus:ring-0 focus:border-primary text-on-surface font-body-md px-0 py-2 transition-colors rounded-none" type="email"/>
+</div>
+</div>
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4 transition-colors group-focus-within:text-primary">AREA OF INTEREST</label>
+<div class="flex flex-wrap gap-4">
+<label class="cursor-pointer">
+<input class="sr-only peer" name="interest" type="radio"/>
+<div class="px-6 py-2 border border-on-surface/20 text-on-surface-variant font-label-caps text-label-caps peer-checked:bg-on-surface peer-checked:text-surface-container-lowest peer-checked:border-on-surface transition-colors rounded-DEFAULT">RESIDENTIAL</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="interest" type="radio"/>
+<div class="px-6 py-2 border border-on-surface/20 text-on-surface-variant font-label-caps text-label-caps peer-checked:bg-on-surface peer-checked:text-surface-container-lowest peer-checked:border-on-surface transition-colors rounded-DEFAULT">COMMERCIAL</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="interest" type="radio"/>
+<div class="px-6 py-2 border border-on-surface/20 text-on-surface-variant font-label-caps text-label-caps peer-checked:bg-on-surface peer-checked:text-surface-container-lowest peer-checked:border-on-surface transition-colors rounded-DEFAULT">HOSPITALITY</div>
+</label>
+</div>
+</div>
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary">PROJECT DETAILS</label>
+<textarea class="w-full bg-transparent border-0 border-b border-on-surface/20 focus:ring-0 focus:border-primary text-on-surface font-body-md px-0 py-2 transition-colors resize-none rounded-none" rows="4"></textarea>
+</div>
+<div class="flex justify-end pt-8">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-12 py-4 rounded-DEFAULT gold-glow tracking-widest transition-all duration-300" type="submit">
+                        SUBMIT INQUIRY
+                    </button>
+</div>
+</form>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-12 border-t border-on-surface/5">
+<div class="flex flex-col items-center gap-8 px-margin-mobile md:px-margin-desktop text-center max-w-container-max mx-auto">
+<span class="font-headline-md text-headline-md text-on-surface">Lumina</span>
+<div class="flex gap-6 flex-wrap justify-center">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors opacity-100 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors opacity-100 hover:opacity-80" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors opacity-100 hover:opacity-80" href="#">Sustainability</a>
+</div>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary mt-4">
+                © 2024 Lumina Architectural Lighting. All rights reserved.
+            </p>
+</div>
+</footer>
+<!-- Firebase SDK (compat for static sites) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<!-- modern.js integration would need to be updated to hook into these new tailwind classes, leaving for now as user just wants design replaced -->
 </body>
 </html>
