@@ -1,0 +1,13 @@
+﻿.git
+.git/**
+.github
+.github/**
+admin
+admin/**
+firebase_functions
+firebase_functions/**
+functions
+functions/**
+.firebaserc
+firebase.json
+*.md
