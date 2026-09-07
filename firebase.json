@@ -1,7 +1,7 @@
 {
   "functions": [
     {
-      "source": "functions",
+      "source": "firebase_functions",
       "codebase": "scene-generator",
       "runtime": "python312",
       "ignore": [

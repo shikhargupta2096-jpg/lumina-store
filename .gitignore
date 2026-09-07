@@ -6,9 +6,9 @@ scripts/node_modules/
 *.pack
 
 # Cloud Functions
-functions/.env
-functions/__pycache__/
-functions/venv/
+firebase_functions/.env
+firebase_functions/__pycache__/
+firebase_functions/venv/
 __pycache__/
 # Local Dev & Test Artifacts
 server.js
