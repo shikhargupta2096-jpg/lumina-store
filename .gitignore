@@ -4,3 +4,12 @@ scripts/node_modules/
 .agents/
 .DS_Store
 *.pack
+
+# Cloud Functions
+functions/.env
+functions/__pycache__/
+functions/venv/
+__pycache__/
+# Local Dev & Test Artifacts
+server.js
+test_hf_pipeline_output.png

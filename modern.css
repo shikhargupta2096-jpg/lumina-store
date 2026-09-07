@@ -24,6 +24,21 @@
   --transition-fast: 200ms ease-out; /* 150-300ms for interactions */
 }
 
+/* Light Theme Overrides */
+[data-theme="light"] {
+  --color-primary: #FAFAFA;
+  --color-on-primary: #050507;
+  --color-secondary: #E5E5E5;
+  --color-background: #F4F4F5;
+  --color-foreground: #09090B;
+  --color-muted: #52525B;
+  --color-border: rgba(0, 0, 0, 0.1);
+  
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg-hover: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
+}
+
 * {
   margin: 0; padding: 0; box-sizing: border-box;
 }
@@ -41,6 +56,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  transition: background-color var(--transition-medium), color var(--transition-medium);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -59,17 +75,24 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
   opacity: 0.4;
   animation: morph 20s infinite alternate var(--ease-fluid);
+  transition: background var(--transition-medium);
 }
 .blob-1 {
   top: -10%; left: -10%;
   width: 50vw; height: 50vw;
   background: var(--color-accent);
 }
+[data-theme="light"] .blob-1 {
+  background: rgba(161, 98, 7, 0.3); /* Softer gold for light mode */
+}
 .blob-2 {
   bottom: -20%; right: -10%;
   width: 60vw; height: 60vw;
   background: #1e1b4b; /* Deep twilight blue to contrast the gold */
   animation-delay: -10s;
+}
+[data-theme="light"] .blob-2 {
+  background: rgba(147, 197, 253, 0.4); /* Soft blue for light mode */
 }
 
 @keyframes morph {
@@ -375,6 +398,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.2rem;
   font-weight: 600;
   flex-shrink: 0;
+  transition: background var(--transition-medium);
 }
 .test-content {
   flex-grow: 1;

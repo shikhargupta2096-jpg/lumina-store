@@ -1,0 +1,14 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "scene-generator",
+      "runtime": "python312",
+      "ignore": [
+        "venv",
+        ".git",
+        "node_modules"
+      ]
+    }
+  ]
+}

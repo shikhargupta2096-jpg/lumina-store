@@ -1,757 +1,2202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumina &mdash; The Designer Light Store | Lakhimpur Kheri</title>
-  <meta name="description" content="Lumina is your destination for premium designer lighting &mdash; chandeliers, pendant lights, wall sconces, table lamps, floor lamps, and custom bespoke fixtures. Located in Lakhimpur Kheri, UP." />
-  <meta name="keywords" content="designer lights, chandeliers, pendant lights, luxury lighting, Lakhimpur Kheri, Lumina, custom lights, wall sconces" />
-  <meta property="og:title" content="Lumina &mdash; The Designer Light Store" />
-  <meta property="og:description" content="Transform your space with handcrafted designer lights from Lumina, Lakhimpur Kheri." />
-  <meta property="og:type" content="website" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumina — The Designer Light Store | Architectural Lighting</title>
+  <script>
+    // Ensure permanent dark luxury theme
+    try { localStorage.removeItem('lumina-theme'); } catch(e) {}
+    document.documentElement.removeAttribute('data-theme');
+  </script>
+  <meta name="description" content="Lumina — The Designer Light Store: Lakhimpur Kheri's premier showroom for bespoke architectural lighting, handcrafted crystal chandeliers, and luxury illumination design."/>
+  <link rel="canonical" href="https://luminastore.in/"/>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="apple-touch-icon" href="favicon.svg"/>
 
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Lumina — The Designer Light Store"/>
+  <meta property="og:title" content="Lumina — The Designer Light Store | Architectural Lighting"/>
+  <meta property="og:description" content="Lakhimpur Kheri's premier showroom for bespoke architectural lighting, handcrafted crystal chandeliers, and luxury illumination design."/>
+  <meta property="og:image" content="images/lumina_hero_showroom.jpg"/>
+  <meta property="og:url" content="https://luminastore.in/"/>
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Lumina — The Designer Light Store | Architectural Lighting"/>
+  <meta name="twitter:description" content="Lakhimpur Kheri's premier showroom for bespoke architectural lighting, handcrafted crystal chandeliers, and luxury illumination design."/>
+  <meta name="twitter:image" content="images/lumina_hero_showroom.jpg"/>
+
+  <!-- Fonts: Rajdhani (UI/Technical) + Permanent Marker (Brush Accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Permanent+Marker&family=Rajdhani:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'midnight':      'var(--color-midnight)',
+            'midnight-soft': 'var(--color-midnight-soft)',
+            'midnight-card': 'var(--color-midnight-card)',
+            'midnight-line': 'var(--color-midnight-line)',
+            'crimson':       '#c8a96e',
+            'crimson-dark':  '#9a7d4e',
+            'crimson-glow':  'rgba(200, 169, 110, 0.15)',
+            'ash':           'var(--color-ash)',
+            'cloud':         'var(--color-cloud)',
+            'snow':          'var(--color-snow)',
+            'glass-bg':      'var(--color-glass-bg)',
+            'glass-border':  'var(--color-glass-border)',
+          },
+          fontFamily: {
+            sans:  ['Rajdhani', 'system-ui', 'sans-serif'],
+            brush: ['Permanent Marker', 'cursive'],
+          },
+          spacing: {
+            'gutter': '32px',
+          },
+          borderRadius: {
+            'glass': '24px',
+          },
+          animation: {
+            'marquee': 'marquee 35s linear infinite',
+            'marquee-reverse': 'marquee-reverse 35s linear infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%':   { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            'marquee-reverse': {
+              '0%':   { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0%)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-midnight: #0b0c10; /* Cyberpunk deep midnight */
+      --color-midnight-soft: #14161f;
+      --color-midnight-card: #1b1e2b;
+      --color-midnight-line: rgba(255,255,255,0.05);
+      --color-snow: #ffffff;
+      --color-ash: #8a8d9b;
+      --color-cloud: #c4c6d0;
+      --color-glass-bg: rgba(11,12,16,0.6);
+      --color-glass-border: rgba(255,255,255,0.08);
+    }
+
+    /* Scroll */
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
+    /* Antialiasing */
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger > .reveal { transition-delay: calc(var(--i, 0) * 120ms); }
+
+    /* Marquee gradient mask */
+    .marquee-mask {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    /* Glass navbar (Hardware Accelerated Glass Island) */
+    .nav-glass {
+      background: rgba(10, 11, 20, 0.65);
+      backdrop-filter: blur(20px) saturate(1.3);
+      -webkit-backdrop-filter: blur(20px) saturate(1.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      will-change: transform;
+      contain: layout style;
+      transition: padding 300ms cubic-bezier(0.22, 1, 0.36, 1),
+                  background 300ms ease,
+                  border-color 300ms ease,
+                  box-shadow 300ms ease;
+    }
+
+    /* Scrolled Adaptive Navbar State */
+    #nav-island-container {
+      transition: top 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #nav-island-container.scrolled {
+      top: 1rem !important; /* Gentle 16px top dock */
+    }
+    .nav-glass.scrolled {
+      background: rgba(10, 11, 20, 0.82) !important;
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      padding-top: 0.625rem !important; /* py-2.5 compression */
+      padding-bottom: 0.625rem !important;
+      border-color: rgba(200, 169, 110, 0.28) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65),
+                  0 4px 22px -2px rgba(200, 169, 110, 0.16),
+                  inset 0 -1px 1px rgba(254, 240, 138, 0.35) !important; /* Golden bottom rim glow */
+    }
+
+    /* Hero overlay */
+    .hero-overlay {
+      background: linear-gradient(to top, #0a0b14 0%, rgba(10,11,20,0.7) 40%, rgba(10,11,20,0.3) 70%, rgba(10,11,20,0.6) 100%);
+    }
+
+    /* Gold underline accent */
+    .gold-underline {
+      background-image: linear-gradient(to right, #c9a84c, #b8963f);
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 2px;
+      padding-bottom: 2px;
+    }
+
+    /* Subtle card hover glow & 3D tilt */
+    .card-hover-glow {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 150ms ease-out,
+                  border-color 400ms ease,
+                  box-shadow 400ms ease;
+      will-change: transform;
+    }
+    .card-hover-glow:hover {
+      border-color: rgba(200,169,110,0.35);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 35px rgba(200,169,110,0.12);
+    }
+    .tilt-inner {
+      transform: translateZ(25px);
+      transition: transform 150ms ease-out;
+    }
+
+    /* Collection Card Diagonal Glass Light Sweep */
+    .card-light-sweep {
+      position: absolute;
+      top: 0;
+      left: -160%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.04) 36%,
+        rgba(254, 240, 138, 0.3) 48%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(254, 240, 138, 0.3) 52%,
+        rgba(255, 255, 255, 0.04) 64%,
+        transparent 80%
+      );
+      transform: skewX(-22deg) translateZ(0);
+      pointer-events: none;
+      z-index: 5;
+      transition: left 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: left;
+    }
+    .group:hover .card-light-sweep {
+      left: 180%;
+    }
+
+    /* Micro-interactive Arrow Capsule */
+    .card-hover-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--color-ash);
+      transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+      flex-shrink: 0;
+    }
+    .group:hover .card-hover-arrow {
+      background: #c8a96e;
+      color: #0b0c10;
+      border-color: #c8a96e;
+      transform: translateX(3px) scale(1.06);
+      box-shadow: 0 0 16px rgba(200, 169, 110, 0.5);
+    }
+
+    /* Section Heading Animated Underline Draw */
+    .section-title-accent {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.95rem;
+    }
+    .section-title-accent::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, transparent 0%, #c8a96e 25%, #fef08a 50%, #c8a96e 75%, transparent 100%);
+      box-shadow: 0 0 10px rgba(254, 240, 138, 0.6), 0 0 20px rgba(200, 169, 110, 0.3);
+      transform: translateX(-50%) translateZ(0);
+      transition: width 800ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
+      will-change: width;
+    }
+    .section-title-accent::after {
+      content: '✦';
+      position: absolute;
+      bottom: -6.5px;
+      left: 50%;
+      transform: translateX(-50%) scale(0) translateZ(0);
+      color: #fef08a;
+      font-size: 10px;
+      line-height: 1;
+      text-shadow: 0 0 8px rgba(254, 240, 138, 0.9);
+      transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 600ms, opacity 400ms ease 600ms;
+      opacity: 0;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+    .reveal.visible .section-title-accent::before {
+      width: 100px;
+    }
+    .reveal.visible .section-title-accent::after {
+      transform: translateX(-50%) scale(1) translateZ(0);
+      opacity: 1;
+    }
+
+    /* Ambient Spotlight Follower */
+    #spotlight-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 550px;
+      height: 550px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 35;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(200, 169, 110, 0.07) 0%, rgba(200, 169, 110, 0.02) 40%, transparent 70%);
+      transition: opacity 300ms ease, transform 80ms ease-out;
+      mix-blend-mode: screen;
+      opacity: 0;
+    }
+    @media (hover: none) or (pointer: coarse) {
+      #spotlight-cursor { display: none; }
+    }
+
+    /* Prismatic Crystal Caustic Sparkle Cursor */
+    .crystal-spark {
+      position: fixed;
+      pointer-events: none;
+      user-select: none;
+      z-index: 9999;
+      font-size: 13px;
+      line-height: 1;
+      color: #fef08a;
+      filter: drop-shadow(0 0 6px rgba(254, 240, 138, 0.95))
+              drop-shadow(-1px -1px 3px rgba(147, 197, 253, 0.65))
+              drop-shadow(1px 1px 3px rgba(244, 114, 182, 0.55));
+      will-change: transform, opacity;
+      animation: causticSpark 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes causticSpark {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+      }
+      35% {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(1.35) rotate(var(--rot, 25deg));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx, 0px) * 1.6), calc(-50% + var(--dy, 0px) * 1.6)) scale(0.2) rotate(var(--rot, 50deg));
+      }
+    }
+
+    /* Glass modal */
+    .modal-glass {
+      background: rgba(14, 16, 30, 0.7);
+      backdrop-filter: blur(40px) saturate(1.4);
+      -webkit-backdrop-filter: blur(40px) saturate(1.4);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Glassmorphic Testimonial Cards with Inner Glow */
+    .testimonial-glass-card {
+      position: relative;
+      background: rgba(18, 21, 33, 0.55);
+      backdrop-filter: blur(20px) saturate(1.25);
+      -webkit-backdrop-filter: blur(20px) saturate(1.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 350ms ease,
+                  box-shadow 350ms ease;
+      will-change: transform;
+    }
+    .testimonial-glass-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 18% 18%, rgba(200, 169, 110, 0.16) 0%, transparent 62%);
+      opacity: 0.65;
+      transition: opacity 350ms ease, transform 400ms ease;
+      pointer-events: none;
+    }
+    .testimonial-glass-card:hover {
+      transform: translateY(-5px) translateZ(0);
+      border-color: rgba(200, 169, 110, 0.45);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                  0 0 30px rgba(200, 169, 110, 0.16),
+                  inset 0 1px 1px rgba(254, 240, 138, 0.25);
+    }
+    .testimonial-glass-card:hover::before {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    /* Subtle Animated Star/Particle Field */
+    .particle-field {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: #fef08a;
+      box-shadow: 0 0 8px rgba(254, 240, 138, 0.75), 0 0 16px rgba(200, 169, 110, 0.35);
+      opacity: 0;
+      will-change: transform, opacity;
+      animation: particleDrift ease-in-out infinite alternate;
+    }
+    @keyframes particleDrift {
+      0% {
+        opacity: 0.15;
+        transform: translateY(0) translateX(0) scale(0.85);
+      }
+      50% {
+        opacity: 0.85;
+        transform: translateY(-16px) translateX(8px) scale(1.25);
+      }
+      100% {
+        opacity: 0.2;
+        transform: translateY(-30px) translateX(-6px) scale(0.9);
+      }
+    }
+
+    /* Floating Label Inputs with Ambient Glow Focus Ring */
+    .floating-group {
+      position: relative;
+      background: rgba(18, 21, 33, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      transition: border-color 250ms ease, box-shadow 250ms ease, background 250ms ease;
+    }
+    .floating-group:focus-within {
+      border-color: rgba(200, 169, 110, 0.8);
+      box-shadow: 0 0 25px rgba(200, 169, 110, 0.22), inset 0 0 14px rgba(200, 169, 110, 0.06);
+      background: rgba(18, 21, 33, 0.75);
+    }
+    .floating-input {
+      width: 100%;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      color: var(--color-snow) !important;
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 1.6rem 1.25rem 0.65rem 1.25rem !important;
+      border-radius: 18px;
+    }
+    .floating-input:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    .floating-label {
+      position: absolute;
+      left: 1.25rem;
+      top: 1.1rem;
+      pointer-events: none;
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-ash);
+      transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: top left;
+      z-index: 2;
+    }
+    /* Float up when input has focus OR has entered value (placeholder is space) */
+    .floating-input:focus ~ .floating-label,
+    .floating-input:not(:placeholder-shown) ~ .floating-label {
+      top: 0.45rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #c8a96e;
+    }
+
+    /* Comparison slider styles */
+    .compare-container {
+      user-select: none;
+      touch-action: pan-y;
+    }
+    .compare-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #c8a96e;
+      box-shadow: 0 0 15px rgba(200, 169, 110, 0.8), 0 0 30px rgba(200, 169, 110, 0.4);
+      cursor: ew-resize;
+      z-index: 30;
+      transform: translateX(-50%);
+    }
+    .compare-handle-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #0b0c10;
+      border: 2px solid #c8a96e;
+      box-shadow: 0 0 25px rgba(200, 169, 110, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c8a96e;
+      cursor: ew-resize;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .compare-handle:hover .compare-handle-button {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 35px rgba(200, 169, 110, 0.9);
+    }
+
+    /* Proof pill shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .proof-pill {
+      background: linear-gradient(90deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.2) 50%, rgba(201,168,76,0.08) 100%);
+      background-size: 200% auto;
+      animation: shimmer 4s linear infinite;
+    }
+
+    /* Ambient Lighting Atmosphere Filter Layers */
+    #lighting-dimmer-layer {
+      position: fixed;
+      inset: 0;
+      background: #000000;
+      pointer-events: none;
+      z-index: 45;
+      opacity: 0;
+      transition: opacity 250ms ease-out;
+    }
+    #lighting-tint-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 44;
+      opacity: 0.15;
+      mix-blend-mode: soft-light;
+      transition: background-color 400ms ease, opacity 300ms ease;
+    }
+
+    /* Floating Lighting Studio Controller Panel */
+    .lighting-studio-pill {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(200, 169, 110, 0.15);
+      backdrop-filter: blur(28px) saturate(1.4);
+      -webkit-backdrop-filter: blur(28px) saturate(1.4);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+    }
+    .custom-range {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      transition: background 200ms ease;
+    }
+    .custom-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #c8a96e;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(200, 169, 110, 0.8);
+      transition: transform 150ms ease;
+    }
+    .custom-range::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+    }
+    @keyframes studioPop {
+      from { opacity: 0; transform: translateY(12px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .lighting-studio-pop {
+      animation: studioPop 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .cct-btn.active {
+      border-color: #c8a96e !important;
+      background: rgba(200, 169, 110, 0.15) !important;
+      box-shadow: 0 0 16px rgba(200, 169, 110, 0.25);
+    }
+    @media (max-height: 720px) {
+      #lighting-studio-widget {
+        bottom: 12px !important;
+        left: 16px !important;
+      }
+    }
+
+    /* Hotspot Tour Animations & Reticle Pin Styling */
+    .hotspot-pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 25;
+      background: none;
+      border: none;
+      padding: 0;
+      outline: none;
+      transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hotspot-pin:hover {
+      transform: translate(-50%, -50%) scale(1.15);
+      z-index: 32;
+    }
+    .hotspot-pin.active {
+      transform: translate(-50%, -50%) scale(1.25);
+      z-index: 35;
+    }
+
+    .reticle-container {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Dual Sonar Waves */
+    .sonar-wave {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 169, 110, 0.65);
+      pointer-events: none;
+      opacity: 0;
+    }
+    .sonar-wave-1 {
+      animation: sonarPulse 2.4s cubic-bezier(0.1, 0.3, 0.7, 1) infinite;
+    }
+    .sonar-wave-2 {
+      animation: sonarPulse 2.4s cubic-bezier(0.1, 0.3, 0.7, 1) infinite 1.2s;
+    }
+    @keyframes sonarPulse {
+      0% { transform: scale(0.6); opacity: 0.9; }
+      50% { opacity: 0.35; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* Outer Aperture Ring */
+    .reticle-aperture {
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 1px dashed rgba(200, 169, 110, 0.4);
+      pointer-events: none;
+      transition: border-color 300ms ease;
+    }
+    .hotspot-pin.active .reticle-aperture {
+      border-color: rgba(254, 240, 138, 0.85);
+      animation: apertureSpin 12s linear infinite;
+    }
+    @keyframes apertureSpin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Crosshair Ticks */
+    .crosshair-tick {
+      position: absolute;
+      background: rgba(200, 169, 110, 0.5);
+      pointer-events: none;
+      transition: background-color 300ms ease, box-shadow 300ms ease;
+    }
+    .tick-top { top: -6px; left: 50%; width: 1px; height: 4px; transform: translateX(-50%); }
+    .tick-bottom { bottom: -6px; left: 50%; width: 1px; height: 4px; transform: translateX(-50%); }
+    .tick-left { left: -6px; top: 50%; width: 4px; height: 1px; transform: translateY(-50%); }
+    .tick-right { right: -6px; top: 50%; width: 4px; height: 1px; transform: translateY(-50%); }
+
+    .hotspot-pin:hover .crosshair-tick,
+    .hotspot-pin.active .crosshair-tick {
+      background: #fef08a;
+      box-shadow: 0 0 6px rgba(254, 240, 138, 0.8);
+    }
+
+    /* Pin Core */
+    .pin-core {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(11, 12, 16, 0.95);
+      border: 1.5px solid #c8a96e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c8a96e;
+      box-shadow: 0 0 12px rgba(200, 169, 110, 0.4);
+      transition: all 250ms ease;
+      z-index: 2;
+    }
+    .hotspot-pin:hover .pin-core {
+      background: #c8a96e;
+      color: #0b0c10;
+      box-shadow: 0 0 20px rgba(200, 169, 110, 0.8);
+    }
+    .hotspot-pin.active .pin-core {
+      background: #fef08a;
+      border-color: #fef08a;
+      color: #0b0c10;
+      box-shadow: 0 0 22px rgba(254, 240, 138, 0.95);
+    }
+
+    /* Blueprint Coordinate Micro-Tag */
+    .reticle-coord {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      color: rgba(200, 169, 110, 0.85);
+      background: rgba(11, 12, 16, 0.88);
+      padding: 1px 4px;
+      border-radius: 4px;
+      border: 1px solid rgba(200, 169, 110, 0.3);
+      white-space: nowrap;
+      pointer-events: none;
+      transition: all 200ms ease;
+    }
+    .hotspot-pin.active .reticle-coord {
+      color: #fef08a;
+      border-color: rgba(254, 240, 138, 0.6);
+      box-shadow: 0 0 10px rgba(200, 169, 110, 0.3);
+    }
+
+    /* HUD Tooltip */
+    .hotspot-tooltip {
+      position: absolute;
+      bottom: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms cubic-bezier(0.16, 1, 0.3, 1), transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      z-index: 40;
+    }
+    .hud-tooltip-inner {
+      background: rgba(11, 12, 20, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(200, 169, 110, 0.45);
+      border-radius: 8px;
+      padding: 6px 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(200, 169, 110, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: relative;
+    }
+    .hud-label {
+      font-family: monospace;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c8a96e;
+    }
+    .hud-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .hotspot-pin:hover .hotspot-tooltip,
+    .hotspot-pin.active .hotspot-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Navbar Tabs: Bold font, Butter-Smooth GPU-accelerated Active State */
+    .nav-tab {
+      font-weight: 700 !important;
+      display: inline-block;
+      position: relative;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: color 180ms ease, transform 180ms cubic-bezier(0.2, 0, 0, 1) !important;
+      will-change: transform, color;
+    }
+    .nav-tab:hover {
+      color: #ffffff;
+      transform: translateY(-1px) translateZ(0);
+    }
+    .nav-tab.active {
+      color: #facc15 !important; /* Radiant vivid yellow */
+      transform: translateY(-2px) scale(1.1) translateZ(0) !important;
+      filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.45));
+    }
+    .nav-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(0);
+      width: 16px;
+      height: 2.5px;
+      border-radius: 9999px;
+      background-color: #facc15;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.7);
+      animation: tabGlow 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes tabGlow {
+      from { opacity: 0.8; transform: translateX(-50%) translateZ(0) scaleX(0.9); }
+      to { opacity: 1; transform: translateX(-50%) translateZ(0) scaleX(1.1); }
+    }
+    .nav-tab[href="#inquiry"].active {
+      border-color: #facc15 !important;
+      background-color: rgba(250, 204, 21, 0.15) !important;
+      box-shadow: 0 0 16px rgba(250, 204, 21, 0.35) !important;
+      color: #facc15 !important;
+      transform: translateY(-2px) scale(1.05) translateZ(0) !important;
+    }
+    .nav-tab[href="#inquiry"].active::after {
+      display: none;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateY(-20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Quote marks */
+    .quote-mark {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 120px;
+      line-height: 1;
+      color: rgba(201,168,76,0.12);
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+      .animate-marquee, .animate-marquee-reverse { animation: none; }
+      .section-glow-divider::before { animation: none; }
+      .particle { animation: none !important; opacity: 0.3 !important; }
+      .card-light-sweep { display: none !important; }
+      .section-title-accent::before { transition: none !important; width: 100px !important; }
+      .section-title-accent::after { transition: none !important; transform: translateX(-50%) scale(1) !important; opacity: 1 !important; }
+      .crystal-spark { display: none !important; }
+      .sonar-wave { animation: none !important; opacity: 0.35 !important; }
+      .reticle-aperture { animation: none !important; }
+    }
+
+    /* Animated Gradient Light-Beam Section Divider */
+    .section-glow-divider {
+      position: relative;
+      height: 1px;
+      border: none;
+      overflow: visible;
+    }
+    .section-glow-divider::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(200, 169, 110, 0.05) 10%,
+        rgba(200, 169, 110, 0.4) 30%,
+        rgba(254, 240, 138, 0.7) 50%,
+        rgba(200, 169, 110, 0.4) 70%,
+        rgba(200, 169, 110, 0.05) 90%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: beamSweep 6s ease-in-out infinite;
+    }
+    .section-glow-divider::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 0;
+      right: 0;
+      height: 7px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(200, 169, 110, 0) 10%,
+        rgba(200, 169, 110, 0.12) 30%,
+        rgba(254, 240, 138, 0.2) 50%,
+        rgba(200, 169, 110, 0.12) 70%,
+        rgba(200, 169, 110, 0) 90%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: beamSweep 6s ease-in-out infinite;
+      filter: blur(4px);
+      pointer-events: none;
+    }
+    @keyframes beamSweep {
+      0%, 100% { background-position: 200% 0; }
+      50% { background-position: -200% 0; }
+    }
+
+    /* Scroll Progress Bar */
+    #scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      z-index: 100;
+      pointer-events: none;
+      background: transparent;
+    }
+    #scroll-progress-bar {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #c8a96e 0%, #fef08a 50%, #c8a96e 100%);
+      box-shadow: 0 0 10px rgba(254, 240, 138, 0.7), 0 0 20px rgba(200, 169, 110, 0.4);
+      transform-origin: left center;
+      transform: scaleX(0);
+      will-change: transform;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #scroll-progress-container { display: none; }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0b14; }
+    ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.5); }
+  </style>
 </head>
 
-<body>
+<body class="bg-midnight text-snow font-sans overflow-x-hidden min-h-screen flex flex-col">
+    <!-- Scroll Progress Indicator Bar (GPU Accelerated) -->
+    <div id="scroll-progress-container" aria-hidden="true">
+      <div id="scroll-progress-bar"></div>
+    </div>
 
-  <!-- ========================= NAVBAR ========================= -->
-  <nav id="navbar" role="navigation" aria-label="Main navigation">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="#hero" class="nav-logo" aria-label="Lumina Home">
-          <span class="nav-logo-name">LUMINA</span>
-          <span class="nav-logo-tag">The Designer Light Store</span>
+    <!-- Interactive Ambient Spotlight Cursor -->
+    <div id="spotlight-cursor" aria-hidden="true"></div>
+
+    <!-- Interactive Ambient Dimmer & Color Temperature Filter Layers -->
+    <div id="lighting-dimmer-layer" aria-hidden="true"></div>
+    <div id="lighting-tint-layer" aria-hidden="true"></div>
+
+    <!-- Mobile Menu Backdrop Scrim -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-midnight/70 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 md:hidden pointer-events-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         NAVBAR — Floating Glass Pill
+         ============================================================ -->
+    <div id="nav-island-container" class="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
+      <nav id="nav-island" class="nav-glass pointer-events-auto rounded-full px-6 md:px-10 py-3 md:py-4 flex items-center justify-between w-full max-w-5xl">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 select-none group whitespace-nowrap focus:outline-none">
+          <!-- Radiant Crystal Talisman Emblem -->
+          <div class="relative w-8 h-8 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-[#c8a96e]/30 to-midnight border border-[#c8a96e]/60 flex items-center justify-center shadow-[0_0_15px_rgba(200,169,110,0.25)] group-hover:shadow-[0_0_22px_rgba(200,169,110,0.5)] transition-all duration-300">
+            <svg class="w-4 h-4 md:w-5 md:h-5 text-[#fef08a] group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <polygon points="12 8 15 12 12 16 9 12" fill="currentColor" fill-opacity="0.25"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-sans font-extrabold text-xl md:text-2xl tracking-[0.22em] uppercase bg-gradient-to-r from-white via-[#fef08a] to-[#c8a96e] bg-clip-text text-transparent group-hover:brightness-125 transition-all duration-300">LUMINA</span>
+            <span class="font-sans font-semibold text-[#c8a96e] text-[8.5px] md:text-[9.5px] tracking-[0.26em] uppercase mt-0.5">The Designer Light Store</span>
+          </div>
         </a>
 
-        <ul class="nav-links" role="list">
-          <li><a href="#hero" class="active" id="nav-home">Home</a></li>
-          <li><a href="#collections" id="nav-collections">Collections</a></li>
-          <li><a href="#about" id="nav-about">About</a></li>
-          <li><a href="#testimonials" id="nav-testimonials">Reviews</a></li>
-          <li><a href="#faq" id="nav-faq">FAQ</a></li>
-          <li><a href="#contact" id="nav-contact">Contact</a></li>
-          <!-- <li><a href="showroom.html" target="_blank" style="color: var(--accent-gold);">Virtual Showroom</a></li> -->
-        </ul>
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#collections" class="nav-tab font-sans font-bold text-ash text-xs tracking-[0.14em] uppercase hover:text-snow">Collections</a>
+          <a href="#spaces" class="nav-tab font-sans font-bold text-ash text-xs tracking-[0.14em] uppercase hover:text-snow">Spaces</a>
+          <a href="#transformation" class="nav-tab font-sans font-bold text-ash text-xs tracking-[0.14em] uppercase hover:text-snow">Transform</a>
+          <a href="#craftsmanship" class="nav-tab font-sans font-bold text-ash text-xs tracking-[0.14em] uppercase hover:text-snow">Craft</a>
+          <a href="#story" class="nav-tab font-sans font-bold text-ash text-xs tracking-[0.14em] uppercase hover:text-snow">Story</a>
+          <a href="#testimonials" class="nav-tab font-sans font-bold text-ash text-xs tracking-[0.14em] uppercase hover:text-snow">Reviews</a>
+          <a href="#inquiry" class="nav-tab font-sans font-bold text-xs tracking-[0.14em] uppercase text-crimson border border-crimson/50 px-5 py-2.5 rounded-full hover:bg-crimson-glow hover:shadow-[0_0_15px_rgba(200,169,110,0.3)]">Inquiry</a>
+          <button id="studio-toggle-nav-desktop" class="flex items-center gap-1 text-ash hover:text-crimson transition-colors" aria-label="Open Lighting Studio" title="Atmospheric Lighting Studio">
+            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">tune</span>
+          </button>
+        </div>
 
-        <div class="nav-cta">
-          <a href="#contact" class="btn-primary" id="nav-quote-btn">
-            <span><i class="fa-solid fa-paper-plane"></i> Get a Quote</span>
-          </a>
-          <button class="hamburger" id="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+        <!-- Mobile Toggle -->
+        <div class="flex items-center gap-4 md:hidden">
+          <button id="studio-toggle-nav-mobile" class="text-ash hover:text-crimson transition-colors" aria-label="Open Lighting Studio" title="Lighting Studio">
+            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 0;">tune</span>
+          </button>
+          <button id="mobile-toggle" class="text-ash hover:text-snow transition-colors" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">menu</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu" class="mobile-menu hidden absolute top-full mt-3 left-4 right-4 nav-glass rounded-2xl p-6 flex flex-col gap-4">
+        <a href="#collections" class="nav-tab font-sans font-bold text-ash text-sm tracking-[0.12em] uppercase hover:text-snow mobile-link">Collections</a>
+        <a href="#spaces" class="nav-tab font-sans font-bold text-ash text-sm tracking-[0.12em] uppercase hover:text-snow mobile-link">Spaces</a>
+        <a href="#transformation" class="nav-tab font-sans font-bold text-ash text-sm tracking-[0.12em] uppercase hover:text-snow mobile-link">Transform</a>
+        <a href="#craftsmanship" class="nav-tab font-sans font-bold text-ash text-sm tracking-[0.12em] uppercase hover:text-snow mobile-link">Craft</a>
+        <a href="#story" class="nav-tab font-sans font-bold text-ash text-sm tracking-[0.12em] uppercase hover:text-snow mobile-link">Story</a>
+        <a href="#testimonials" class="nav-tab font-sans font-bold text-ash text-sm tracking-[0.12em] uppercase hover:text-snow mobile-link">Reviews</a>
+        <a href="#inquiry" class="nav-tab font-sans font-bold text-sm tracking-[0.12em] uppercase text-crimson border border-crimson/50 px-5 py-2 rounded-full text-center hover:bg-crimson-glow hover:shadow-[0_0_15px_rgba(200,169,110,0.3)] mobile-link">Inquiry</a>
+      </div>
+    </div>
+
+  <main class="flex-grow">
+
+    <!-- ============================================================
+         HERO — Split Horizon Layout
+         ============================================================ -->
+    <section class="relative min-h-screen overflow-hidden flex flex-col justify-between">
+
+      <!-- Full-bleed custom showroom image with embedded Lumina branding -->
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <img id="hero-bg"
+             src="images/lumina_hero_showroom.jpg"
+             alt="Lumina The Designer Light Store Showroom with Crystal Chandeliers"
+             class="w-full h-full object-cover will-change-transform"
+             style="object-position: center 36%; transform: scale(1.05); transform-origin: center center;" />
+      </div>
+
+      <!-- Focused peripheral vignettes: Center chandelier & Lumina wall logo remain illuminated & crystal clear -->
+      <div class="absolute inset-0 z-10 pointer-events-none"
+           style="background: linear-gradient(115deg, rgba(11,12,16,0.92) 0%, rgba(11,12,16,0.5) 32%, rgba(11,12,16,0.05) 55%, transparent 100%);"></div>
+      <div class="absolute inset-0 z-10 pointer-events-none"
+           style="background: linear-gradient(to top, rgba(11,12,16,0.96) 0%, rgba(11,12,16,0.4) 30%, transparent 60%);"></div>
+      <div class="absolute inset-0 z-10 pointer-events-none"
+           style="background: linear-gradient(to bottom, rgba(11,12,16,0.75) 0%, transparent 22%);"></div>
+
+      <!-- TOP HORIZON: Floating Glass Brand Seal (Top Left) -->
+      <div class="relative z-20 pt-28 md:pt-32 px-6 md:px-16 flex items-center justify-between pointer-events-none">
+        <div class="pointer-events-auto reveal">
+          <div class="inline-flex items-center gap-2.5 sm:gap-3 bg-midnight/80 backdrop-blur-xl border border-crimson/50 rounded-full px-4 sm:px-5 py-2 shadow-[0_4px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(200,169,110,0.18)]">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-crimson"></span>
+            </span>
+            <span class="font-sans font-semibold text-[#fef08a] text-[10px] sm:text-xs tracking-[0.22em] uppercase">Flagship Showroom</span>
+            <span class="text-crimson/70 text-xs font-serif">✦</span>
+            <span class="font-sans font-medium text-ash text-[10px] sm:text-xs tracking-[0.16em] uppercase">Lakhimpur Kheri</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM HORIZON: Split Headline & CTAs (Left) + Vertical Metrics Pill (Right) -->
+      <div class="relative z-20 pb-24 md:pb-28 px-6 md:px-16 pt-8 md:pt-10 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
+
+        <!-- Bottom Left: Punchy Two-line Headline & CTAs -->
+        <div class="max-w-xl reveal">
+          <p class="font-sans font-semibold text-crimson text-xs tracking-[0.3em] uppercase mb-4 flex items-center gap-2">
+            <span class="w-6 h-px bg-crimson inline-block"></span>
+            Bespoke Lighting Design
+          </p>
+
+          <h1 class="font-sans font-bold text-snow leading-[0.94] tracking-tight mb-6"
+              style="font-size: clamp(2.6rem, 5.2vw, 4.8rem);">
+            Architectural<br/>
+            <span class="bg-gradient-to-r from-white via-[#fef08a] to-[#c8a96e] bg-clip-text text-transparent font-medium">Splendor</span>
+          </h1>
+          <p class="font-sans text-slate-200 text-base md:text-lg leading-relaxed max-w-md mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+            Welcome to <strong class="text-[#fef08a] font-bold">Lumina — The Designer Light Store</strong>. Precision-crafted crystal chandeliers and sculptural lighting fixtures tailored for luxury residences, penthouses, and bespoke hospitality spaces.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#collections"
+               class="inline-flex items-center gap-2 bg-crimson text-midnight font-sans font-bold text-sm tracking-[0.14em] uppercase px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(200,169,110,0.45)] hover:brightness-110 transition-all duration-300">
+              Explore Collections
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </a>
+            <a href="#inquiry"
+               class="inline-flex items-center gap-2 border border-snow/30 text-snow font-sans font-bold text-sm tracking-[0.14em] uppercase px-8 py-4 rounded-full hover:border-crimson hover:text-crimson hover:bg-snow/5 transition-all duration-300">
+              Consult With Designer
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Right: Vertical Stacked Glass Metrics Pill -->
+        <div class="reveal self-stretch lg:self-auto flex flex-col sm:flex-row lg:flex-col gap-6 bg-glass-bg backdrop-blur-2xl border border-glass-border rounded-3xl p-6 sm:p-8 min-w-[240px] shadow-2xl">
+          <div class="flex items-center justify-between gap-8">
+            <div>
+              <div class="font-sans text-3xl md:text-4xl font-bold text-snow tracking-tight">50+</div>
+              <div class="font-sans text-ash text-[11px] tracking-[0.2em] uppercase mt-1">Collections</div>
+            </div>
+            <span class="material-symbols-outlined text-crimson/70 text-2xl">diamond</span>
+          </div>
+          <div class="h-px bg-white/10 w-full"></div>
+          <div class="flex items-center justify-between gap-8">
+            <div>
+              <div class="font-sans text-3xl md:text-4xl font-bold text-snow tracking-tight">10k+</div>
+              <div class="font-sans text-ash text-[11px] tracking-[0.2em] uppercase mt-1">Happy Clients</div>
+            </div>
+            <span class="material-symbols-outlined text-crimson/70 text-2xl">verified</span>
+          </div>
+          <div class="h-px bg-white/10 w-full"></div>
+          <div class="flex items-center justify-between gap-8">
+            <div>
+              <div class="font-sans text-3xl md:text-4xl font-bold text-snow tracking-tight">8+</div>
+              <div class="font-sans text-ash text-[11px] tracking-[0.2em] uppercase mt-1">Years of Craft</div>
+            </div>
+            <span class="material-symbols-outlined text-crimson/70 text-2xl">auto_awesome</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============================================================
+           HERO AMBIENT HIGHLIGHTS BANNER STRIP
+           ============================================================ -->
+      <div class="relative z-20 w-full border-t border-glass-border bg-midnight/70 backdrop-blur-xl hero-strip-shimmer py-3.5 px-6 md:px-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2 gap-x-6 text-[11px] tracking-[0.22em] uppercase font-sans font-medium text-ash/80">
+          
+          <div class="flex items-center gap-2.5 font-bold text-snow">
+            <span class="text-crimson animate-pulse text-sm">✦</span>
+            <span class="tracking-[0.25em] bg-gradient-to-r from-white via-[#fef08a] to-[#c8a96e] bg-clip-text text-transparent">LUMINA · THE DESIGNER LIGHT STORE</span>
+          </div>
+
+          <div class="hidden sm:flex items-center gap-2.5">
+            <span class="text-crimson">✦</span>
+            <span>Bespoke Crystal Chandeliers</span>
+          </div>
+
+          <div class="hidden md:flex items-center gap-2.5">
+            <span class="text-crimson">✦</span>
+            <span>Architectural Layout Consultation</span>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <span class="text-crimson">✦</span>
+            <span>Lakhimpur Kheri Flagship Gallery</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         COLLABORATION RAIL — Trust Strip
+         ============================================================ -->
+    <div class="section-glow-divider"></div>
+    <section class="py-10 md:py-14 overflow-hidden marquee-mask">
+      <div class="flex animate-marquee whitespace-nowrap">
+        <div class="flex items-center gap-12 md:gap-20 px-6 md:px-10">
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Architectural Digest</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Elle Decor</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Vogue Living</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Design Pataki</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">AD India</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Houzz</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Beautiful Homes</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="flex items-center gap-12 md:gap-20 px-6 md:px-10" aria-hidden="true">
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Architectural Digest</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Elle Decor</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Vogue Living</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Design Pataki</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">AD India</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Houzz</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+          <span class="font-sans font-medium text-ash/60 text-xs tracking-[0.25em] uppercase">Beautiful Homes</span>
+          <span class="text-crimson/60 text-xs">✦</span>
+        </div>
+      </div>
+    </section>
+    <div class="section-glow-divider"></div>
+
+    <!-- ============================================================
+         COLLECTIONS — Dynamic Grid
+         ============================================================ -->
+    <section id="collections" class="py-14 md:py-20 px-5 md:px-16 max-w-7xl mx-auto">
+      <div class="text-center mb-10 md:mb-14 reveal">
+        <p class="font-sans font-semibold text-crimson text-xs tracking-[0.28em] uppercase mb-3 flex items-center justify-center gap-2">
+          <span>✦</span> Lumina Signature Showcase <span>✦</span>
+        </p>
+        <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow leading-tight tracking-tight uppercase">
+          <span class="section-title-accent">Curated <span class="bg-gradient-to-r from-white via-[#fef08a] to-[#c8a96e] bg-clip-text text-transparent font-medium">Masterworks</span></span>
+        </h2>
+        <p class="font-sans text-ash text-base mt-3 max-w-xl mx-auto">
+          Precision-engineered fixtures exclusively curated by <span class="text-snow font-medium">Lumina — The Designer Light Store</span> for uncompromising architectural spaces.
+        </p>
+      </div>
+
+      <!-- Collection Grid — injected by JS -->
+      <div id="collection-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger">
+        <!-- Skeleton placeholders (replaced by JS) -->
+        <div class="h-96 bg-midnight-card rounded-glass animate-pulse"></div>
+        <div class="h-96 bg-midnight-card rounded-glass animate-pulse"></div>
+        <div class="h-96 bg-midnight-card rounded-glass animate-pulse"></div>
+        <div class="h-96 bg-midnight-card rounded-glass animate-pulse"></div>
+      </div>
+
+      <!-- ============================================================
+           ARCHITECTURAL LOOKBOOK 2026 DOWNLOAD BANNER
+           ============================================================ -->
+      <div class="mt-12 md:mt-16 reveal">
+        <div class="relative overflow-hidden rounded-3xl border border-glass-border bg-gradient-to-r from-midnight-card via-midnight-soft to-midnight-card p-6 sm:p-8 md:p-10 shadow-2xl">
+          
+          <!-- Ambient Gold Glow Backing -->
+          <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-crimson/10 blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-crimson/5 blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Left 7 cols: Copy & Lead Capture Action -->
+            <div class="lg:col-span-7 flex flex-col items-start">
+              
+              <div class="inline-flex items-center gap-2.5 bg-crimson/10 border border-crimson/30 rounded-full px-4 py-1.5 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-crimson animate-ping"></span>
+                <span class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase">Architectural Resource · 2026 Edition</span>
+              </div>
+
+              <h3 class="font-sans font-bold text-3xl sm:text-4xl md:text-5xl text-snow leading-tight tracking-tight mb-4">
+                The Lumina <span class="text-crimson font-medium">Lookbook</span>
+              </h3>
+
+              <p class="font-sans text-ash text-base md:text-lg leading-relaxed max-w-xl mb-8">
+                Curated for architects, interior designers, and discerning homeowners. Explore complete dimensional blueprints, photometric specifications, customized brass finishes, and signature installation galleries.
+              </p>
+
+              <!-- Feature highlights row -->
+              <div class="grid grid-cols-3 gap-6 py-4 border-y border-white/10 w-full mb-8 max-w-lg">
+                <div>
+                  <div class="font-sans font-bold text-snow text-xl md:text-2xl">80+</div>
+                  <div class="font-sans text-ash text-[11px] tracking-[0.15em] uppercase mt-0.5">Fixtures</div>
+                </div>
+                <div>
+                  <div class="font-sans font-bold text-snow text-xl md:text-2xl">Full</div>
+                  <div class="font-sans text-ash text-[11px] tracking-[0.15em] uppercase mt-0.5">Tech Specs</div>
+                </div>
+                <div>
+                  <div class="font-sans font-bold text-snow text-xl md:text-2xl">Direct</div>
+                  <div class="font-sans text-ash text-[11px] tracking-[0.15em] uppercase mt-0.5">Bespoke Orders</div>
+                </div>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="flex flex-wrap items-center gap-4">
+                <a href="#inquiry"
+                   class="inline-flex items-center gap-3 bg-crimson text-midnight font-sans font-bold text-sm tracking-[0.14em] uppercase px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(200,169,110,0.4)] hover:brightness-110 transition-all duration-300">
+                  <span class="material-symbols-outlined text-lg">download</span>
+                  Request Digital Catalogue
+                </a>
+                <a href="https://wa.me/918317036078?text=Hello%20Lumina%20Team%2C%20I%20would%20like%20to%20request%20the%202026%20Architectural%20Lookbook%20PDF."
+                   target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 border border-snow/20 text-snow font-sans font-bold text-sm tracking-[0.14em] uppercase px-7 py-4 rounded-full hover:border-crimson hover:text-crimson hover:bg-snow/5 transition-all duration-300">
+                  <span class="material-symbols-outlined text-lg">chat</span>
+                  Instant On WhatsApp
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Right 5 cols: Photorealistic Lookbook Mockup with 3D Float -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+              <div class="relative group max-w-md w-full">
+                <!-- Glowing Aura Behind Book -->
+                <div class="absolute inset-0 bg-crimson/20 rounded-2xl filter blur-2xl group-hover:bg-crimson/30 transition-all duration-500"></div>
+                <div class="relative overflow-hidden rounded-2xl border border-glass-border shadow-2xl transform transition-transform duration-700 group-hover:scale-[1.02]">
+                  <img src="images/lumina_lookbook_cover.jpg"
+                       alt="Lumina Architectural Collection 2026 Hardcover Monograph"
+                       class="w-full h-auto object-cover" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent opacity-60"></div>
+                  <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between text-snow text-xs font-sans tracking-widest uppercase">
+                    <span class="font-medium text-crimson">2026 Edition</span>
+                    <span class="text-ash/70">PDF · 48 Pages</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- ============================================================
+           PRIVATE ATELIER SERVICE — Bespoke Architecture Callout
+           ============================================================ -->
+      <div id="atelier" class="mt-14 md:mt-20 relative rounded-3xl overflow-hidden border border-glass-border shadow-2xl reveal">
+
+        <!-- Background Atelier Craftsmanship Photography -->
+        <div class="absolute inset-0 z-0">
+          <img src="images/lumina_bespoke_craft.jpg"
+               alt="Master artisan assembling bespoke Lumina chandelier"
+               class="w-full h-full object-cover"
+               style="object-position: center 42%;" />
+        </div>
+
+        <!-- Chiaroscuro Gradient Overlays: Deep obsidian legibility layer on left, glowing atelier visible on right -->
+        <div class="absolute inset-0 z-10 pointer-events-none"
+             style="background: linear-gradient(105deg, rgba(11,12,16,0.96) 0%, rgba(11,12,16,0.85) 45%, rgba(11,12,16,0.3) 75%, rgba(11,12,16,0.6) 100%);"></div>
+        <div class="absolute inset-0 z-10 pointer-events-none"
+             style="background: linear-gradient(to top, rgba(11,12,16,0.95) 0%, transparent 40%);"></div>
+
+        <!-- Banner Content -->
+        <div class="relative z-20 px-8 py-10 sm:p-12 md:p-14 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-8 max-w-2xl">
+            <div class="inline-flex items-center gap-2.5 bg-crimson/15 border border-crimson/30 rounded-full px-4 py-1.5 mb-5">
+              <span class="w-2 h-2 rounded-full bg-crimson"></span>
+              <span class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase">Private Atelier Service</span>
+            </div>
+
+            <h2 class="font-sans font-bold text-3xl sm:text-4xl md:text-5xl text-snow leading-tight tracking-tight mb-4">
+              Designing for <span class="text-crimson font-medium">Villas, Penthouses,</span> or Luxury Venues?
+            </h2>
+
+            <p class="font-sans text-ash text-base md:text-lg leading-relaxed mb-6">
+              Standard catalog dimensions don't always suit grand architectural volumes. Our team collaborates directly with architects and interior specialists to design, engineer, and balance bespoke fixtures tailored specifically to your ceiling heights and floorplans.
+            </p>
+
+            <!-- Key pillars -->
+            <div class="flex flex-wrap gap-y-3 gap-x-8 text-xs font-sans tracking-[0.18em] uppercase text-snow/90 mb-8">
+              <div class="flex items-center gap-2">
+                <span class="text-crimson text-sm">✦</span>
+                <span>Custom Scale & Drop Lengths</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-crimson text-sm">✦</span>
+                <span>CAD Blueprints & Photometrics</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-crimson text-sm">✦</span>
+                <span>On-Site White-Glove Rigging</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="#inquiry"
+                 class="inline-flex items-center gap-2.5 bg-crimson text-midnight font-sans font-bold text-sm tracking-[0.14em] uppercase px-8 py-4 rounded-full hover:shadow-[0_0_30px_rgba(200,169,110,0.4)] hover:brightness-110 transition-all duration-300">
+                Book Architectural Consultation
+                <span class="material-symbols-outlined text-lg">calendar_today</span>
+              </a>
+              <a href="tel:+918317036078"
+                 class="inline-flex items-center gap-2 border border-snow/30 text-snow font-sans font-bold text-sm tracking-[0.14em] uppercase px-7 py-4 rounded-full hover:border-crimson hover:text-crimson hover:bg-snow/5 transition-all duration-300">
+                <span class="material-symbols-outlined text-lg">call</span>
+                +91 83170 36078
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CURATED BY SPACE — Architectural Room Visualizer
+         ============================================================ -->
+    <section id="spaces" class="py-14 md:py-20 px-5 md:px-16 max-w-7xl mx-auto">
+      <div class="text-center mb-10 md:mb-14 reveal">
+        <p class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase mb-3">Architectural Curation</p>
+        <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow leading-tight tracking-tight uppercase">
+          <span class="section-title-accent">Curated by <span class="text-crimson">Space</span></span>
+        </h2>
+        <p class="font-sans text-ash text-base mt-3 max-w-xl mx-auto">Every room demands a distinct lighting temperature, luminaire volume, and beam spread. Explore tailored fixtures designed for signature spaces.</p>
+
+        <!-- Interactive Space Navigation Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mt-8" id="space-tabs">
+          <button data-space="foyer" class="space-tab active px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 bg-crimson text-midnight shadow-[0_0_25px_rgba(200,169,110,0.35)]">
+            Grand Foyer & Double-Height
+          </button>
+          <button data-space="dining" class="space-tab px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 border border-midnight-line text-ash hover:text-snow hover:border-crimson/50">
+            Dining & Kitchen Island
+          </button>
+          <button data-space="suite" class="space-tab px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 border border-midnight-line text-ash hover:text-snow hover:border-crimson/50">
+            Master Suite & Serene Salons
           </button>
         </div>
       </div>
 
-      <!-- Mobile Nav -->
-      <div class="mobile-nav" id="mobile-nav" role="menu">
-        <a href="#hero" role="menuitem">Home</a>
-        <a href="#collections" role="menuitem">Collections</a>
-        <a href="#about" role="menuitem">About Us</a>
-        <a href="#testimonials" role="menuitem">Reviews</a>
-        <a href="#faq" role="menuitem">FAQ</a>
-        <a href="#contact" role="menuitem">Contact</a>
-      </div>
-    </div>
-  </nav>
+      <!-- Interactive Space Stage Container -->
+      <div class="relative overflow-hidden rounded-3xl border border-glass-border shadow-2xl bg-midnight-card reveal" id="space-stage">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[540px]">
+          
+          <!-- Visual Backdrop Stage (7 cols) -->
+          <div class="lg:col-span-7 relative min-h-[360px] lg:min-h-full overflow-hidden bg-midnight">
+            <img id="space-stage-img"
+                 src="images/space_foyer.jpg"
+                 alt="Grand Foyer & Double-Height Living Lighting"
+                 class="w-full h-full object-cover transition-all duration-700 ease-out" />
+            <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-midnight-card pointer-events-none"></div>
 
-  <!-- ========================= HERO ========================= -->
-  <section id="hero" aria-label="Hero">
-    <div class="hero-bg" id="hero-bg"></div>
-    <div class="hero-overlay"></div>
+            <!-- Floating Active Space Pill -->
+            <div class="absolute top-6 left-6 z-10 bg-midnight/70 backdrop-blur-md border border-glass-border rounded-full px-4 py-1.5 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-crimson animate-pulse"></span>
+              <span id="space-badge" class="font-sans font-semibold text-crimson text-xs tracking-[0.2em] uppercase">20–26 Ft Ceiling Volume</span>
+            </div>
+          </div>
 
-    <!-- Floating Particles -->
-    <div class="hero-particles" id="hero-particles" aria-hidden="true"></div>
+          <!-- Space Intelligence & Recommended Fixtures (5 cols) -->
+          <div class="lg:col-span-5 p-8 sm:p-10 md:p-12 flex flex-col justify-between bg-midnight-card relative z-10">
+            <div>
+              <p id="space-tagline" class="font-sans text-crimson text-xs font-semibold tracking-[0.2em] uppercase mb-2">Statement Centerpieces</p>
+              <h3 id="space-title" class="font-sans font-bold text-2xl sm:text-3xl md:text-4xl text-snow tracking-tight mb-4">
+                Grand Foyer & Living
+              </h3>
+              <p id="space-desc" class="font-sans text-ash text-sm sm:text-base leading-relaxed mb-8">
+                Double-height volumes require vertical scale and 360° light dispersion. Cascading crystal raindrops and multi-tier architectural fixtures establish an instant luxury first impression.
+              </p>
 
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-eyebrow" data-reveal>
-          <span class="hero-eyebrow-line"></span>
-          <span class="hero-eyebrow-text">Luxury Designer Lighting</span>
+              <!-- Space Specs Matrix -->
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                  <span class="font-sans text-ash text-xs tracking-wider uppercase">Optimal Temp</span>
+                  <span id="space-temp" class="font-sans font-bold text-snow text-sm">2700K Warm Ambient</span>
+                </div>
+                <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                  <span class="font-sans text-ash text-xs tracking-wider uppercase">Recommended Fixture</span>
+                  <span id="space-fixture" class="font-sans font-bold text-crimson text-sm">Cascading Raindrop & Sputnik</span>
+                </div>
+                <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                  <span class="font-sans text-ash text-xs tracking-wider uppercase">Drop Scale</span>
+                  <span id="space-scale" class="font-sans font-bold text-snow text-sm">1.8m to 3.5m Custom Drop</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Link -->
+            <div class="pt-4 flex items-center justify-between">
+              <a id="space-cta" href="#collections"
+                 class="inline-flex items-center gap-2 text-crimson font-sans font-bold text-xs tracking-[0.16em] uppercase hover:gap-3 transition-all duration-300">
+                Explore Matching Collection
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </a>
+              <a href="#inquiry"
+                 class="text-xs text-ash tracking-widest uppercase hover:text-snow transition-colors">
+                Book Advice
+              </a>
+            </div>
+
+          </div>
+
         </div>
 
-        <h1 class="hero-title" data-reveal>
-          Illuminate<br />
-          Your <em>World</em>
-        </h1>
+      </div>
+    </section>
 
-        <p class="hero-subtitle" data-reveal>
-          Handcrafted designer lights that transform spaces into extraordinary experiences. From grand chandeliers to bespoke custom creations &mdash; every piece tells a story of light.
+    <!-- ============================================================
+         THE POWER OF LIGHT — Interactive Before & After Transformation
+         ============================================================ -->
+    <div class="section-glow-divider max-w-7xl mx-auto"></div>
+    <section id="transformation" class="py-14 md:py-20 px-5 md:px-16 max-w-7xl mx-auto">
+      <div class="text-center mb-10 md:mb-14 reveal">
+        <p class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase mb-3">Architectural Impact</p>
+        <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow leading-tight tracking-tight uppercase">
+          <span class="section-title-accent">The Power of <span class="text-crimson">Light</span></span>
+        </h2>
+        <p class="font-sans text-ash text-base mt-3 max-w-xl mx-auto">
+          Generic lighting washes out architecture. Architectural lighting brings it to life. Drag the handle to experience how Lumina fixtures completely redefine spaces.
         </p>
 
-        <div class="hero-ctas" data-reveal>
-          <a href="#collections" class="btn-primary" id="hero-explore-btn">
-            <span><i class="fa-solid fa-sparkles"></i> Explore Collections</span>
-          </a>
-          <!-- <a href="showroom.html" target="_blank" class="btn-outline" style="border-color: var(--accent-gold); color: var(--accent-gold);">
-            <i class="fa-solid fa-up-right-from-square"></i> Virtual Showroom
-          </a> -->
-          <a href="#contact" class="btn-outline" id="hero-custom-btn">
-            <i class="fa-regular fa-envelope"></i> Custom Orders
-          </a>
+        <!-- Category Selector Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mt-8" id="transform-tabs">
+          <button data-transform="living" class="transform-tab active px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 bg-crimson text-midnight shadow-[0_0_25px_rgba(200,169,110,0.35)]">
+            Grand Living Room
+          </button>
+          <button data-transform="dining" class="transform-tab px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 border border-midnight-line text-ash hover:text-snow hover:border-crimson/50">
+            Penthouse Dining Island
+          </button>
+          <button data-transform="suite" class="transform-tab px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 border border-midnight-line text-ash hover:text-snow hover:border-crimson/50">
+            Master Suite Sanctuary
+          </button>
         </div>
       </div>
-    </div>
 
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
+      <!-- Comparison Slider Box -->
+      <div class="relative overflow-hidden rounded-3xl border border-glass-border shadow-2xl bg-midnight-card reveal compare-container aspect-video max-w-5xl mx-auto" id="compare-slider-box">
+        
+        <!-- Background: AFTER (Lumina Luxury Lighting) -->
+        <img src="images/room_after.jpg"
+             id="compare-after-img"
+             alt="Luxury space elevated with Lumina architectural lighting"
+             class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none transition-opacity duration-300" />
 
-  <!-- ========================= COLLECTIONS ========================= -->
-  <section id="collections" aria-labelledby="collections-title">
-    <div class="container">
-      <div class="collections-header reveal">
-        <span class="section-label">Our Collections</span>
-        <h2 class="section-title" id="collections-title">Light as Art, Art as Light</h2>
-        <div class="gold-divider"></div>
-        <p class="section-subtitle">
-          Each collection is curated to complement your space &mdash; from statement chandeliers to subtle sconces. Discover the perfect light for every room.
-        </p>
-      </div>
-
-      <!-- Filter Tabs -->
-      <div class="filter-tabs" role="tablist" aria-label="Filter collections">
-        <button class="filter-tab active" role="tab" data-filter="all" id="filter-all" aria-selected="true">All</button>
-        <button class="filter-tab" role="tab" data-filter="indoor" id="filter-indoor" aria-selected="false">Indoor</button>
-        <button class="filter-tab" role="tab" data-filter="outdoor" id="filter-outdoor" aria-selected="false">Outdoor</button>
-
-      </div>
-
-      <!-- Product Grid -->
-      <div class="product-grid" id="category-grid">
-        <!-- Categories will be injected here by script.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= ABOUT ========================= -->
-  <section id="about" aria-labelledby="about-title">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img-wrap reveal" style="display: flex; flex-direction: column; gap: 2rem;">
-          <!-- Banner Image Placed at the Top of the Current Image -->
-          <img src="images/lumina_brand_banner.jpg" alt="Lumina The Designer Light Store" class="about-img" style="box-shadow: 0 20px 40px rgba(0,0,0,0.3);" />
-
-          <div style="position: relative;">
-            <img src="images/about.png" alt="Lumina Designer Light Store Showroom" class="about-img" />
-            <div class="about-img-accent">
-              <span class="about-img-accent-num">8+</span>
-              <span class="about-img-accent-label">Product<br/>Categories</span>
-            </div>
+        <!-- Overlay: BEFORE (Harsh Cold Downlights) with Dynamic Width Clip -->
+        <div class="absolute inset-0 overflow-hidden select-none pointer-events-none" id="compare-before-wrapper" style="width: 50%;">
+          <img src="images/room_before.jpg"
+               alt="Space with cold flat white fluorescent downlights"
+               class="absolute inset-0 max-w-none w-full h-full object-cover transition-opacity duration-300"
+               id="compare-before-img" />
+          
+          <!-- Before Pill Badge -->
+          <div class="absolute top-6 left-6 z-20 bg-midnight/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-ash"></span>
+            <span id="transform-before-label" class="font-sans font-semibold text-snow/90 text-xs tracking-[0.2em] uppercase">Before: Standard Cold Downlights</span>
           </div>
-
-          <!-- Bottom Banner Image -->
-          <img src="images/lumina_showroom_bottom.jpg" alt="Lumina Luxury Showroom" class="about-img" style="box-shadow: 0 20px 40px rgba(0,0,0,0.3);" />
         </div>
 
-        <div class="about-text reveal">
-          <span class="section-label">Our Story</span>
-          <h2 class="section-title" id="about-title">Where Light<br />Becomes <em style="font-style:italic; background: linear-gradient(135deg, #e8c96a, #C9A84C); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Art</em></h2>
-          <div class="gold-divider"></div>
+        <!-- After Pill Badge (Anchored Right) -->
+        <div class="absolute top-6 right-6 z-20 bg-midnight/80 backdrop-blur-md border border-crimson/40 rounded-full px-4 py-1.5 flex items-center gap-2 pointer-events-none">
+          <span class="w-2 h-2 rounded-full bg-crimson animate-pulse"></span>
+          <span id="transform-after-label" class="font-sans font-semibold text-crimson text-xs tracking-[0.2em] uppercase">After: Lumina Bespoke Ambiance</span>
+        </div>
 
-          <p class="section-subtitle" style="max-width:100%">
-            I grew up watching how a single well-placed lamp could change the entire mood of a room. Light, I discovered early, is the most underestimated element of any interior &mdash; it shapes how we feel in a space far more than furniture or paint ever could.
-          </p>
-          <br/>
+        <!-- Draggable Brass Divider Line & Handle -->
+        <div class="compare-handle" id="compare-handle" style="left: 50%;">
+          <div class="compare-handle-button" aria-label="Drag to compare before and after lighting">
+            <span class="material-symbols-outlined text-lg">code</span>
+          </div>
+        </div>
 
-          <!-- Owner quote callout -->
-          <blockquote class="about-quote">
-            <span class="about-quote-mark">"</span>
-            I didn't start Lumina to sell lights. I started it to help people fall in love with their own spaces &mdash; one carefully chosen light at a time.
-            <footer class="about-quote-footer">&mdash; Shikhar Gupta, Founder</footer>
-          </blockquote>
+        <!-- Bottom Guidance Strip -->
+        <div class="absolute bottom-6 left-0 right-0 z-20 flex justify-center pointer-events-none">
+          <div class="bg-midnight/70 backdrop-blur-md border border-white/10 rounded-full px-5 py-2 flex items-center gap-3 text-xs tracking-widest uppercase font-sans text-ash">
+            <span class="material-symbols-outlined text-sm text-crimson">drag_handle</span>
+            <span>Drag handle left or right to explore transformation</span>
+          </div>
+        </div>
 
-          <br/>
-          <p class="section-subtitle" style="max-width:100%">
-            Lumina was born right here in Lakhimpur Kheri &mdash; a city I'm proud to call home. My vision was simple: to bring the kind of world-class designer lighting you'd find in a Mumbai or Delhi luxury showroom, directly to the people of our region. Every piece in our collection is handpicked by me personally, chosen not just for its beauty, but for the story it tells and the feeling it creates.
-          </p>
-          <br/>
-          <p class="section-subtitle" style="max-width:100%">
-            <strong>The Curated Selection:</strong> We don't believe in endless catalogs of generic fixtures. Our collection is tightly curated, representing only the finest craftsmanship and materials. From hand-blown glass to precision-cut K9 crystal, every light is rigorously evaluated for both aesthetic brilliance and technical reliability before it earns a place in our showroom.
-          </p>
-          <br/>
-          <p class="section-subtitle" style="max-width:100%">
-            Whether you're furnishing a new home, renovating a cherished space, or dreaming of something entirely unique &mdash; I'm here to guide you. At Lumina, you don't just walk out with a light fitting; you walk out with a piece of design that will define your space for years to come.
-          </p>
+      </div>
+    </section>
 
-          <div class="about-pillars">
-            <div class="pillar">
-              <div class="pillar-icon">&#128161;</div>
-              <div class="pillar-title">Premium Quality</div>
-              <p class="pillar-text">Every piece handpicked for quality and lasting beauty</p>
+    <!-- ============================================================
+         ARTISAN FINISHES & MATERIALITY — Interactive Material Swatches [COMMENTED OUT]
+         ============================================================ -->
+    <!--
+    <section id="materials" class="py-14 md:py-20 px-5 md:px-16 max-w-7xl mx-auto">
+      <div class="text-center mb-10 md:mb-14 reveal">
+        <p class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase mb-3">Tactile Luxury</p>
+        <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow leading-tight tracking-tight uppercase">Artisan <span class="text-crimson">Materiality</span></h2>
+        <p class="font-sans text-ash text-base mt-3 max-w-xl mx-auto">True architectural presence is defined by raw substance. We mill, cast, hand-blow, and polish every luminaire with heirloom-grade materials.</p>
+      </div>
+
+      [-- Main Material Stage --]
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch reveal">
+        
+        [-- Interactive Material Cards (8 cols) --]
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5" id="material-grid">
+          
+          [-- Swatch 1: Brushed Champagne Brass --]
+          <div data-material="brass" class="material-card active bg-midnight-card border border-crimson/60 shadow-[0_0_30px_rgba(200,169,110,0.15)] rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full border border-amber-300/40 bg-gradient-to-tr from-[#9a7d4e] via-[#c8a96e] to-[#edd9a3] shadow-md"></div>
+                <span class="material-indicator text-crimson font-sans text-xs font-bold tracking-widest uppercase">Active</span>
+              </div>
+              <h4 class="font-sans font-bold text-snow text-lg uppercase mb-1">Brushed Champagne Brass</h4>
+              <p class="font-sans text-ash text-xs uppercase tracking-widest mb-3">PVD Micro-Satin Finish</p>
+              <p class="font-sans text-ash text-xs leading-relaxed">
+                Precision CNC-machined solid naval brass treated with an ultra-fine hairline brush and sealed with an electroplated protective barrier against humidity and oxidation.
+              </p>
             </div>
-            <div class="pillar">
-              <div class="pillar-icon">&#127942;</div>
-              <div class="pillar-title">Curated Selection</div>
-              <p class="pillar-text">Handpicked from India's finest lighting brands and designers</p>
-            </div>
-            <div class="pillar">
-              <div class="pillar-icon">&#129309;</div>
-              <div class="pillar-title">Personal Touch</div>
-              <p class="pillar-text">Shikhar personally assists every client's journey</p>
+            <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] text-snow/70 uppercase tracking-widest font-sans">
+              <span>Reflectance: 68% Warm</span>
+              <span class="text-crimson font-medium">Bespoke Pendants & Sconces</span>
             </div>
           </div>
 
-          <!-- Owner signature -->
-          <div class="about-signature">
-            <div class="about-signature-text">Shikhar Gupta</div>
-            <div class="about-signature-role">Founder & Owner, Lumina</div>
+          [-- Swatch 2: Optical K9 Crystal --]
+          <div data-material="crystal" class="material-card bg-midnight-card border border-midnight-line rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:border-crimson/50 hover:scale-[1.02] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full border border-cyan-200/50 bg-gradient-to-tr from-cyan-900/60 via-slate-200 to-white shadow-md"></div>
+                <span class="material-indicator hidden text-crimson font-sans text-xs font-bold tracking-widest uppercase">Active</span>
+              </div>
+              <h4 class="font-sans font-bold text-snow text-lg uppercase mb-1">Optical K9 Crystal</h4>
+              <p class="font-sans text-ash text-xs uppercase tracking-widest mb-3">Precision Diamond Faceted</p>
+              <p class="font-sans text-ash text-xs leading-relaxed">
+                High-clarity borosilicate crystal with exceptional refractive index. Each bead and prism is diamond-ground to project prismatic rainbow glints across ceiling planes.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] text-snow/70 uppercase tracking-widest font-sans">
+              <span>Clarity: Zero Inclusions</span>
+              <span class="text-crimson font-medium">Grand Chandeliers</span>
+            </div>
           </div>
 
-          <div style="margin-top: 2rem;">
-            <a href="#contact" class="btn-primary" id="about-contact-btn">
-              <span><i class="fa-solid fa-store"></i> Visit Our Showroom</span>
+          [-- Swatch 3: Hand-Blown Fluted Glass --]
+          <div data-material="glass" class="material-card bg-midnight-card border border-midnight-line rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:border-crimson/50 hover:scale-[1.02] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full border border-amber-500/40 bg-gradient-to-tr from-amber-900 via-amber-600 to-amber-200 shadow-md"></div>
+                <span class="material-indicator hidden text-crimson font-sans text-xs font-bold tracking-widest uppercase">Active</span>
+              </div>
+              <h4 class="font-sans font-bold text-snow text-lg uppercase mb-1">Hand-Blown Fluted Glass</h4>
+              <p class="font-sans text-ash text-xs uppercase tracking-widest mb-3">Mouth-Blown Warm Amber</p>
+              <p class="font-sans text-ash text-xs leading-relaxed">
+                Individually mouth-blown into ribbed steel molds. The vertical fluting gently refracts lamp filaments into soft linear light ribbons without harsh glare.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] text-snow/70 uppercase tracking-widest font-sans">
+              <span>Transmittance: 82%</span>
+              <span class="text-crimson font-medium">Modern Pendants</span>
+            </div>
+          </div>
+
+          [-- Swatch 4: Architectural Matte Obsidian --]
+          <div data-material="obsidian" class="material-card bg-midnight-card border border-midnight-line rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:border-crimson/50 hover:scale-[1.02] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full border border-white/20 bg-gradient-to-tr from-black via-zinc-800 to-zinc-600 shadow-md"></div>
+                <span class="material-indicator hidden text-crimson font-sans text-xs font-bold tracking-widest uppercase">Active</span>
+              </div>
+              <h4 class="font-sans font-bold text-snow text-lg uppercase mb-1">Architectural Obsidian</h4>
+              <p class="font-sans text-ash text-xs uppercase tracking-widest mb-3">Micro-Bead Blasted Aluminum</p>
+              <p class="font-sans text-ash text-xs leading-relaxed">
+                Aerospace-grade billet aluminum micro-bead blasted to eliminate sheen, followed by deep electrostatic hard-anodizing for razor-sharp modernist geometry.
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] text-snow/70 uppercase tracking-widest font-sans">
+              <span>Finish: 0% Glare Matte</span>
+              <span class="text-crimson font-medium">Architectural & Exterior</span>
+            </div>
+          </div>
+
+        </div>
+
+        [-- Material Macro Photographic Preview Column (4 cols) --]
+        <div class="lg:col-span-4 relative rounded-2xl overflow-hidden border border-glass-border shadow-2xl bg-midnight-soft flex flex-col justify-between min-h-[360px]">
+          <div class="relative h-64 sm:h-72 w-full overflow-hidden">
+            <img id="material-preview-img"
+                 src="images/lumina_materials_showcase.jpg"
+                 alt="Artisan lighting material textures composition"
+                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-midnight-soft via-transparent to-transparent"></div>
+          </div>
+
+          <div class="p-6 md:p-8 flex flex-col justify-between flex-grow">
+            <div>
+              <p class="font-sans font-semibold text-crimson text-xs tracking-[0.2em] uppercase mb-1">Curation Standard</p>
+              <h4 class="font-sans font-bold text-snow text-xl uppercase mb-3">Material Authenticity</h4>
+              <p class="font-sans text-ash text-xs leading-relaxed mb-6">
+                We never use stamped plastics or acrylic imitations. Every Lumina piece is weighted with solid metal cores and genuine optical crystal to ensure permanent heirloom longevity.
+              </p>
+            </div>
+
+            <a href="#inquiry" class="inline-flex items-center gap-2 text-crimson font-sans font-bold text-xs tracking-[0.16em] uppercase hover:gap-3 transition-all duration-300">
+              Request Physical Material Box
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
             </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ========================= TESTIMONIALS ========================= -->
-  <section id="testimonials" aria-labelledby="testimonials-title">
-    <div class="container">
-      <div class="testimonials-header reveal">
-        <span class="section-label">Client Reviews</span>
-        <h2 class="section-title" id="testimonials-title">What Our Clients Say</h2>
+      </div>
+    </section>
+    -->
+
+    <!-- ============================================================
+         ANATOMY OF A MASTERPIECE — Interactive Hotspot Detail Tour
+         ============================================================ -->
+    <div class="section-glow-divider max-w-7xl mx-auto"></div>
+    <section id="craftsmanship" class="py-14 md:py-20 px-5 md:px-16 max-w-7xl mx-auto">
+      <div class="text-center mb-10 md:mb-14 reveal">
+        <p class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase mb-3">Anatomical Craftsmanship</p>
+        <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow leading-tight tracking-tight uppercase">
+          <span class="section-title-accent">Anatomy of a <span class="text-crimson">Masterpiece</span></span>
+        </h2>
+        <p class="font-sans text-ash text-base mt-3 max-w-2xl mx-auto">
+          Explore the metallurgical joinery, precision-cut optical crystal, and luminaire physics of our signature fixtures. Click any glowing hotspot to inspect individual craft disciplines.
+        </p>
+
+        <!-- Fixture Model Switcher Tabs -->
+        <div class="flex justify-center gap-3 mt-8" id="tour-model-tabs">
+          <button data-model="chandelier" class="tour-model-tab active px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 bg-crimson text-midnight shadow-[0_0_25px_rgba(200,169,110,0.35)] cursor-pointer">
+            The Sovereign Chandelier
+          </button>
+          <button data-model="sconce" class="tour-model-tab px-6 py-3 rounded-full font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-all duration-300 border border-midnight-line text-ash hover:text-snow hover:border-crimson/50 cursor-pointer">
+            The Aurelia Fluted Sconce
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Tour Stage (Fixture + Inspector) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center reveal">
         
-        <!-- Google Reviews Badge (Dynamic from JSON) -->
-        <div class="google-reviews-badge" id="google-rating-badge">
-          <i class="fa-brands fa-google"></i>
-          <span class="badge-rating">5.0</span>
-          <span class="badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="badge-count">from Google Reviews</span>
+        <!-- Left Stage: Interactive Fixture with Hotspot Pins (7 cols) -->
+        <div class="lg:col-span-7 relative rounded-3xl overflow-hidden border border-glass-border bg-midnight-card/80 p-6 md:p-10 shadow-2xl flex items-center justify-center min-h-[460px] sm:min-h-[540px] select-none">
+          
+          <!-- Ambient Radial Backdrop Glow -->
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(200,169,110,0.12)_0%,transparent_70%)] pointer-events-none"></div>
+
+          <!-- Hotspot Stage Container -->
+          <div class="relative w-full max-w-md md:max-w-lg aspect-square flex items-center justify-center" id="hotspot-stage">
+            <img id="tour-fixture-img"
+                 src="images/cat_chandeliers.png"
+                 alt="The Sovereign Grand Chandelier Craftsmanship View"
+                 class="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-opacity duration-300 pointer-events-none" />
+
+            <!-- Hotspot Pins dynamically injected by JS -->
+            <div id="hotspot-pins-layer" class="absolute inset-0 pointer-events-auto">
+              <!-- Pins injected by JS -->
+            </div>
+          </div>
+
+          <!-- Interactive Hint Badge -->
+          <div class="absolute bottom-5 left-6 right-6 flex items-center justify-between pointer-events-none text-ash text-[11px] font-mono uppercase tracking-wider">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
+              Tap glowing pin to inspect
+            </span>
+            <span id="tour-model-tag" class="text-crimson font-medium">Model: Lumina-CR-904</span>
+          </div>
         </div>
 
-        <div class="gold-divider"></div>
-      </div>
+        <!-- Right Stage: Deep Dive Detail Inspector Card (5 cols) -->
+        <div class="lg:col-span-5 bg-midnight-card/90 backdrop-blur-2xl border border-crimson/30 rounded-3xl p-8 sm:p-10 shadow-2xl flex flex-col justify-between min-h-[460px] sm:min-h-[540px] relative">
+          
+          <!-- Card Header & Navigation -->
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+              <span id="tour-hotspot-tag" class="font-mono text-xs font-semibold tracking-widest text-crimson uppercase">
+                01 / STRUCTURAL ANCHOR
+              </span>
+              <div class="flex items-center gap-2">
+                <button id="tour-prev-btn" class="w-8 h-8 rounded-full bg-white/5 hover:bg-crimson hover:text-midnight border border-white/10 flex items-center justify-center text-ash transition-colors cursor-pointer" aria-label="Previous hotspot">
+                  <span class="material-symbols-outlined text-sm">arrow_back</span>
+                </button>
+                <span id="tour-step-counter" class="font-mono text-xs text-ash tracking-widest px-1">1 / 5</span>
+                <button id="tour-next-btn" class="w-8 h-8 rounded-full bg-white/5 hover:bg-crimson hover:text-midnight border border-white/10 flex items-center justify-center text-ash transition-colors cursor-pointer" aria-label="Next hotspot">
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+              </div>
+            </div>
 
-      <div class="testimonials-track-wrap reveal">
-        <div class="testimonials-track" id="testimonials-track">
+            <!-- Active Component Title & Description -->
+            <div id="tour-detail-content" class="transition-opacity duration-200">
+              <h3 id="tour-component-title" class="font-sans font-bold text-2xl sm:text-3xl text-snow tracking-tight uppercase leading-tight mb-3">
+                Solid Naval Brass Ceiling Canopy
+              </h3>
+              <p id="tour-component-desc" class="font-sans text-ash text-sm sm:text-base leading-relaxed mb-6">
+                Forged from high-tensile solid naval brass, rated for up to 120kg architectural suspension. Features an integrated concealed swiveling hook and damping vibration isolator for seismic stability.
+              </p>
 
-          <div class="testimonial-card active">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">The chandelier we bought from Lumina completely transformed our living room. It's the first thing guests notice when they walk in. Absolutely stunning quality and the team was incredibly helpful in choosing the right piece.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">RG</div>
-              <div>
-                <div class="testimonial-name">Rajesh Gupta</div>
-                <div class="testimonial-location">Lakhimpur Kheri, UP</div>
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <!-- Technical Specifications Matrix -->
+              <div class="space-y-3 mb-6 bg-white/[0.02] border border-white/5 rounded-2xl p-4">
+                <div class="flex items-center justify-between text-xs">
+                  <span id="tour-spec-label-1" class="text-ash font-mono uppercase">Tensile Rating</span>
+                  <span id="tour-spec-1" class="font-mono font-bold text-snow">120kg Static Load</span>
+                </div>
+                <div class="h-px bg-white/5"></div>
+                <div class="flex items-center justify-between text-xs">
+                  <span id="tour-spec-label-2" class="text-ash font-mono uppercase">Alloy Grade</span>
+                  <span id="tour-spec-2" class="font-mono font-bold text-crimson">CuZn39Pb3 Naval Alloy</span>
+                </div>
+                <div class="h-px bg-white/5"></div>
+                <div class="flex items-center justify-between text-xs">
+                  <span id="tour-spec-label-3" class="text-ash font-mono uppercase">Protective Barrier</span>
+                  <span id="tour-spec-3" class="font-mono font-bold text-snow">PVD Micro-Satin & Nano-Seal</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">We ordered a custom light for our restaurant and the result was beyond our expectations. Lumina truly understood our vision and created something unique. Our customers constantly ask about it &mdash; it's become a talking point!</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">PS</div>
-              <div>
-                <div class="testimonial-name">Priya Sharma</div>
-                <div class="testimonial-location">Lucknow, UP</div>
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <!-- Quick Hotspot Chips & Action Footer -->
+          <div>
+            <div class="mb-5">
+              <span class="text-[10px] font-mono text-ash/80 uppercase tracking-widest block mb-2">Select Detail Focus:</span>
+              <div class="flex flex-wrap gap-1.5" id="tour-chips-container">
+                <!-- Chips injected by JS -->
               </div>
             </div>
-          </div>
 
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Lumina's pendant lights for our kitchen are absolutely perfect. The warm glow they create during family dinners is magical. Superb quality at a fair price and delivered on time. Highly recommended!</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">AM</div>
-              <div>
-                <div class="testimonial-name">Anita Mehta</div>
-                <div class="testimonial-location">Sitapur, UP</div>
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">The outdoor garden lights from Lumina have made our courtyard look like a five-star resort at night. Premium quality, beautiful design, and the installation advice was spot on. Will definitely buy again.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">VK</div>
-              <div>
-                <div class="testimonial-name">Vikram Kumar</div>
-                <div class="testimonial-location">Pilibhit, UP</div>
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">I was looking for a unique floor lamp for my home office and Lumina had exactly what I needed. The design is elegant and the light quality is perfect for working. Great store, great experience!</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">SK</div>
-              <div>
-                <div class="testimonial-name">Sunita Kapoor</div>
-                <div class="testimonial-location">Bahraich, UP</div>
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+              <a href="#inquiry" class="inline-flex items-center gap-2 text-crimson font-sans font-bold text-xs tracking-[0.16em] uppercase hover:gap-3 transition-all duration-300">
+                Inquire Bespoke Customization
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+              </a>
+              <span class="text-[10px] font-mono text-ash/60 uppercase">Heirloom Grade</span>
             </div>
           </div>
 
         </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STORY / QUOTE
+         ============================================================ -->
+    <section id="story" class="py-14 md:py-20 px-5 md:px-16 bg-midnight-soft relative overflow-hidden">
+      <!-- Subtle Ambient Star / Particle Field Layer -->
+      <div class="particle-field" aria-hidden="true">
+        <!-- Radial ambient warmth backdrop -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(200,169,110,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+
+        <!-- Drifting Celestial Particles -->
+        <span class="particle" style="top: 15%; left: 8%; width: 2px; height: 2px; animation-duration: 7.5s; animation-delay: 0s;"></span>
+        <span class="particle" style="top: 28%; left: 20%; width: 3px; height: 3px; animation-duration: 9.5s; animation-delay: 1.5s;"></span>
+        <span class="particle" style="top: 72%; left: 12%; width: 2.5px; height: 2.5px; animation-duration: 8s; animation-delay: 3s;"></span>
+        <span class="particle" style="top: 48%; left: 16%; width: 2px; height: 2px; animation-duration: 11s; animation-delay: 0.8s;"></span>
+        <span class="particle" style="top: 84%; left: 26%; width: 3.5px; height: 3.5px; animation-duration: 10s; animation-delay: 2.2s;"></span>
+        
+        <span class="particle" style="top: 18%; left: 45%; width: 2.5px; height: 2.5px; animation-duration: 8.5s; animation-delay: 4s;"></span>
+        <span class="particle" style="top: 82%; left: 52%; width: 3px; height: 3px; animation-duration: 9.5s; animation-delay: 1s;"></span>
+        <span class="particle" style="top: 12%; left: 60%; width: 2px; height: 2px; animation-duration: 7.5s; animation-delay: 2.7s;"></span>
+        
+        <span class="particle" style="top: 32%; left: 78%; width: 3px; height: 3px; animation-duration: 10.5s; animation-delay: 0.5s;"></span>
+        <span class="particle" style="top: 66%; left: 86%; width: 2px; height: 2px; animation-duration: 8s; animation-delay: 3.8s;"></span>
+        <span class="particle" style="top: 20%; left: 90%; width: 3.5px; height: 3.5px; animation-duration: 9s; animation-delay: 1.2s;"></span>
+        <span class="particle" style="top: 80%; left: 74%; width: 2.5px; height: 2.5px; animation-duration: 11.5s; animation-delay: 2s;"></span>
+        
+        <span class="particle" style="top: 54%; left: 6%; width: 3px; height: 3px; animation-duration: 8.2s; animation-delay: 4.5s;"></span>
+        <span class="particle" style="top: 40%; left: 94%; width: 2px; height: 2px; animation-duration: 7.8s; animation-delay: 1.8s;"></span>
+        <span class="particle" style="top: 90%; left: 40%; width: 2px; height: 2px; animation-duration: 9.2s; animation-delay: 3.2s;"></span>
+        <span class="particle" style="top: 10%; left: 34%; width: 2.5px; height: 2.5px; animation-duration: 10s; animation-delay: 5s;"></span>
+        <span class="particle" style="top: 60%; left: 30%; width: 2px; height: 2px; animation-duration: 8.8s; animation-delay: 2.5s;"></span>
+        <span class="particle" style="top: 74%; left: 92%; width: 3px; height: 3px; animation-duration: 10.2s; animation-delay: 0.2s;"></span>
       </div>
 
-      <div class="testimonials-nav">
-        <button class="testimonials-btn" id="testimonials-prev" aria-label="Previous testimonial">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-        <div class="testimonials-dots" id="testimonials-dots"></div>
-        <button class="testimonials-btn" id="testimonials-next" aria-label="Next testimonial">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
+      <!-- Background Subtle Accent -->
+      <div class="absolute top-0 right-0 w-1/3 h-full bg-[linear-gradient(90deg,transparent,rgba(200,169,110,0.03))] pointer-events-none"></div>
+      <div class="max-w-3xl mx-auto text-center reveal relative z-10">
+        <h2 class="font-sans font-bold text-2xl sm:text-3xl md:text-4xl md:leading-snug text-snow tracking-tight mb-8">
+          <span class="text-crimson">“</span>I didn’t start Lumina to just sell lights. I started it to help people <span class="text-crimson">fall in love</span> with their own spaces.<span class="text-crimson">”</span>
+        </h2>
+        <p class="font-sans text-ash text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-8">
+          <strong class="text-snow font-semibold">Lumina — The Designer Light Store</strong> was born right here in Lakhimpur Kheri. My vision was simple: to bring the kind of world-class designer lighting you’d find in a luxury showroom, directly to our region.
+        </p>
+        <cite class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase not-italic block">— Shikhar Gupta, Founder · Lumina — The Designer Light Store</cite>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TESTIMONIALS
+         ============================================================ -->
+    <section id="testimonials" class="py-14 md:py-20 px-5 md:px-16 max-w-6xl mx-auto">
+      <div class="text-center mb-10 md:mb-12 reveal">
+        <p class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase mb-3">Client Stories</p>
+        <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow uppercase tracking-tight">
+          <span class="section-title-accent">What They <span class="text-crimson">Say</span></span>
+        </h2>
       </div>
 
-      <div class="testimonials-footer reveal" style="text-align: center; margin-top: 2rem;">
-        <a href="https://www.google.com/maps/place/?q=place_id:ChIJnTSSS3U1nzkRxrINf2zE658" target="_blank" rel="noopener noreferrer" class="btn-outline">
-          <i class="fa-brands fa-google"></i> Read all reviews on Google
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-glass-card reveal" style="--i:0">
+          <div class="quote-mark text-crimson/15">“</div>
+          <div class="relative z-10">
+            <!-- 5-Star Rating -->
+            <div class="flex items-center gap-1 text-[#fef08a] mb-5 text-xs font-mono tracking-widest">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-sans text-cloud text-base leading-relaxed mb-6">
+              "The chandelier we bought completely transformed our living room. The build quality is stunning, and it has become the focal point of our home."
+            </p>
+          </div>
+          <div class="flex items-center justify-between mt-auto pt-5 border-t border-white/5 relative z-10">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#c8a96e]/25 to-midnight-card border border-[#c8a96e]/40 flex items-center justify-center text-crimson font-bold text-sm shadow-[0_0_12px_rgba(200,169,110,0.2)]">RG</div>
+              <div>
+                <div class="font-sans font-bold text-snow text-sm uppercase tracking-wider">Rajesh Gupta</div>
+                <div class="font-sans text-ash text-xs tracking-wider uppercase flex items-center gap-1.5">
+                  <span>Homeowner</span>
+                  <span class="text-crimson/50 text-[9px]">✦</span>
+                  <span class="text-ash/80">Lakhimpur</span>
+                </div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-crimson/80 text-lg" title="Verified Client">verified</span>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-glass-card reveal" style="--i:1">
+          <div class="quote-mark text-crimson/15">“</div>
+          <div class="relative z-10">
+            <!-- 5-Star Rating -->
+            <div class="flex items-center gap-1 text-[#fef08a] mb-5 text-xs font-mono tracking-widest">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-sans text-cloud text-base leading-relaxed mb-6">
+              "We ordered custom lighting for our restaurant. The attention to detail and modern aesthetic exceeded all our expectations. Highly recommended."
+            </p>
+          </div>
+          <div class="flex items-center justify-between mt-auto pt-5 border-t border-white/5 relative z-10">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#c8a96e]/25 to-midnight-card border border-[#c8a96e]/40 flex items-center justify-center text-crimson font-bold text-sm shadow-[0_0_12px_rgba(200,169,110,0.2)]">PS</div>
+              <div>
+                <div class="font-sans font-bold text-snow text-sm uppercase tracking-wider">Priya Sharma</div>
+                <div class="font-sans text-ash text-xs tracking-wider uppercase flex items-center gap-1.5">
+                  <span>Restaurateur</span>
+                  <span class="text-crimson/50 text-[9px]">✦</span>
+                  <span class="text-ash/80">Hospitality</span>
+                </div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-crimson/80 text-lg" title="Verified Client">verified</span>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-glass-card reveal" style="--i:2">
+          <div class="quote-mark text-crimson/15">“</div>
+          <div class="relative z-10">
+            <!-- 5-Star Rating -->
+            <div class="flex items-center gap-1 text-[#fef08a] mb-5 text-xs font-mono tracking-widest">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="font-sans text-cloud text-base leading-relaxed mb-6">
+              "Lumina delivered a complete lighting scheme for our hotel lobby. The fixtures are works of art — our guests constantly compliment them."
+            </p>
+          </div>
+          <div class="flex items-center justify-between mt-auto pt-5 border-t border-white/5 relative z-10">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#c8a96e]/25 to-midnight-card border border-[#c8a96e]/40 flex items-center justify-center text-crimson font-bold text-sm shadow-[0_0_12px_rgba(200,169,110,0.2)]">AK</div>
+              <div>
+                <div class="font-sans font-bold text-snow text-sm uppercase tracking-wider">Arjun Kapoor</div>
+                <div class="font-sans text-ash text-xs tracking-wider uppercase flex items-center gap-1.5">
+                  <span>Hotelier</span>
+                  <span class="text-crimson/50 text-[9px]">✦</span>
+                  <span class="text-ash/80">Commercial</span>
+                </div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-crimson/80 text-lg" title="Verified Client">verified</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INQUIRY FORM
+         ============================================================ -->
+    <section id="inquiry" class="py-14 md:py-20 px-5 md:px-16 bg-midnight-soft relative overflow-hidden">
+      <!-- Cyber background grid lines -->
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+      <div class="max-w-2xl mx-auto relative z-10">
+        <div class="text-center mb-10 md:mb-12 reveal">
+          <p class="font-sans font-semibold text-crimson text-xs tracking-[0.25em] uppercase mb-3">Get In Touch</p>
+          <h2 class="font-sans font-bold text-3xl md:text-5xl text-snow uppercase tracking-tight">
+          <span class="section-title-accent">Let’s <span class="text-crimson">Illuminate</span> Your Space</span>
+        </h2>
+          <p class="font-sans text-ash text-base mt-3">Connect with our design team for architectural lighting consultations.</p>
+        </div>
+
+        <form id="inquiry-form" class="space-y-6 reveal">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Name Input (Floating Label) -->
+            <div class="floating-group">
+              <input type="text" id="inquiry-name" name="name" class="floating-input" placeholder=" " required autocomplete="name" />
+              <label for="inquiry-name" class="floating-label">Your Full Name</label>
+            </div>
+
+            <!-- Email Input (Floating Label) -->
+            <div class="floating-group">
+              <input type="email" id="inquiry-email" name="email" class="floating-input" placeholder=" " required autocomplete="email" />
+              <label for="inquiry-email" class="floating-label">Email Address</label>
+            </div>
+          </div>
+
+          <!-- Area of Interest Pill Selector -->
+          <div class="space-y-2.5 pt-1">
+            <span class="block font-sans font-bold text-ash text-xs tracking-[0.16em] uppercase">Area of Interest</span>
+            <div class="flex flex-wrap gap-3">
+              <label class="cursor-pointer">
+                <input type="radio" name="interest" value="residential" class="sr-only peer" checked />
+                <div class="px-5 py-2.5 border border-glass-border bg-midnight-card/60 text-ash font-sans font-semibold text-xs tracking-[0.12em] uppercase rounded-full peer-checked:bg-crimson peer-checked:text-midnight peer-checked:border-crimson peer-checked:shadow-[0_0_20px_rgba(200,169,110,0.35)] transition-all duration-300 hover:border-crimson/50 hover:text-snow">
+                  Residential
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="interest" value="commercial" class="sr-only peer" />
+                <div class="px-5 py-2.5 border border-glass-border bg-midnight-card/60 text-ash font-sans font-semibold text-xs tracking-[0.12em] uppercase rounded-full peer-checked:bg-crimson peer-checked:text-midnight peer-checked:border-crimson peer-checked:shadow-[0_0_20px_rgba(200,169,110,0.35)] transition-all duration-300 hover:border-crimson/50 hover:text-snow">
+                  Commercial
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="interest" value="hospitality" class="sr-only peer" />
+                <div class="px-5 py-2.5 border border-glass-border bg-midnight-card/60 text-ash font-sans font-semibold text-xs tracking-[0.12em] uppercase rounded-full peer-checked:bg-crimson peer-checked:text-midnight peer-checked:border-crimson peer-checked:shadow-[0_0_20px_rgba(200,169,110,0.35)] transition-all duration-300 hover:border-crimson/50 hover:text-snow">
+                  Hospitality
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Project Details Textarea (Floating Label) -->
+          <div class="floating-group">
+            <textarea id="inquiry-details" name="details" rows="4" class="floating-input resize-none" placeholder=" "></textarea>
+            <label for="inquiry-details" class="floating-label">Project Details & Space Volume</label>
+          </div>
+
+          <!-- Action Button -->
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="inline-flex items-center gap-2.5 bg-crimson text-midnight px-9 py-4 rounded-full font-sans font-bold text-sm tracking-[0.16em] uppercase hover:shadow-[0_0_30px_rgba(200,169,110,0.45)] hover:brightness-110 transition-all duration-300 cursor-pointer">
+              Submit Inquiry
+              <span class="material-symbols-outlined text-lg">send</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <div class="section-glow-divider"></div>
+  <footer class="bg-midnight-soft py-14 md:py-18 px-5 md:px-16 relative overflow-hidden">
+    <!-- Subtle Ambient Footer Glow -->
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-crimson/10 blur-3xl pointer-events-none rounded-full"></div>
+    <div class="max-w-6xl mx-auto flex flex-col items-center gap-6 text-center relative z-10">
+      
+      <!-- Brand Crest & Title -->
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#c8a96e]/30 to-midnight border border-[#c8a96e]/60 flex items-center justify-center shadow-[0_0_20px_rgba(200,169,110,0.3)] mb-1">
+          <svg class="w-5 h-5 text-[#fef08a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            <polygon points="12 8 15 12 12 16 9 12" fill="currentColor" fill-opacity="0.25"/>
+          </svg>
+        </div>
+        <span class="font-sans font-extrabold text-3xl md:text-4xl tracking-[0.25em] uppercase bg-gradient-to-r from-white via-[#fef08a] to-[#c8a96e] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(200,169,110,0.3)]">LUMINA</span>
+        <span class="font-sans font-bold text-crimson text-xs md:text-sm tracking-[0.3em] uppercase">The Designer Light Store</span>
+        <p class="font-sans text-ash text-sm max-w-md mt-2 leading-relaxed">
+          Architectural lighting design and handcrafted crystal fixtures. Lakhimpur Kheri's premier destination for luxury illumination.
+        </p>
+      </div>
+
+      <!-- Social & Contact Links -->
+      <div class="flex gap-8 flex-wrap justify-center pt-2">
+        <a href="https://instagram.com/lumina_thedesigner_lightstore" class="font-sans font-semibold text-ash text-xs tracking-[0.16em] uppercase hover:text-crimson transition-colors flex items-center gap-1.5" target="_blank" rel="noopener">
+          <span>Instagram</span>
+          <span class="text-[10px] text-crimson/70">↗</span>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590450866408" class="font-sans font-semibold text-ash text-xs tracking-[0.16em] uppercase hover:text-crimson transition-colors flex items-center gap-1.5" target="_blank" rel="noopener">
+          <span>Facebook</span>
+          <span class="text-[10px] text-crimson/70">↗</span>
+        </a>
+        <a href="https://wa.me/918317036078" class="font-sans font-semibold text-ash text-xs tracking-[0.16em] uppercase hover:text-crimson transition-colors flex items-center gap-1.5" target="_blank" rel="noopener">
+          <span>WhatsApp Concierge</span>
+          <span class="text-[10px] text-crimson/70">↗</span>
         </a>
       </div>
-    </div>
-  </section>
 
-  <!-- ========================= FAQ ========================= -->
-  <section id="faq" aria-labelledby="faq-title">
-    <div class="container">
-      <div class="faq-grid">
-        <div class="faq-sidebar reveal">
-          <span class="section-label">Got Questions?</span>
-          <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
-          <div class="gold-divider"></div>
-          <p class="section-subtitle">
-            Find answers to our most common questions below. Can't find what you're looking for? Reach out to us directly.
-          </p>
-          <br/>
-          <div class="faq-contact-note">
-            <p>Still have questions? We're happy to help you choose the perfect light for your space.</p>
-            <a href="#contact" class="btn-outline" style="font-size:0.85rem;">
-              <i class="fa-solid fa-message"></i> Contact Us
-            </a>
-          </div>
-        </div>
+      <div class="w-24 h-px bg-white/10 my-2"></div>
 
-        <div class="faq-list reveal" id="faq-list" role="list">
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">What brands and styles of lights do you carry?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                We carry a wide range of designer lighting styles &mdash; from classical crystal chandeliers and Art Deco pieces to modern geometric fixtures and contemporary LED designs. Our collection is sourced from premium manufacturers across India and spans all major categories: chandeliers, pendants, wall sconces, table lamps, floor lamps, ceiling lights, and outdoor fixtures.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">Do you deliver outside of Lakhimpur Kheri?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                Yes, we deliver across Uttar Pradesh and can arrange shipping to other states across India as well. Delivery timelines and charges vary by location. Please contact us for a delivery quote to your area.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">What materials are your lights made from?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                Our lights are crafted from premium materials including crystal, brass, stainless steel, iron, aluminium, fabric, and hand-blown glass. Each product listing specifies the materials used. We prioritise durable, high-quality materials that ensure both beauty and longevity.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">Do you provide installation services?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                We can recommend trusted electricians and installation professionals in Lakhimpur Kheri and nearby areas. For out-of-city orders, we provide detailed installation guides with each product. All our fixtures are designed for straightforward installation by a qualified electrician.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">What is your return and exchange policy?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                We accept returns and exchanges within 7 days of delivery for products that are unused and in their original packaging. Please contact us immediately if you receive a damaged or defective product and we'll resolve it promptly.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">Can I visit your showroom to see the lights in person?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                Absolutely! We warmly welcome you to our showroom at Ram Nagar Colony, Near Green Field Academy, Lakhimpur Kheri, UP. Seeing the lights in person &mdash; glowing and installed &mdash; is truly the best way to appreciate their beauty. No appointment needed, just walk in during business hours.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <div class="faq-question" role="button" aria-expanded="false">
-              <span class="faq-q-text">Do you cater to bulk or commercial orders?</span>
-              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">
-                Absolutely! We regularly supply lighting to hotels, restaurants, offices, banquet halls, and residential projects. For bulk orders, we offer special pricing and dedicated assistance from Shikhar to help you choose the right fixtures for each space. Please contact us directly with your project details for a quote.
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= CONTACT ========================= -->
-  <section id="contact" aria-labelledby="contact-title">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:3.5rem;" class="reveal">
-        <span class="section-label">Get In Touch</span>
-        <h2 class="section-title" id="contact-title">Let's Light Up Your Space</h2>
-        <div class="gold-divider" style="margin: 1.5rem auto;"></div>
-        <p class="section-subtitle" style="margin: 0 auto;">
-          Have a question, want to see our collection, or need help choosing the right light? We'd love to hear from you.
-        </p>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Contact Info -->
-        <div class="contact-info reveal">
-          <div class="contact-info-item">
-            <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-              <div class="contact-info-label">Our Showroom</div>
-              <div class="contact-info-value">
-                Ram Nagar Colony, Near Green Field Academy,<br />
-                Lakhimpur Kheri, Uttar Pradesh &mdash; 262701
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-info-item">
-            <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
-            <div>
-              <div class="contact-info-label">Call Us</div>
-              <div class="contact-info-value">
-                <a href="tel:+919452088014">+91 9452088014</a><br />
-                <a href="tel:+918317036078">+91 8317036078</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-info-item">
-            <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <div class="contact-info-label">Email Us</div>
-              <div class="contact-info-value">
-                <a href="mailto:shikhar.gupta2096@gmail.com">shikhar.gupta2096@gmail.com</a>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="contact-info-label" style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.75rem;">Follow Us</div>
-            <div class="contact-socials">
-              <a href="https://instagram.com/lumina_thedesigner_lightstore" target="_blank" rel="noopener noreferrer" class="contact-social-btn" id="contact-instagram" aria-label="Lumina on Instagram">
-                <i class="fa-brands fa-instagram"></i> Instagram
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=61590450866408" target="_blank" rel="noopener noreferrer" class="contact-social-btn" id="contact-facebook" aria-label="Lumina on Facebook">
-                <i class="fa-brands fa-facebook-f"></i> Facebook
-              </a>
-              <a href="https://wa.me/918317036078" target="_blank" rel="noopener noreferrer" class="contact-social-btn contact-social-btn--wa" id="contact-whatsapp" aria-label="Chat with Lumina on WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </a>
-            </div>
-          </div>
-
-          <!-- Google Map -->
-          <div class="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d834.6579042539076!2d80.76910943573517!3d27.941056745571654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399f35754b92349d%3A0x9febc46c7f0db2c6!2sLumina%20The%20Designer%20Light%20Store!5e1!3m2!1sen!2sin!4v1783767252496!5m2!1sen!2sin"
-              width="600"
-              height="450"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin"
-              title="Lumina Store Location &mdash; Lakhimpur Kheri">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- Inquiry Form -->
-        <div class="contact-form-wrap reveal">
-          <h3 class="contact-form-title">Send an Inquiry</h3>
-          <p class="contact-form-subtitle">Fill out the form and our team will get back to you within 24 hours.</p>
-
-          <form id="inquiry-form" action="mailto:shikhar.gupta2096@gmail.com" method="get" enctype="text/plain" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="form-name">Your Name</label>
-                <input type="text" id="form-name" name="name" class="form-input" placeholder="e.g. Rahul Sharma" required />
-                <div class="form-error" id="name-error" style="color: #ff5050; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="form-phone">Phone Number</label>
-                <input type="tel" id="form-phone" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" />
-                <div class="form-error" id="phone-error" style="color: #ff5050; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="form-email">Email Address</label>
-              <input type="email" id="form-email" name="email" class="form-input" placeholder="you@example.com" />
-              <div class="form-error" id="email-error" style="color: #ff5050; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="form-product">Product Interest</label>
-              <select id="form-product" name="product_interest" class="form-select">
-                <option value="" disabled selected>Select a category...</option>
-                <option value="Chandeliers">Chandeliers</option>
-                <option value="Pendant Lights">Pendant Lights</option>
-                <option value="Wall Sconces">Wall Sconces</option>
-                <option value="Table Lamps">Table Lamps</option>
-                <option value="Floor Lamps">Floor Lamps</option>
-                <option value="Ceiling Lights">Ceiling Lights / Flush Mounts</option>
-                <option value="Outdoor Lights">Outdoor &amp; Garden Lights</option>
-                <option value="Industrial &amp; Architectural Lights">Industrial &amp; Architectural Lights</option>
-
-                <option value="General Inquiry">General Inquiry</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="form-message">Your Message</label>
-              <textarea id="form-message" name="message" class="form-textarea" placeholder="Describe your space, requirements, or any questions you have..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
-              <span><i class="fa-solid fa-paper-plane"></i> Send Inquiry</span>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= FOOTER ========================= -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <div class="footer-brand-name">LUMINA</div>
-          <div class="footer-brand-tag">The Designer Light Store</div>
-          <p class="footer-brand-desc">
-            Transforming spaces with handcrafted designer lights. From grand chandeliers to bespoke creations &mdash; where light becomes art.
-          </p>
-          <div class="footer-socials">
-            <a href="https://instagram.com/lumina_thedesigner_lightstore" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61590450866408" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="tel:+919452088014" class="footer-social" aria-label="Call Us">
-              <i class="fa-solid fa-phone"></i>
-            </a>
-            <a href="mailto:shikhar.gupta2096@gmail.com" class="footer-social" aria-label="Email Us">
-              <i class="fa-solid fa-envelope"></i>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-col-title">Quick Links</div>
-          <ul class="footer-col-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#about">Our Story</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="footer-col-title">Collections</div>
-          <ul class="footer-col-links">
-            <li><a href="#collections">Chandeliers</a></li>
-            <li><a href="#collections">Pendant Lights</a></li>
-            <li><a href="#collections">Wall Sconces</a></li>
-            <li><a href="#collections">Table Lamps</a></li>
-            <li><a href="#collections">Floor Lamps</a></li>
-            <li><a href="#collections">Outdoor Lights</a></li>
-            <li><a href="#collections">Ceiling Lights</a></li>
-            <li><a href="#collections">Industrial &amp; Architectural</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p class="footer-copyright">
-          &copy; 2026 <span>Lumina &mdash; The Designer Light Store</span>. All rights reserved.
-        </p>
-        <p class="footer-tagline">Where Light Becomes Art</p>
-      </div>
+      <p class="font-sans text-ash/60 text-xs tracking-widest uppercase">
+        © 2026 Lumina — The Designer Light Store. All rights reserved.
+      </p>
     </div>
   </footer>
 
-  <!-- ========================= MODAL ========================= -->
-  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal" id="modal">
-      <button class="modal-close" id="modal-close" aria-label="Close modal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <img src="" alt="" class="modal-img" id="modal-img" />
-      <div class="modal-body">
-        <p class="modal-tag" id="modal-tag"></p>
-        <h3 class="modal-title" id="modal-title"></h3>
-        <p class="modal-desc" id="modal-desc"></p>
-        <div class="modal-cta">
-          <a href="#contact" class="btn-primary" id="modal-enquire-btn" onclick="closeModal()">
-            <span><i class="fa-solid fa-paper-plane"></i> Send Inquiry</span>
-          </a>
-          <a href="tel:+919452088014" class="btn-outline" id="modal-call-btn">
-            <i class="fa-solid fa-phone"></i> Call Now
-          </a>
+  <!-- ============================================================
+       PRODUCT MODAL — Cyber UI
+       ============================================================ -->
+  <div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="fixed inset-0 z-[200] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" style="background: rgba(11,12,16,0.85); backdrop-filter: blur(8px);">
+    <div class="bg-midnight border border-midnight-line w-[96%] max-w-6xl max-h-[90vh] flex flex-col transform translate-y-8 scale-[0.97] transition-all duration-500 rounded-2xl shadow-[0_0_60px_rgba(0,0,0,0.6)]" style="transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);" id="modal-inner">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-10 py-8 border-b border-midnight-line flex-shrink-0">
+        <div>
+          <h2 id="modal-title" class="font-sans font-bold text-3xl md:text-5xl text-snow tracking-tight uppercase">Collection</h2>
+          <p id="modal-subtitle" class="font-sans text-crimson text-xs mt-2 tracking-[0.25em] uppercase">Collection Details</p>
+        </div>
+        <button id="modal-close" class="w-11 h-11 rounded-full bg-midnight-card border border-midnight-line flex items-center justify-center text-ash hover:bg-crimson hover:text-midnight hover:border-crimson transition-all duration-300" aria-label="Close modal">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+      <!-- Body -->
+      <div id="modal-body" class="px-10 py-10 overflow-y-auto flex-grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Products injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FLOATING LIGHTING STUDIO CONTROLLER (Dimmer & Color Temp)
+       ============================================================ -->
+  <div id="lighting-studio-widget" class="fixed bottom-5 left-5 md:bottom-6 md:left-6 z-[95] pointer-events-auto select-none">
+    <!-- Floating Trigger Pill Button -->
+    <button id="lighting-studio-trigger" class="flex items-center gap-2 px-3.5 py-2 md:px-4 md:py-2.5 rounded-full bg-midnight/90 backdrop-blur-xl border border-crimson/40 text-snow hover:border-crimson hover:shadow-[0_0_20px_rgba(200,169,110,0.35)] transition-all duration-300 group shadow-2xl cursor-pointer" aria-label="Open Architectural Lighting Studio" title="Control Site Illumination & Mood">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-crimson"></span>
+      </span>
+      <span class="material-symbols-outlined text-base md:text-lg text-crimson group-hover:rotate-90 transition-transform duration-300">tune</span>
+      <span class="font-sans font-medium text-[11px] md:text-xs tracking-[0.14em] uppercase text-snow/90 group-hover:text-snow">Lighting Studio</span>
+      <span id="current-ambiance-badge" class="ml-1 px-1.5 py-0.5 rounded text-[8px] md:text-[9px] font-mono tracking-widest bg-crimson/20 text-crimson border border-crimson/30">100% · 2700K</span>
+    </button>
+
+    <!-- Floating Controller Popover Panel -->
+    <div id="lighting-studio-panel" class="lighting-studio-pill hidden absolute bottom-14 md:bottom-16 left-0 w-[310px] sm:w-[350px] bg-midnight/95 rounded-2xl p-5 border border-crimson/30 text-snow shadow-2xl transition-all duration-300">
+      <!-- Panel Header -->
+      <div class="flex items-center justify-between pb-3.5 border-b border-midnight-line">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-crimson text-xl">flare</span>
+          <div>
+            <h3 class="font-sans font-bold text-xs uppercase tracking-[0.18em] text-snow">Lighting Studio</h3>
+            <p class="text-[10px] text-ash tracking-wider font-mono">Atmosphere & CCT Dimmer</p>
+          </div>
+        </div>
+        <button id="lighting-studio-close" class="w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-ash hover:text-snow transition-colors cursor-pointer" aria-label="Close Lighting Studio">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <!-- Control 1: Lumens Dimmer Slider -->
+      <div class="mt-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-crimson text-sm">brightness_medium</span>
+            <span class="text-xs uppercase tracking-wider font-sans font-medium text-snow/90">Ambiance Dimmer</span>
+          </div>
+          <span id="dimmer-percentage-display" class="font-mono text-xs font-semibold text-crimson bg-crimson/15 px-2 py-0.5 rounded border border-crimson/25">100% Lumens</span>
+        </div>
+        <input type="range" id="lighting-dimmer-slider" min="20" max="100" value="100" class="w-full custom-range cursor-pointer" aria-label="Adjust site brightness">
+        <div class="flex justify-between text-[10px] font-mono text-ash/60 mt-1.5">
+          <span>Intimate (20%)</span>
+          <span>Ambient (60%)</span>
+          <span>Full Lumens (100%)</span>
+        </div>
+      </div>
+
+      <!-- Control 2: Color Temperature (Kelvin) Presets -->
+      <div class="mt-5">
+        <div class="flex items-center justify-between mb-2.5">
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-crimson text-sm">thermostat</span>
+            <span class="text-xs uppercase tracking-wider font-sans font-medium text-snow/90">Color Temperature</span>
+          </div>
+          <span id="cct-display" class="font-mono text-[10px] text-ash">2700K Warm Amber</span>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-2">
+          <button data-cct="2200" class="cct-btn px-2 py-2 rounded-xl border border-midnight-line hover:border-crimson/40 bg-white/[0.03] text-center transition-all duration-300 group cursor-pointer">
+            <div class="w-3.5 h-3.5 rounded-full bg-[#ff9329] mx-auto mb-1.5 shadow-[0_0_8px_rgba(255,147,41,0.6)]"></div>
+            <div class="font-mono text-[11px] font-bold text-snow/90 group-hover:text-snow">2200K</div>
+            <div class="text-[8px] uppercase tracking-wider text-ash mt-0.5">Candlelight</div>
+          </button>
+          <button data-cct="2700" class="cct-btn active px-2 py-2 rounded-xl border border-crimson bg-crimson/15 text-center transition-all duration-300 group shadow-[0_0_15px_rgba(200,169,110,0.2)] cursor-pointer">
+            <div class="w-3.5 h-3.5 rounded-full bg-[#ffb46b] mx-auto mb-1.5 shadow-[0_0_8px_rgba(255,180,107,0.8)]"></div>
+            <div class="font-mono text-[11px] font-bold text-crimson group-hover:text-snow">2700K</div>
+            <div class="text-[8px] uppercase tracking-wider text-crimson/80 mt-0.5">Warm Amber</div>
+          </button>
+          <button data-cct="4000" class="cct-btn px-2 py-2 rounded-xl border border-midnight-line hover:border-crimson/40 bg-white/[0.03] text-center transition-all duration-300 group cursor-pointer">
+            <div class="w-3.5 h-3.5 rounded-full bg-[#fff4e5] mx-auto mb-1.5 shadow-[0_0_8px_rgba(255,244,229,0.6)]"></div>
+            <div class="font-mono text-[11px] font-bold text-snow/90 group-hover:text-snow">4000K</div>
+            <div class="text-[8px] uppercase tracking-wider text-ash mt-0.5">Pure Neutral</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Atmosphere Scene Presets & Reset -->
+      <div class="mt-4 pt-3.5 border-t border-midnight-line flex items-center justify-between">
+        <span class="text-[10px] text-ash uppercase tracking-wider">Atmospheres:</span>
+        <div class="flex items-center gap-1.5">
+          <button id="scene-evening-btn" class="px-2 py-1 rounded text-[9px] font-mono uppercase bg-white/5 hover:bg-crimson/20 hover:text-crimson text-ash transition-colors cursor-pointer" title="2200K at 40% Brightness">Lounge</button>
+          <button id="scene-gallery-btn" class="px-2 py-1 rounded text-[9px] font-mono uppercase bg-white/5 hover:bg-crimson/20 hover:text-crimson text-ash transition-colors cursor-pointer" title="4000K at 85% Brightness">Gallery</button>
+          <button id="lighting-reset-btn" class="px-2 py-1 rounded text-[9px] font-mono uppercase bg-white/5 hover:bg-white/10 text-ash transition-colors cursor-pointer" title="Reset to standard 100% 2700K">Reset</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ========================= DYNAMIC PRODUCT LISTING POPUP ========================= -->
-  <div class="listing-backdrop" id="product-listing" role="dialog" aria-modal="true" aria-labelledby="listing-title" aria-hidden="true">
-    <div class="listing-panel">
-
-      <!-- Listing Header (populated by JS) -->
-      <div class="listing-header">
-        <div class="listing-header-left">
-          <span class="section-label" style="margin-bottom:0.3rem;">Lumina Collection</span>
-          <h2 class="listing-title" id="listing-title"></h2>
-          <p class="listing-subtitle" id="listing-subtitle"></p>
-        </div>
-        <button class="listing-close" id="listing-close" aria-label="Close product listing">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <!-- Listing Grid (populated by JS) -->
-      <div class="listing-grid" id="listing-grid"></div>
-
-      <!-- Footer CTA -->
-      <div class="listing-footer">
-        <p>Can't find the perfect piece? <strong>Contact us</strong> &mdash; we'll help you source it from our wider network of lighting suppliers.</p>
-        <a href="#contact" class="btn-primary" onclick="closeProductListing()" id="listing-contact-btn">
-          <span><i class="fa-solid fa-phone"></i> Get in Touch</span>
-        </a>
-      </div>
-
-    </div><!-- /listing-panel -->
-  </div><!-- /product-listing -->
-
-  <!-- Firebase SDK (modular, tree-shakeable via CDN) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAigaPZBTCHCETCjnnqmI531H6XPzprxaQ",
-      authDomain: "lumina-website-b5035.firebaseapp.com",
-      projectId: "lumina-website-b5035",
-      storageBucket: "lumina-website-b5035.firebasestorage.app",
-      messagingSenderId: "680162335951",
-      appId: "1:680162335951:web:111545f42277680459ebba",
-      measurementId: "G-GRYZQ1JJLD"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-
-    async function loadFromFirebase() {
-      const catSnap  = await getDocs(collection(db, "categories"));
-      const prodSnap = await getDocs(collection(db, "products"));
-
-      const categories = [];
-      catSnap.forEach(d => categories.push({ ...d.data(), id: d.id }));
-
-      const products = [];
-      prodSnap.forEach(d => products.push({ ...d.data(), id: d.id }));
-
-      return { categories, products };
-    }
-
-    async function loadFromJSON() {
-      const res = await fetch('products.json?v=' + Date.now());
-      return await res.json();
-    }
-
-    try {
-      const data = await loadFromFirebase();
-      // If Firebase returned data, use it; otherwise fall back
-      if (data.categories.length > 0 || data.products.length > 0) {
-        window.PRODUCT_DB = data;
-        window.LUMINA_USES_FIREBASE = true;
-        console.log("✓ Loaded data from Firebase Firestore");
-      } else {
-        throw new Error("Firebase returned empty data");
-      }
-    } catch (e) {
-      console.warn("Firebase load failed, falling back to products.json:", e.message);
-      try {
-        window.PRODUCT_DB = await loadFromJSON();
-        window.LUMINA_USES_FIREBASE = false;
-        console.log("✓ Loaded data from products.json (fallback)");
-      } catch (e2) {
-        console.error("Could not load product data from any source:", e2);
-        window.PRODUCT_DB = { categories: [], products: [] };
-      }
-    }
-
-    // Inject script.js after data is loaded so it has access to PRODUCT_DB
-    const s = document.createElement('script');
-    s.src = 'script.js?v=' + Date.now();
-    document.body.appendChild(s);
-  </script>
-  <!-- Floating WhatsApp Button -->
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/918317036078" target="_blank" rel="noopener noreferrer"
-     class="whatsapp-fab" id="whatsapp-fab" aria-label="Chat on WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-    <span class="whatsapp-fab-label">Chat with us</span>
+     class="fixed bottom-6 right-6 z-[100] w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300"
+     aria-label="Chat on WhatsApp">
+    <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="modern.js?v=20260907_1858"></script>
 
 </body>
 </html>
