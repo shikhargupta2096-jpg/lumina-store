@@ -24,7 +24,7 @@ function getMediaUrl(path) {
 }
 
 // Initialize Supabase Client (if SDK is available)
-const supabase = (window.supabase && typeof window.supabase.createClient === 'function')
+const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
   : null;
 
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       // 1. Fetch categories
       let catData = [];
-      if (supabase) {
-        const { data, error } = await supabase
+      if (supabaseClient) {
+        const { data, error } = await supabaseClient
           .from('categories')
           .select('*')
           .order('display_order', { ascending: true });
@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // 2. Fetch products
       let prodData = [];
-      if (supabase) {
-        const { data, error } = await supabase
+      if (supabaseClient) {
+        const { data, error } = await supabaseClient
           .from('products')
           .select('*');
         if (error) throw error;
@@ -1534,8 +1534,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           source: 'website-inquiry-form'
         };
 
-        if (supabase) {
-          const { error } = await supabase.from('inquiries').insert([payload]);
+        if (supabaseClient) {
+          const { error } = await supabaseClient.from('inquiries').insert([payload]);
           if (error) throw error;
         } else {
           // Direct REST API fallback
