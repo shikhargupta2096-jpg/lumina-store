@@ -13,3 +13,5 @@ __pycache__/
 # Local Dev & Test Artifacts
 server.js
 test_hf_pipeline_output.png
+images/
+scratch/

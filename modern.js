@@ -1,7 +1,8 @@
 /* ============================================================
    modern.js — Premium Lumina Experience
    ============================================================
-   • Firebase-first data loading with products.json fallback
+   • Supabase PostgreSQL data loading with products.json fallback
+   • Supabase Storage CDN media delivery
    • Dynamic collection grid rendering
    • Glass UI product modal
    • Scroll-reveal via Intersection Observer
@@ -9,61 +10,114 @@
    • Mobile menu toggle
    ============================================================ */
 
-// Firebase Configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAigaPZBTCHCETCjnnqmI531H6XPzprxaQ",
-  authDomain: "lumina-website-b5035.firebaseapp.com",
-  projectId: "lumina-website-b5035",
-  storageBucket: "lumina-website-b5035.firebasestorage.app",
-  messagingSenderId: "680162335951",
-  appId: "1:680162335951:web:111545f42277680459ebba",
-  measurementId: "G-GRYZQ1JJLD"
-};
+// Supabase Configuration
+const SUPABASE_URL = "https://hykotrvfvzbhupaefaax.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5a290cnZmdnpiaHVwYWVmYWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NjE5MDEsImV4cCI6MjEwNDUzNzkwMX0.OYYixQZf551o0OD4D_2eexXsUHexy3Gm6dHByPxlpao";
+const MEDIA_BASE_URL = `${SUPABASE_URL}/storage/v1/object/public/media`;
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// Helper to construct media URLs
+function getMediaUrl(path) {
+  if (!path) return `${MEDIA_BASE_URL}/placeholder.png`;
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const cleanPath = path.replace(/^images\//, '').replace(/^\/+/, '');
+  return `${MEDIA_BASE_URL}/${cleanPath}`;
+}
+
+// Initialize Supabase Client (if SDK is available)
+const supabase = (window.supabase && typeof window.supabase.createClient === 'function')
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
 
 document.addEventListener('DOMContentLoaded', async () => {
 
   /* =========================================================
-     1. DATA LOADING
+     1. DATA LOADING — Supabase (PostgreSQL) with products.json fallback
      ========================================================= */
   let categories = [];
   let products = [];
 
-  const timeoutPromise = (ms) => new Promise((_, reject) => setTimeout(() => reject(new Error('Firestore timeout')), ms));
+  const timeoutPromise = (ms) => new Promise((_, reject) => setTimeout(() => reject(new Error('Supabase request timed out')), ms));
 
-  try {
-    const catSnapshot = await Promise.race([
-      db.collection('categories').orderBy('order').get(),
-      timeoutPromise(2000)
-    ]);
-    catSnapshot.forEach(doc => categories.push({ id: doc.id, ...doc.data() }));
-
-    const prodSnapshot = await Promise.race([
-      db.collection('products').get(),
-      timeoutPromise(2000)
-    ]);
-    prodSnapshot.forEach(doc => products.push({ id: doc.id, ...doc.data() }));
-
-    if (categories.length === 0) {
-      const res = await fetch('products.json?v=' + Date.now());
-      const data = await res.json();
-      categories = data.categories || [];
-      products = data.products || [];
-    }
-  } catch (e) {
+  async function loadData() {
     try {
-      const res = await fetch('products.json?v=' + Date.now());
-      const data = await res.json();
-      categories = data.categories || [];
-      products = data.products || [];
-    } catch (e2) {
-      console.error('Both Firestore and products.json failed.', e2);
-      return;
+      // 1. Fetch categories
+      let catData = [];
+      if (supabase) {
+        const { data, error } = await supabase
+          .from('categories')
+          .select('*')
+          .order('display_order', { ascending: true });
+        if (error) throw error;
+        catData = data || [];
+      } else {
+        const catRes = await fetch(`${SUPABASE_URL}/rest/v1/categories?select=*&order=display_order`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        if (!catRes.ok) throw new Error(`Categories fetch failed: ${catRes.status}`);
+        catData = await catRes.json();
+      }
+
+      // 2. Fetch products
+      let prodData = [];
+      if (supabase) {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*');
+        if (error) throw error;
+        prodData = data || [];
+      } else {
+        const prodRes = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        if (!prodRes.ok) throw new Error(`Products fetch failed: ${prodRes.status}`);
+        prodData = await prodRes.json();
+      }
+
+      if (!catData.length || !prodData.length) {
+        throw new Error('Empty dataset from Supabase');
+      }
+
+      categories = catData.map(c => ({
+        ...c,
+        longDesc: c.long_desc || c.longDesc || '',
+        shortDesc: c.short_desc || c.shortDesc || '',
+        categoryType: c.category_type || c.categoryType || ''
+      }));
+
+      products = prodData.map(p => ({
+        ...p,
+        categoryId: p.category_id || p.categoryId || '',
+        desc: p.description || p.desc || '',
+        badgeClass: p.badge_class || p.badgeClass || ''
+      }));
+
+      console.log(`✓ Successfully loaded ${categories.length} categories and ${products.length} products from Supabase.`);
+    } catch (err) {
+      console.warn('Supabase data fetch failed, falling back to products.json:', err.message);
+      try {
+        const res = await fetch('products.json?v=' + Date.now());
+        const data = await res.json();
+        categories = data.categories || [];
+        products = data.products || [];
+        console.log(`✓ Loaded fallback data from products.json: ${categories.length} categories, ${products.length} products.`);
+      } catch (fallbackErr) {
+        console.error('Both Supabase and products.json failed to load.', fallbackErr);
+      }
     }
   }
+
+  await Promise.race([
+    loadData(),
+    timeoutPromise(3500)
+  ]).catch(err => {
+    console.warn('Data load timed out or had uncaught error:', err);
+  });
 
   /* =========================================================
      2. RENDER COLLECTION GRID
@@ -73,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     grid.innerHTML = categories.map((cat, index) => {
       const imgSrc = (cat.img && cat.img.startsWith('http'))
         ? cat.img
-        : `images/${cat.img || 'placeholder.png'}`;
+        : getMediaUrl(cat.img);
 
       return `
         <div class="card-hover-glow bg-midnight-card border border-midnight-line hover:border-crimson/50 transition-colors duration-300 rounded-2xl overflow-hidden cursor-pointer reveal group tilt-card"
@@ -318,7 +372,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       modalBody.innerHTML = catProducts.map(p => {
         const pImgSrc = (p.img && p.img.startsWith('http'))
           ? p.img
-          : `images/${p.categoryId}/${p.img || 'placeholder.png'}`;
+          : getMediaUrl(`${p.categoryId}/${p.img || 'placeholder.png'}`);
 
         const specsHTML = (p.specs || []).map(s =>
           `<span class="inline-block px-3 py-1 text-[11px] tracking-wide uppercase border border-midnight-line text-ash rounded-full">${s}</span>`
@@ -494,7 +548,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tagline: 'Statement Centerpieces',
         title: 'Grand Foyer & Living',
         desc: 'Double-height volumes require vertical scale and 360° light dispersion. Cascading crystal raindrops and multi-tier architectural fixtures establish an instant luxury first impression.',
-        img: 'images/space_foyer.jpg',
+        img: getMediaUrl('space_foyer.jpg'),
         temp: '2700K Warm Ambient',
         fixture: 'Cascading Raindrop & Sputnik',
         scale: '1.8m to 3.5m Custom Drop',
@@ -505,7 +559,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tagline: 'Linear Sculptural Illumination',
         title: 'Dining & Kitchen Island',
         desc: 'Dining spaces demand glare-free horizontal lighting that illuminates dinnerware while preserving intimacy. Linear brass bubble clusters and diffused fluted cylinders enhance conversation.',
-        img: 'images/space_dining.jpg',
+        img: getMediaUrl('space_dining.jpg'),
         temp: '2700K to 3000K Warm Neutral',
         fixture: 'Linear Brass Glass Cluster',
         scale: '1.2m to 2.4m Length',
@@ -516,7 +570,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tagline: 'Restful Architecture',
         title: 'Master Suite & Salons',
         desc: 'Bedside pendants and recessed architectural perimeter coves eliminate direct overhead glare, producing a soft cocooning sanctuary for luxury hospitality and master residences.',
-        img: 'images/space_suite.jpg',
+        img: getMediaUrl('space_suite.jpg'),
         temp: '2200K to 2700K Candlelight Warm',
         fixture: 'Fluted Glass Bedside Drops',
         scale: '0.8m to 1.4m Balanced Drops',
@@ -589,20 +643,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const transformData = {
       living: {
-        beforeImg: 'images/room_before.jpg',
-        afterImg: 'images/room_after.jpg',
+        beforeImg: getMediaUrl('room_before.jpg'),
+        afterImg: getMediaUrl('room_after.jpg'),
         beforeLabel: 'Before: Standard Cold Downlights',
         afterLabel: 'After: Lumina Bespoke Ambiance'
       },
       dining: {
-        beforeImg: 'images/dining_before.jpg',
-        afterImg: 'images/dining_after.jpg',
+        beforeImg: getMediaUrl('dining_before.jpg'),
+        afterImg: getMediaUrl('dining_after.jpg'),
         beforeLabel: 'Before: Harsh Kitchen Fluorescents',
         afterLabel: 'After: Lumina Linear Amber Cluster'
       },
       suite: {
-        beforeImg: 'images/bedroom_before.jpg',
-        afterImg: 'images/bedroom_after.jpg',
+        beforeImg: getMediaUrl('bedroom_before.jpg'),
+        afterImg: getMediaUrl('bedroom_after.jpg'),
         beforeLabel: 'Before: Blinding Overhead Glare',
         afterLabel: 'After: Lumina Bedside Drop Sanctuary'
       }
@@ -885,7 +939,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       chandelier: {
         name: "The Sovereign Grand Chandelier",
         modelTag: "Model: Lumina-CR-904",
-        img: "images/cat_chandeliers.png",
+        img: getMediaUrl("cat_chandeliers.png"),
         hotspots: [
           {
             id: 1,
@@ -962,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       sconce: {
         name: "The Aurelia Fluted Sconce",
         modelTag: "Model: Lumina-SC-208",
-        img: "images/cat_sconces.png",
+        img: getMediaUrl("cat_sconces.png"),
         hotspots: [
           {
             id: 1,
@@ -1438,7 +1492,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initCrystalCaustics();
 
   /* =========================================================
-     INQUIRY FORM — Firebase Firestore Submission
+     INQUIRY FORM — Supabase Database Submission
      ========================================================= */
   const inquiryForm = document.getElementById('inquiry-form');
   if (inquiryForm) {
@@ -1472,15 +1526,34 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
 
       try {
-        // Save to Firestore
-        await db.collection('inquiries').add({
+        const payload = {
           name,
           email,
           interest,
           details,
-          submittedAt: firebase.firestore.FieldValue.serverTimestamp(),
           source: 'website-inquiry-form'
-        });
+        };
+
+        if (supabase) {
+          const { error } = await supabase.from('inquiries').insert([payload]);
+          if (error) throw error;
+        } else {
+          // Direct REST API fallback
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/inquiries`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify([payload])
+          });
+          if (!res.ok) {
+            const errText = await res.text();
+            throw new Error(`Inquiry submission failed: ${errText}`);
+          }
+        }
 
         // Success
         showFormFeedback(inquiryForm, 'success', 'Thank you! Our design team will reach out within 24 hours.');

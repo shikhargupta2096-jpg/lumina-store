@@ -11,3 +11,5 @@ functions/**
 .firebaserc
 firebase.json
 *.md
+images
+images/**
