@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         ).join('');
 
         const badgeHTML = p.badge
-          ? `<span class="absolute top-3 right-3 px-3 py-1 bg-crimson text-midnight text-[10px] tracking-[0.1em] uppercase font-bold rounded-full">${p.badge}</span>`
+          ? `<span class="absolute top-3 right-3 z-10 px-3 py-1 bg-crimson text-midnight text-[10px] tracking-[0.1em] uppercase font-bold rounded-full">${p.badge}</span>`
           : '';
 
         return `
