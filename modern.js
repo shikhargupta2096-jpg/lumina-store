@@ -17,7 +17,7 @@ const MEDIA_BASE_URL = `${SUPABASE_URL}/storage/v1/object/public/media`;
 
 // Helper to construct media URLs
 function getMediaUrl(path) {
-  if (!path) return `${MEDIA_BASE_URL}/placeholder.png`;
+  if (!path) return `${MEDIA_BASE_URL}/placeholder.webp`;
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
   const cleanPath = path.replace(/^images\//, '').replace(/^\/+/, '');
   return `${MEDIA_BASE_URL}/${cleanPath}`;
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       modalBody.innerHTML = catProducts.map(p => {
         const pImgSrc = (p.img && p.img.startsWith('http'))
           ? p.img
-          : getMediaUrl(`${p.categoryId}/${p.img || 'placeholder.png'}`);
+          : getMediaUrl(`${p.categoryId}/${p.img || 'placeholder.webp'}`);
 
         const specsHTML = (p.specs || []).map(s =>
           `<span class="inline-block px-3 py-1 text-[11px] tracking-wide uppercase border border-midnight-line text-ash rounded-full">${s}</span>`
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tagline: 'Statement Centerpieces',
         title: 'Grand Foyer & Living',
         desc: 'Double-height volumes require vertical scale and 360° light dispersion. Cascading crystal raindrops and multi-tier architectural fixtures establish an instant luxury first impression.',
-        img: getMediaUrl('space_foyer.jpg'),
+        img: getMediaUrl('space_foyer.webp'),
         temp: '2700K Warm Ambient',
         fixture: 'Cascading Raindrop & Sputnik',
         scale: '1.8m to 3.5m Custom Drop',
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tagline: 'Linear Sculptural Illumination',
         title: 'Dining & Kitchen Island',
         desc: 'Dining spaces demand glare-free horizontal lighting that illuminates dinnerware while preserving intimacy. Linear brass bubble clusters and diffused fluted cylinders enhance conversation.',
-        img: getMediaUrl('space_dining.jpg'),
+        img: getMediaUrl('space_dining.webp'),
         temp: '2700K to 3000K Warm Neutral',
         fixture: 'Linear Brass Glass Cluster',
         scale: '1.2m to 2.4m Length',
@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         tagline: 'Restful Architecture',
         title: 'Master Suite & Salons',
         desc: 'Bedside pendants and recessed architectural perimeter coves eliminate direct overhead glare, producing a soft cocooning sanctuary for luxury hospitality and master residences.',
-        img: getMediaUrl('space_suite.jpg'),
+        img: getMediaUrl('space_suite.webp'),
         temp: '2200K to 2700K Candlelight Warm',
         fixture: 'Fluted Glass Bedside Drops',
         scale: '0.8m to 1.4m Balanced Drops',
@@ -643,20 +643,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const transformData = {
       living: {
-        beforeImg: getMediaUrl('room_before.jpg'),
-        afterImg: getMediaUrl('room_after.jpg'),
+        beforeImg: getMediaUrl('room_before.webp'),
+        afterImg: getMediaUrl('room_after.webp'),
         beforeLabel: 'Before: Standard Cold Downlights',
         afterLabel: 'After: Lumina Bespoke Ambiance'
       },
       dining: {
-        beforeImg: getMediaUrl('dining_before.jpg'),
-        afterImg: getMediaUrl('dining_after.jpg'),
+        beforeImg: getMediaUrl('dining_before.webp'),
+        afterImg: getMediaUrl('dining_after.webp'),
         beforeLabel: 'Before: Harsh Kitchen Fluorescents',
         afterLabel: 'After: Lumina Linear Amber Cluster'
       },
       suite: {
-        beforeImg: getMediaUrl('bedroom_before.jpg'),
-        afterImg: getMediaUrl('bedroom_after.jpg'),
+        beforeImg: getMediaUrl('bedroom_before.webp'),
+        afterImg: getMediaUrl('bedroom_after.webp'),
         beforeLabel: 'Before: Blinding Overhead Glare',
         afterLabel: 'After: Lumina Bedside Drop Sanctuary'
       }
@@ -939,7 +939,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       chandelier: {
         name: "The Sovereign Grand Chandelier",
         modelTag: "Model: Lumina-CR-904",
-        img: getMediaUrl("cat_chandeliers.png"),
+        img: getMediaUrl("cat_chandeliers.webp"),
         hotspots: [
           {
             id: 1,
@@ -1016,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       sconce: {
         name: "The Aurelia Fluted Sconce",
         modelTag: "Model: Lumina-SC-208",
-        img: getMediaUrl("cat_sconces.png"),
+        img: getMediaUrl("cat_sconces.webp"),
         hotspots: [
           {
             id: 1,

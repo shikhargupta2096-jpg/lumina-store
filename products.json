@@ -5,7 +5,7 @@
             "name": "Chandeliers",
             "id": "chandeliers",
             "longDesc": "Make a grand statement with our breathtaking chandelier collection. From cascading crystal designs to modern geometric forms, each piece is a masterwork of light and craftsmanship, designed to be the centrepiece of any room.",
-            "img": "cat_chandeliers.png",
+            "img": "cat_chandeliers.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Grand centrepieces that redefine luxury &mdash; crystal, geometric & contemporary styles.",
             "tag": "Indoor \u2022 Statement Piece"
@@ -15,7 +15,7 @@
             "name": "Pendant Lights",
             "id": "pendant-lights",
             "longDesc": "Our pendant light collection blends minimalist elegance with artistic boldness. Perfect for kitchen islands, dining tables, and foyers &mdash; pendant lights create intimate, focused ambiance wherever they hang.",
-            "img": "cat_pendant.png",
+            "img": "cat_pendant.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Sculptural pendants that bring focused warmth and modern elegance to any space.",
             "tag": "Indoor \u2022 Ambient"
@@ -25,7 +25,7 @@
             "name": "Wall Sconces",
             "id": "wall-sconces",
             "longDesc": "Wall sconces from Lumina are the perfect accent lighting solution. They add depth, drama, and warmth to hallways, bedrooms, and living rooms. Choose from ornate traditional styles to sleek contemporary designs.",
-            "img": "cat_sconces.png",
+            "img": "cat_sconces.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Elegant wall fixtures that add depth and warmth to hallways and living spaces.",
             "tag": "Indoor \u2022 Accent"
@@ -35,7 +35,7 @@
             "name": "Table Lamps",
             "id": "table-lamps",
             "longDesc": "Our designer table lamps are wearable art for your surfaces. Each lamp is crafted with meticulous attention to detail &mdash; the perfect fusion of form and function for bedrooms, studies, and living rooms.",
-            "img": "cat_table_lamp.png",
+            "img": "cat_table_lamp.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Artistic table lamps that add character and warm glow to any surface or corner.",
             "tag": "Indoor \u2022 Desk & Bedside"
@@ -45,7 +45,7 @@
             "name": "Floor Lamps",
             "id": "floor-lamps",
             "longDesc": "Floor lamps from Lumina are sculptural statements that stand tall and proud. Whether arching gracefully over a reading chair or standing as a vertical art piece, our floor lamps bring drama and elegance to any room.",
-            "img": "cat_floor_lamp.png",
+            "img": "cat_floor_lamp.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Tall sculptural floor lamps that define corners and illuminate entire rooms beautifully.",
             "tag": "Indoor \u2022 Statement"
@@ -55,7 +55,7 @@
             "name": "Ceiling Lights",
             "id": "ceiling-lights",
             "longDesc": "Our ceiling lights and flush mounts are the foundation of any room's lighting plan. Available in modern minimalist styles, ornate classic designs, and everything in between &mdash; perfect for every ceiling and every taste.",
-            "img": "cat_ceiling.png",
+            "img": "cat_ceiling.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Flush mounts and semi-flush fixtures for a clean, modern overhead lighting solution.",
             "tag": "Indoor \u2022 Overhead"
@@ -65,7 +65,7 @@
             "name": "Outdoor & Garden Lights",
             "id": "outdoor-garden",
             "longDesc": "Extend your interior elegance to the outdoors with Lumina's garden and outdoor lighting collection. Weather-resistant, beautifully crafted lanterns, pathway lights, and wall lights that make your exteriors as stunning as your interiors.",
-            "img": "cat_outdoor.png",
+            "img": "cat_outdoor.webp",
             "categoryType": "Outdoor Collection",
             "shortDesc": "Exterior pieces - safe, beautiful, weather-resistant",
             "tag": "Lighting Collection"
@@ -75,7 +75,7 @@
             "name": "Industrial & Architectural Lights",
             "id": "industrial-architectural",
             "longDesc": "Bold, purposeful lighting rooted in raw materials and clean lines. Our industrial and architectural collection features exposed Edison cage pendants, track lighting systems, pipe-style wall brackets, and linear LED profiles \u2014 built for lofts, studios, commercial spaces, and homes that embrace an edgy, design-forward aesthetic.",
-            "img": "cat_industrial.jpg",
+            "img": "cat_industrial.webp",
             "categoryType": "Indoor Collection",
             "shortDesc": "Bold pieces - raw materials, clean lines, commercial character",
             "tag": "Lighting Collection"
@@ -90,7 +90,7 @@
                 "Royal",
                 "Gold Frame"
             ],
-            "img": "LuxeRingGlow.jpg",
+            "img": "LuxeRingGlow.webp",
             "name": "Luxe Ring Glow Chandelier",
             "categoryId": "chandeliers",
             "specs": [
@@ -108,7 +108,7 @@
                 "Industrial",
                 "Black Metal"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Geometric Modern Chandelier",
             "categoryId": "chandeliers",
             "specs": [
@@ -127,7 +127,7 @@
                 "Starburst",
                 "Brass"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Sputnik Starburst Chandelier",
             "categoryId": "chandeliers",
             "specs": [
@@ -146,7 +146,7 @@
                 "Minimalist",
                 "Bulb Cluster"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Nordic Cluster Pendant",
             "categoryId": "pendant-lights",
             "specs": [
@@ -165,7 +165,7 @@
                 "Matte Black",
                 "Edison"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Industrial Cone Pendant",
             "categoryId": "pendant-lights",
             "specs": [
@@ -184,7 +184,7 @@
                 "Handblown",
                 "Amber"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Art Glass Orb Pendant",
             "categoryId": "pendant-lights",
             "specs": [
@@ -203,7 +203,7 @@
                 "Fan Shape",
                 "Gold"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Art Deco Fan Sconce",
             "categoryId": "wall-sconces",
             "specs": [
@@ -222,7 +222,7 @@
                 "Glamour",
                 "Silver"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Crystal Wing Sconce",
             "categoryId": "wall-sconces",
             "specs": [
@@ -241,7 +241,7 @@
                 "Pipe",
                 "Matte Black"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Industrial Pipe Sconce",
             "categoryId": "wall-sconces",
             "specs": [
@@ -260,7 +260,7 @@
                 "Stained Glass",
                 "Classic"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Tiffany Stained Glass Lamp",
             "categoryId": "table-lamps",
             "specs": [
@@ -279,7 +279,7 @@
                 "Artisan",
                 "Linen Shade"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Ceramic Art Base Lamp",
             "categoryId": "table-lamps",
             "specs": [
@@ -298,7 +298,7 @@
                 "Luxury",
                 "Silver"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Crystal Column Table Lamp",
             "categoryId": "table-lamps",
             "specs": [
@@ -317,7 +317,7 @@
                 "Brass",
                 "Sofa Lamp"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Brass Arc Floor Lamp",
             "categoryId": "floor-lamps",
             "specs": [
@@ -336,7 +336,7 @@
                 "Walnut",
                 "Mid-Century"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Tripod Floor Lamp",
             "categoryId": "floor-lamps",
             "specs": [
@@ -355,7 +355,7 @@
                 "Uplight",
                 "Black"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Industrial Torchiere",
             "categoryId": "floor-lamps",
             "specs": [
@@ -374,7 +374,7 @@
                 "Flush",
                 "Compact"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Crystal Flush Mount",
             "categoryId": "ceiling-lights",
             "specs": [
@@ -393,7 +393,7 @@
                 "Modern",
                 "Warm White"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Modern LED Panel Light",
             "categoryId": "ceiling-lights",
             "specs": [
@@ -412,7 +412,7 @@
                 "Fabric Shade",
                 "Warm"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Drum Shade Ceiling Light",
             "categoryId": "ceiling-lights",
             "specs": [
@@ -431,7 +431,7 @@
                 "Garden",
                 "IP65"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Classic Garden Post Lamp",
             "categoryId": "outdoor-garden",
             "specs": [
@@ -450,7 +450,7 @@
                 "Bronze",
                 "IP44"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Outdoor Wall Lantern",
             "categoryId": "outdoor-garden",
             "specs": [
@@ -469,7 +469,7 @@
                 "Festoon",
                 "Warm White"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Festoon String Lights",
             "categoryId": "outdoor-garden",
             "specs": [
@@ -488,7 +488,7 @@
                 "Cage",
                 "Edison Bulb"
             ],
-            "img": "crystal.png",
+            "img": "crystal.webp",
             "name": "Edison Cage Pendant",
             "categoryId": "industrial-architectural",
             "specs": [
@@ -507,7 +507,7 @@
                 "Directional",
                 "Matte Black"
             ],
-            "img": "geometric.png",
+            "img": "geometric.webp",
             "name": "Architectural Track System",
             "categoryId": "industrial-architectural",
             "specs": [
@@ -526,7 +526,7 @@
                 "Wall Bracket",
                 "Vintage"
             ],
-            "img": "sputnik.png",
+            "img": "sputnik.webp",
             "name": "Iron Pipe Wall Bracket",
             "categoryId": "industrial-architectural",
             "specs": [

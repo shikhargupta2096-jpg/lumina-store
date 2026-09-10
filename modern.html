@@ -15,20 +15,21 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="apple-touch-icon" href="favicon.svg"/>
+  <link rel="preload" as="image" href="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.webp" fetchpriority="high" />
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Lumina — The Designer Light Store"/>
   <meta property="og:title" content="Lumina — The Designer Light Store | Architectural Lighting"/>
   <meta property="og:description" content="Lakhimpur Kheri's premier showroom for bespoke architectural lighting, handcrafted crystal chandeliers, and luxury illumination design."/>
-  <meta property="og:image" content="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.jpg"/>
+  <meta property="og:image" content="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.webp"/>
   <meta property="og:url" content="https://luminastore.in/"/>
 
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Lumina — The Designer Light Store | Architectural Lighting"/>
   <meta name="twitter:description" content="Lakhimpur Kheri's premier showroom for bespoke architectural lighting, handcrafted crystal chandeliers, and luxury illumination design."/>
-  <meta name="twitter:image" content="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.jpg"/>
+  <meta name="twitter:image" content="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.webp"/>
 
   <!-- Fonts: Rajdhani (UI/Technical) + Permanent Marker (Brush Accent) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -1033,8 +1034,9 @@
       <!-- Full-bleed custom showroom image with embedded Lumina branding -->
       <div class="absolute inset-0 z-0 overflow-hidden">
         <img id="hero-bg"
-             src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.jpg"
+             src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_hero_showroom.webp"
              alt="Lumina The Designer Light Store Showroom with Crystal Chandeliers"
+             fetchpriority="high"
              class="w-full h-full object-cover will-change-transform"
              style="object-position: center 36%; transform: scale(1.05); transform-origin: center center;" />
       </div>
@@ -1288,8 +1290,9 @@
                 <!-- Glowing Aura Behind Book -->
                 <div class="absolute inset-0 bg-crimson/20 rounded-2xl filter blur-2xl group-hover:bg-crimson/30 transition-all duration-500"></div>
                 <div class="relative overflow-hidden rounded-2xl border border-glass-border shadow-2xl transform transition-transform duration-700 group-hover:scale-[1.02]">
-                  <img src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_lookbook_cover.jpg"
+                  <img src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_lookbook_cover.webp"
                        alt="Lumina Architectural Collection 2026 Hardcover Monograph"
+                       loading="lazy"
                        class="w-full h-auto object-cover" />
                   <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent opacity-60"></div>
                   <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between text-snow text-xs font-sans tracking-widest uppercase">
@@ -1310,8 +1313,9 @@
 
         <!-- Background Atelier Craftsmanship Photography -->
         <div class="absolute inset-0 z-0">
-          <img src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_bespoke_craft.jpg"
+          <img src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_bespoke_craft.webp"
                alt="Master artisan assembling bespoke Lumina chandelier"
+               loading="lazy"
                class="w-full h-full object-cover"
                style="object-position: center 42%;" />
         </div>
@@ -1406,8 +1410,8 @@
           
           <!-- Visual Backdrop Stage (7 cols) -->
           <div class="lg:col-span-7 relative min-h-[360px] lg:min-h-full overflow-hidden bg-midnight">
-            <img id="space-stage-img"
-                 src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/space_foyer.jpg"
+            <img id="space-stage-img" loading="lazy"
+                 src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/space_foyer.webp"
                  alt="Grand Foyer & Double-Height Living Lighting"
                  class="w-full h-full object-cover transition-all duration-700 ease-out" />
             <div class="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-midnight-card pointer-events-none"></div>
@@ -1499,14 +1503,14 @@
       <div class="relative overflow-hidden rounded-3xl border border-glass-border shadow-2xl bg-midnight-card reveal compare-container aspect-video max-w-5xl mx-auto" id="compare-slider-box">
         
         <!-- Background: AFTER (Lumina Luxury Lighting) -->
-        <img src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/room_after.jpg"
+        <img loading="lazy" src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/room_after.webp"
              id="compare-after-img"
              alt="Luxury space elevated with Lumina architectural lighting"
              class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none transition-opacity duration-300" />
 
         <!-- Overlay: BEFORE (Harsh Cold Downlights) with Dynamic Width Clip -->
         <div class="absolute inset-0 overflow-hidden select-none pointer-events-none" id="compare-before-wrapper" style="width: 50%;">
-          <img src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/room_before.jpg"
+          <img loading="lazy" src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/room_before.webp"
                alt="Space with cold flat white fluorescent downlights"
                class="absolute inset-0 max-w-none w-full h-full object-cover transition-opacity duration-300"
                id="compare-before-img" />
@@ -1640,8 +1644,8 @@
         [-- Material Macro Photographic Preview Column (4 cols) --]
         <div class="lg:col-span-4 relative rounded-2xl overflow-hidden border border-glass-border shadow-2xl bg-midnight-soft flex flex-col justify-between min-h-[360px]">
           <div class="relative h-64 sm:h-72 w-full overflow-hidden">
-            <img id="material-preview-img"
-                 src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_materials_showcase.jpg"
+            <img id="material-preview-img" loading="lazy"
+                 src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/lumina_materials_showcase.webp"
                  alt="Artisan lighting material textures composition"
                  class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-midnight-soft via-transparent to-transparent"></div>
@@ -1703,8 +1707,8 @@
 
           <!-- Hotspot Stage Container -->
           <div class="relative w-full max-w-md md:max-w-lg aspect-square flex items-center justify-center" id="hotspot-stage">
-            <img id="tour-fixture-img"
-                 src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/cat_chandeliers.png"
+            <img id="tour-fixture-img" loading="lazy"
+                 src="https://hykotrvfvzbhupaefaax.supabase.co/storage/v1/object/public/media/cat_chandeliers.webp"
                  alt="The Sovereign Grand Chandelier Craftsmanship View"
                  class="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-opacity duration-300 pointer-events-none" />
 
