@@ -384,9 +384,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         return `
           <div class="flex flex-col bg-midnight-soft border border-midnight-line hover:border-crimson/30 rounded-2xl overflow-hidden transition-colors group">
-            <div class="relative aspect-square bg-midnight-card p-6 flex items-center justify-center border-b border-midnight-line">
+            <div class="relative aspect-square bg-midnight-card p-6 flex items-center justify-center border-b border-midnight-line skeleton-shimmer overflow-hidden">
               ${badgeHTML}
-              <img src="${pImgSrc}" alt="${p.name}" class="max-w-full max-h-full object-contain filter group-hover:drop-shadow-[0_0_15px_rgba(200,169,110,0.3)] transition-all duration-300" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 400 400%27%3E%3Crect fill=%27%23161820%27 width=%27400%27 height=%27400%27/%3E%3Ctext x=%27200%27 y=%27210%27 text-anchor=%27middle%27 fill=%27%23555%27 font-family=%27system-ui%27 font-size=%2714%27%3EImage Unavailable%3C/text%3E%3C/svg%3E'"/>
+              <img src="${pImgSrc}" alt="${p.name}" class="max-w-full max-h-full object-contain filter group-hover:drop-shadow-[0_0_15px_rgba(200,169,110,0.3)] transition-all duration-700 opacity-0 scale-105" onload="this.classList.remove('opacity-0', 'scale-105'); this.parentElement.classList.remove('skeleton-shimmer')" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 400 400%27%3E%3Crect fill=%27%23161820%27 width=%27400%27 height=%27400%27/%3E%3Ctext x=%27200%27 y=%27210%27 text-anchor=%27middle%27 fill=%27%23555%27 font-family=%27system-ui%27 font-size=%2714%27%3EImage Unavailable%3C/text%3E%3C/svg%3E'; this.classList.remove('opacity-0', 'scale-105'); this.parentElement.classList.remove('skeleton-shimmer')"/>
             </div>
             <div class="p-5 flex flex-col flex-grow">
               <h4 class="font-sans font-bold text-snow text-lg uppercase mb-2 group-hover:text-crimson transition-colors">${p.name}</h4>

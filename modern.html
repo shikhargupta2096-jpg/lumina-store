@@ -524,6 +524,17 @@
       animation: shimmer 4s linear infinite;
     }
 
+    /* Premium Skeleton Loader Shimmer */
+    @keyframes shimmerSweep {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-shimmer {
+      background: linear-gradient(90deg, var(--color-midnight-card) 25%, rgba(200, 169, 110, 0.08) 50%, var(--color-midnight-card) 75%);
+      background-size: 400% 100%;
+      animation: shimmerSweep 2.5s infinite linear;
+    }
+
     /* Ambient Lighting Atmosphere Filter Layers */
     #lighting-dimmer-layer {
       position: fixed;
