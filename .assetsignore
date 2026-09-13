@@ -2,8 +2,12 @@
 .git/**
 .github
 .github/**
-admin
-admin/**
+admin/node_modules
+admin/node_modules/**
+admin/src
+admin/src/**
+admin/public
+admin/public/**
 firebase_functions
 firebase_functions/**
 functions
