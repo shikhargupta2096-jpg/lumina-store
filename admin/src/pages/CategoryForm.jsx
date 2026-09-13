@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase, getImageUrl } from '../supabase';
 import { mapCategoryFromDB, mapCategoryToDB } from '../utils/schemaMapper';
+import CustomSelect from '../components/CustomSelect';
 import ImageCropper from '../components/ImageCropper';
 import { optimizeImage } from '../utils/imageOptimizer';
 import toast from 'react-hot-toast';
@@ -197,10 +198,15 @@ const CategoryForm = () => {
         <div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}>
           <div className="form-group" style={{flex: '1 1 200px'}}>
             <label className="form-label">Category Type</label>
-            <select name="categoryType" className="form-control" value={formData.categoryType} onChange={handleChange}>
-              <option value="Indoor Collection">Indoor Collection</option>
-              <option value="Outdoor Collection">Outdoor Collection</option>
-            </select>
+            <CustomSelect 
+              value={formData.categoryType}
+              onChange={(val) => setFormData({...formData, categoryType: val})}
+              options={[
+                {value: 'Indoor Collection', label: 'Indoor Collection'},
+                {value: 'Outdoor Collection', label: 'Outdoor Collection'}
+              ]}
+              placeholder="Indoor Collection"
+            />
           </div>
           
           <div className="form-group" style={{flex: '1 1 200px'}}>

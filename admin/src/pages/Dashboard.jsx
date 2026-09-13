@@ -96,7 +96,7 @@ const Dashboard = () => {
             top: '-20px',
             width: '100px',
             height: '100px',
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%)',
+            background: 'radial-gradient(circle, var(--primary-glow), transparent 70%)',
             borderRadius: '50%',
             filter: 'blur(20px)',
             pointerEvents: 'none'
@@ -105,12 +105,12 @@ const Dashboard = () => {
         
         <motion.div 
           className="glass-panel stat-card"
-          whileHover={{ y: -4, borderColor: 'var(--accent-glow)' }}
+          whileHover={{ y: -4, borderColor: 'var(--border-active)' }}
         >
           <div className="stat-icon-wrapper" style={{ 
-            color: 'var(--accent)', 
-            backgroundColor: 'rgba(217, 119, 6, 0.15)',
-            borderColor: 'rgba(217, 119, 6, 0.2)'
+            color: 'var(--primary)', 
+            backgroundColor: 'var(--primary-glow)',
+            borderColor: 'var(--border-active)'
           }}>
             <Package size={28} strokeWidth={2.5} />
           </div>
@@ -125,7 +125,7 @@ const Dashboard = () => {
             top: '-20px',
             width: '100px',
             height: '100px',
-            background: 'radial-gradient(circle, rgba(217, 119, 6, 0.15), transparent 70%)',
+            background: 'radial-gradient(circle, var(--primary-glow), transparent 70%)',
             borderRadius: '50%',
             filter: 'blur(20px)',
             pointerEvents: 'none'
@@ -134,12 +134,12 @@ const Dashboard = () => {
 
         <motion.div 
           className="glass-panel stat-card"
-          whileHover={{ y: -4, borderColor: 'rgba(16, 185, 129, 0.5)' }}
+          whileHover={{ y: -4, borderColor: 'var(--border-active)' }}
         >
           <div className="stat-icon-wrapper" style={{ 
-            color: '#10b981', 
-            backgroundColor: 'rgba(16, 185, 129, 0.15)',
-            borderColor: 'rgba(16, 185, 129, 0.2)'
+            color: 'var(--primary)', 
+            backgroundColor: 'var(--primary-glow)',
+            borderColor: 'var(--border-active)'
           }}>
             <Mail size={28} strokeWidth={2.5} />
           </div>
@@ -154,7 +154,7 @@ const Dashboard = () => {
             top: '-20px',
             width: '100px',
             height: '100px',
-            background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%)',
+            background: 'radial-gradient(circle, var(--primary-glow), transparent 70%)',
             borderRadius: '50%',
             filter: 'blur(20px)',
             pointerEvents: 'none'

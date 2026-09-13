@@ -143,8 +143,8 @@ const Inquiries = () => {
                       <span style={{
                         display: 'inline-block',
                         padding: '4px 8px',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        border: '1px solid rgba(59, 130, 246, 0.2)',
+                        backgroundColor: 'var(--primary-glow)',
+                        border: '1px solid var(--border-active)',
                         color: 'var(--primary)',
                         borderRadius: '4px',
                         fontSize: '12px',

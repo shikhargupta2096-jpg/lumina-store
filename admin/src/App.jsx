@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { supabase } from './supabase';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Sidebar from './components/Sidebar';
+import Topbar from './components/Topbar';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import Login from './pages/Login';
@@ -133,7 +133,7 @@ function App() {
       
       {user ? (
         <div className="app-container">
-          <Sidebar />
+          <Topbar />
           <main className="main-content">
             <AnimatedRoutes />
           </main>

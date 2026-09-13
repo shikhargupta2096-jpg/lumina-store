@@ -4,6 +4,7 @@ import { supabase, getImageUrl } from '../supabase';
 import { mapProductFromDB, mapProductToDB } from '../utils/schemaMapper';
 import ImageCropper from '../components/ImageCropper';
 import ChipInput from '../components/ChipInput';
+import CustomSelect from '../components/CustomSelect';
 import { optimizeImage } from '../utils/imageOptimizer';
 import toast from 'react-hot-toast';
 import { Save, X, Upload, ArrowLeft } from 'lucide-react';
@@ -35,7 +36,7 @@ const ProductForm = () => {
   const [croppedBlob, setCroppedBlob] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
 
-  const LIGHTING_OPTIONS = ['Cool White', 'Warm White', 'Yellow'];
+  const LIGHTING_OPTIONS = ['Cool White', 'Warm White', 'Yellow', 'RGB'];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -209,22 +210,29 @@ const ProductForm = () => {
         <div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}>
           <div className="form-group" style={{flex: '1 1 200px'}}>
             <label className="form-label">Category</label>
-            <select name="categoryId" className="form-control" value={formData.categoryId || ''} onChange={handleChange} required>
-              <option value="">Select Category</option>
-              {categories.map(cat => (
-                <option key={cat.id} value={cat.id}>{cat.name}</option>
-              ))}
-            </select>
+            <CustomSelect 
+              value={formData.categoryId || ''}
+              onChange={(val) => setFormData({...formData, categoryId: val})}
+              options={[
+                {value: '', label: 'Select Category'}, 
+                ...categories.map(c => ({value: c.id, label: c.name}))
+              ]}
+            />
           </div>
           
           <div className="form-group" style={{flex: '1 1 200px'}}>
             <label className="form-label">Display Badge</label>
-            <select name="badge" className="form-control" value={formData.badge || ''} onChange={handleChange}>
-              <option value="">None</option>
-              <option value="New Arrival">New Arrival</option>
-              <option value="Bestseller">Bestseller</option>
-              <option value="Premium">Premium</option>
-            </select>
+            <CustomSelect 
+              value={formData.badge || ''}
+              onChange={(val) => setFormData({...formData, badge: val})}
+              options={[
+                {value: '', label: 'None'},
+                {value: 'New Arrival', label: 'New Arrival'},
+                {value: 'Bestseller', label: 'Bestseller'},
+                {value: 'Premium', label: 'Premium'}
+              ]}
+              placeholder="None"
+            />
           </div>
         </div>
 
@@ -260,13 +268,9 @@ const ProductForm = () => {
                   type="checkbox" 
                   checked={(formData.lightingVariants || []).includes(opt)}
                   onChange={() => handleLightingChange(opt)}
-                  style={{
-                    accentColor: 'var(--gold)',
-                    width: '16px', height: '16px',
-                    cursor: 'pointer'
-                  }}
+                  className="custom-checkbox"
                 />
-                <span style={{fontSize: '13.5px', color: 'var(--text-primary)', userSelect: 'none'}}>{opt}</span>
+                <span style={{fontSize: '14px', color: 'var(--text-main)', userSelect: 'none'}}>{opt}</span>
               </label>
             ))}
           </div>
