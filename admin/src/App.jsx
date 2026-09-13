@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { supabase } from './supabase';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -121,7 +121,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Toaster position="top-right" toastOptions={{
         style: {
           background: 'rgba(17, 24, 39, 0.8)',
@@ -143,7 +143,7 @@ function App() {
           <Route path="*" element={<Login />} />
         </Routes>
       )}
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
