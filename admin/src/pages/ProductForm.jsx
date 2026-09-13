@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { doc, getDoc, setDoc, updateDoc, collection, getDocs, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db, storage } from '../firebase';
+import { supabase, getImageUrl } from '../supabase';
+import { mapProductFromDB, mapProductToDB } from '../utils/schemaMapper';
 import ImageCropper from '../components/ImageCropper';
 import ChipInput from '../components/ChipInput';
 import { optimizeImage } from '../utils/imageOptimizer';
@@ -16,15 +15,17 @@ const ProductForm = () => {
 
   const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
+    id: '',
     name: '',
     categoryId: '',
-    desc: '',
+    description: '',
     badge: '',
     badgeClass: '',
     tags: [],
     specs: [],
     lightingVariants: [],
-    img: ''
+    img: '',
+    lqip: ''
   });
 
   const [loading, setLoading] = useState(true);
@@ -39,17 +40,18 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const catSnap = await getDocs(collection(db, 'categories'));
-        const cats = [];
-        catSnap.forEach(doc => cats.push({ id: doc.id, name: doc.data().name }));
-        setCategories(cats);
+        const { data: catData, error: catError } = await supabase.from('categories').select('id, name');
+        if (catError) throw catError;
+        setCategories(catData || []);
 
         if (isEdit) {
-          const docRef = doc(db, 'products', id);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setFormData(docSnap.data());
-            setPreviewUrl(docSnap.data().img || '');
+          const { data, error } = await supabase.from('products').select('*').eq('id', id).single();
+          if (error) throw error;
+          if (data) {
+            const mapped = mapProductFromDB(data);
+            setFormData(mapped);
+            const imgPath = mapped.img ? (mapped.img.includes('/') ? mapped.img : `${mapped.categoryId}/${mapped.img}`) : '';
+            setPreviewUrl(getImageUrl(imgPath));
           } else {
             toast.error("Product not found");
             navigate('/products');
@@ -114,7 +116,7 @@ const ProductForm = () => {
     
     setSaving(true);
     try {
-      let imgUrl = formData.img;
+      let relativePath = formData.img;
       let lqip = formData.lqip || '';
       
       if (croppedBlob) {
@@ -123,24 +125,26 @@ const ProductForm = () => {
         lqip = blurDataUri;
 
         const filename = `products/${Date.now()}.webp`;
-        const storageRef = ref(storage, filename);
-        await uploadBytes(storageRef, optimizedBlob);
-        imgUrl = await getDownloadURL(storageRef);
+        const { error: uploadError } = await supabase.storage.from('media').upload(filename, optimizedBlob);
+        if (uploadError) throw uploadError;
+        relativePath = filename;
       }
 
-      const productData = {
+      const clientData = {
         ...formData,
-        img: imgUrl,
-        lqip,
-        updatedAt: new Date()
+        img: relativePath,
+        lqip
       };
 
+      const dbData = mapProductToDB(clientData);
+
       if (isEdit) {
-        await updateDoc(doc(db, 'products', id), productData);
+        const { error } = await supabase.from('products').update(dbData).eq('id', id);
+        if (error) throw error;
         toast.success('Product updated successfully');
       } else {
-        productData.createdAt = new Date();
-        await addDoc(collection(db, 'products'), productData);
+        const { error } = await supabase.from('products').insert(dbData);
+        if (error) throw error;
         toast.success('Product created successfully');
       }
       navigate('/products');
@@ -182,11 +186,22 @@ const ProductForm = () => {
       </header>
 
       <form onSubmit={handleSubmit} className="form-container-styled">
+        {!isEdit && (
+          <div className="form-group">
+            <label className="form-label">Product ID (e.g. prod_chandeliers_1)</label>
+            <input 
+              type="text" name="id" className="form-control mono" 
+              value={formData.id} onChange={handleChange} required 
+              placeholder="unique-product-id"
+            />
+          </div>
+        )}
+
         <div className="form-group">
           <label className="form-label">Product Name</label>
           <input 
             type="text" name="name" className="form-control" 
-            value={formData.name} onChange={handleChange} required 
+            value={formData.name || ''} onChange={handleChange} required 
             placeholder="Product Name"
           />
         </div>
@@ -194,7 +209,7 @@ const ProductForm = () => {
         <div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}>
           <div className="form-group" style={{flex: '1 1 200px'}}>
             <label className="form-label">Category</label>
-            <select name="categoryId" className="form-control" value={formData.categoryId} onChange={handleChange} required>
+            <select name="categoryId" className="form-control" value={formData.categoryId || ''} onChange={handleChange} required>
               <option value="">Select Category</option>
               {categories.map(cat => (
                 <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -204,7 +219,7 @@ const ProductForm = () => {
           
           <div className="form-group" style={{flex: '1 1 200px'}}>
             <label className="form-label">Display Badge</label>
-            <select name="badge" className="form-control" value={formData.badge} onChange={handleChange}>
+            <select name="badge" className="form-control" value={formData.badge || ''} onChange={handleChange}>
               <option value="">None</option>
               <option value="New Arrival">New Arrival</option>
               <option value="Bestseller">Bestseller</option>
@@ -216,8 +231,8 @@ const ProductForm = () => {
         <div className="form-group">
           <label className="form-label">Description</label>
           <textarea 
-            name="desc" className="form-control" rows="4"
-            value={formData.desc} onChange={handleChange} required
+            name="description" className="form-control" rows="4"
+            value={formData.description || ''} onChange={handleChange} required
             placeholder="Product details and visual features..."
           ></textarea>
         </div>

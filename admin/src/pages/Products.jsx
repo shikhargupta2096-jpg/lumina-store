@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { supabase, getImageUrl } from '../supabase';
+import { mapProductFromDB } from '../utils/schemaMapper';
 import { Link } from 'react-router-dom';
 import { Plus, Edit3, Trash2, PackageOpen, Sparkles, Filter } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -14,22 +14,19 @@ const Products = () => {
 
   const fetchData = async () => {
     try {
-      // Fetch categories for mapping
-      const catSnap = await getDocs(collection(db, 'categories'));
+      const { data: catData, error: catError } = await supabase.from('categories').select('id, name');
+      if (catError) throw catError;
       const catMap = {};
-      catSnap.forEach(doc => {
-        catMap[doc.id] = doc.data().name;
+      catData.forEach(cat => {
+        catMap[cat.id] = cat.name;
       });
       setCategories(catMap);
 
-      // Fetch products
-      const prodSnap = await getDocs(collection(db, 'products'));
-      const prods = [];
-      prodSnap.forEach((doc) => {
-        prods.push({ id: doc.id, ...doc.data() });
-      });
-      setProducts(prods);
+      const { data: prodData, error: prodError } = await supabase.from('products').select('*').order('created_at', { ascending: false });
+      if (prodError) throw prodError;
+      setProducts(prodData.map(mapProductFromDB));
     } catch (error) {
+      console.error("Products fetch error:", error);
       toast.error('Failed to fetch data');
     } finally {
       setLoading(false);
@@ -43,7 +40,8 @@ const Products = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await deleteDoc(doc(db, 'products', id));
+        const { error } = await supabase.from('products').delete().eq('id', id);
+        if (error) throw error;
         toast.success('Product deleted');
         fetchData();
       } catch (error) {
@@ -84,7 +82,7 @@ const Products = () => {
 
   const filteredProducts = filterCat === 'all' 
     ? products 
-    : products.filter(p => p.categoryId === filterCat);
+    : products.filter(p => p.categoryId === parseInt(filterCat) || p.categoryId === filterCat);
 
   return (
     <div className="page-transition">
@@ -132,7 +130,12 @@ const Products = () => {
           >
             <div style={{position: 'relative', overflow: 'hidden'}}>
               {prod.img ? (
-                <ImageWithSkeleton src={prod.img} alt={prod.name} blurSrc={prod.lqip} className="data-card-img" />
+                <ImageWithSkeleton 
+                  src={getImageUrl(prod.img.includes('/') ? prod.img : `${prod.categoryId}/${prod.img}`)} 
+                  alt={prod.name} 
+                  blurSrc={prod.lqip} 
+                  className="data-card-img" 
+                />
               ) : (
                 <div className="data-card-img" style={{backgroundColor: 'var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <span style={{color: 'var(--text-muted)'}}><PackageOpen size={32} /></span>

@@ -99,16 +99,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       console.log(`✓ Successfully loaded ${categories.length} categories and ${products.length} products from Supabase.`);
     } catch (err) {
-      console.warn('Supabase data fetch failed, falling back to products.json:', err.message);
-      try {
-        const res = await fetch('products.json?v=' + Date.now());
-        const data = await res.json();
-        categories = data.categories || [];
-        products = data.products || [];
-        console.log(`✓ Loaded fallback data from products.json: ${categories.length} categories, ${products.length} products.`);
-      } catch (fallbackErr) {
-        console.error('Both Supabase and products.json failed to load.', fallbackErr);
-      }
+      console.error('Supabase data fetch failed:', err.message);
+      document.body.innerHTML = `
+        <div style="display: flex; height: 100vh; width: 100vw; align-items: center; justify-content: center; flex-direction: column; background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 20px;">
+          <h1 style="color: #ef4444; margin-bottom: 16px;">Database Error</h1>
+          <p style="color: #9ca3af; max-width: 400px;">Unable to connect to the database. Please try again later.</p>
+          <p style="color: #4b5563; font-size: 12px; margin-top: 24px;">${err.message}</p>
+        </div>
+      `;
+      return;
     }
   }
 
@@ -370,8 +369,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       modalBody.innerHTML = '<p class="text-ash text-base col-span-full text-center py-12">No products found in this collection yet.</p>';
     } else {
       modalBody.innerHTML = catProducts.map(p => {
-        const pImgSrc = (p.img && p.img.startsWith('http'))
-          ? p.img
+        const pImgSrc = p.img && p.img.includes('/') 
+          ? getMediaUrl(p.img)
           : getMediaUrl(`${p.categoryId}/${p.img || 'placeholder.webp'}`);
 
         const specsHTML = (p.specs || []).map(s =>
@@ -386,7 +385,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="flex flex-col bg-midnight-soft border border-midnight-line hover:border-crimson/30 rounded-2xl overflow-hidden transition-colors group">
             <div class="relative aspect-square bg-midnight-card flex items-center justify-center border-b border-midnight-line skeleton-shimmer overflow-hidden">
               ${badgeHTML}
-              <img src="${pImgSrc}" alt="${p.name}" class="w-full h-full object-cover filter group-hover:drop-shadow-[0_0_15px_rgba(200,169,110,0.3)] group-hover:scale-110 transition-all duration-700 opacity-0 scale-105 transform" onload="this.classList.remove('opacity-0', 'scale-105'); this.parentElement.classList.remove('skeleton-shimmer')" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 400 400%27%3E%3Crect fill=%27%23161820%27 width=%27400%27 height=%27400%27/%3E%3Ctext x=%27200%27 y=%27210%27 text-anchor=%27middle%27 fill=%27%23555%27 font-family=%27system-ui%27 font-size=%2714%27%3EImage Unavailable%3C/text%3E%3C/svg%3E'; this.classList.remove('opacity-0', 'scale-105'); this.parentElement.classList.remove('skeleton-shimmer')"/>
+              <img src="${pImgSrc}" alt="${p.name}" class="w-full h-full object-cover filter group-hover:drop-shadow-[0_0_15px_rgba(200,169,110,0.3)] group-hover:scale-110 transition-all duration-700" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 400 400%27%3E%3Crect fill=%27%23161820%27 width=%27400%27 height=%27400%27/%3E%3Ctext x=%27200%27 y=%27210%27 text-anchor=%27middle%27 fill=%27%23555%27 font-family=%27system-ui%27 font-size=%2714%27%3EImage Unavailable%3C/text%3E%3C/svg%3E'; this.parentElement.classList.remove('skeleton-shimmer')"/>
             </div>
             <div class="p-5">
               <h4 class="font-sans font-bold text-snow text-lg uppercase group-hover:text-crimson transition-colors m-0">${p.name}</h4>
