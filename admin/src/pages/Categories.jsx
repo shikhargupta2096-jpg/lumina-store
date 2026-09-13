@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { supabase, getImageUrl } from '../supabase';
+import { mapCategoryFromDB } from '../utils/schemaMapper';
 import { Link } from 'react-router-dom';
 import { Plus, Edit3, Trash2, FolderOpen, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -12,12 +12,9 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'categories'));
-      const cats = [];
-      querySnapshot.forEach((doc) => {
-        cats.push({ id: doc.id, ...doc.data() });
-      });
-      setCategories(cats);
+      const { data, error } = await supabase.from('categories').select('*').order('display_order');
+      if (error) throw error;
+      setCategories(data.map(mapCategoryFromDB));
     } catch (error) {
       toast.error('Failed to fetch categories');
     } finally {
@@ -32,7 +29,8 @@ const Categories = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this category?')) {
       try {
-        await deleteDoc(doc(db, 'categories', id));
+        const { error } = await supabase.from('categories').delete().eq('id', id);
+        if (error) throw error;
         toast.success('Category deleted');
         fetchCategories();
       } catch (error) {
@@ -92,7 +90,7 @@ const Categories = () => {
           >
             <div style={{position: 'relative', overflow: 'hidden'}}>
               {cat.img ? (
-                <ImageWithSkeleton src={cat.img} alt={cat.name} blurSrc={cat.lqip} className="data-card-img" />
+                <ImageWithSkeleton src={getImageUrl(cat.img)} alt={cat.name} className="data-card-img" />
               ) : (
                 <div className="data-card-img" style={{backgroundColor: 'var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <span style={{color: 'var(--text-muted)'}}><FolderOpen size={32} /></span>

@@ -3,7 +3,7 @@
  * 
  * Handles client-side WebP conversion, resizing, and LQIP
  * (Low Quality Image Placeholder) generation before upload
- * to Firebase Storage.
+ * to Supabase Storage.
  */
 
 const MAX_WIDTH = 1200;

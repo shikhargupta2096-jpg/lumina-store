@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, List, Package, LogOut, ChevronLeft, ChevronRight, User } from 'lucide-react';
-import { auth } from '../firebase';
-import { signOut } from 'firebase/auth';
+import { LayoutDashboard, List, Package, LogOut, ChevronLeft, ChevronRight, User, Mail } from 'lucide-react';
+import { supabase } from '../supabase';
 import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const user = auth.currentUser;
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) setUserEmail(user.email);
+    });
+  }, []);
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      await supabase.auth.signOut();
       toast.success('Logged out successfully');
     } catch (error) {
       toast.error('Error logging out');
@@ -23,6 +28,7 @@ const Sidebar = () => {
     { name: 'Dashboard', path: '/', icon: LayoutDashboard },
     { name: 'Categories', path: '/categories', icon: List },
     { name: 'Products', path: '/products', icon: Package },
+    { name: 'Inquiries', path: '/inquiries', icon: Mail },
   ];
 
   return (
@@ -127,7 +133,7 @@ const Sidebar = () => {
       </nav>
 
       <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        {user && (
+        {userEmail && (
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -161,7 +167,7 @@ const Sidebar = () => {
                   style={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
                 >
                   <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-muted)' }}>
-                    {user.email}
+                    {userEmail}
                   </p>
                 </motion.div>
               )}

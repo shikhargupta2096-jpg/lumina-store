@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db, storage } from '../firebase';
+import { supabase, getImageUrl } from '../supabase';
+import { mapCategoryFromDB, mapCategoryToDB } from '../utils/schemaMapper';
 import ImageCropper from '../components/ImageCropper';
 import { optimizeImage } from '../utils/imageOptimizer';
 import toast from 'react-hot-toast';
@@ -21,7 +20,8 @@ const CategoryForm = () => {
     longDesc: '',
     categoryType: 'Indoor Collection',
     tag: '',
-    img: ''
+    img: '',
+    displayOrder: 0
   });
   const [loading, setLoading] = useState(isEdit);
   const [saving, setSaving] = useState(false);
@@ -34,11 +34,12 @@ const CategoryForm = () => {
     if (isEdit) {
       const fetchCategory = async () => {
         try {
-          const docRef = doc(db, 'categories', id);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setFormData({ id: docSnap.id, ...docSnap.data() });
-            setPreviewUrl(docSnap.data().img || '');
+          const { data, error } = await supabase.from('categories').select('*').eq('id', id).single();
+          if (error) throw error;
+          if (data) {
+            const mapped = mapCategoryFromDB(data);
+            setFormData(mapped);
+            setPreviewUrl(getImageUrl(mapped.img) || '');
           } else {
             toast.error("Category not found");
             navigate('/categories');
@@ -77,45 +78,34 @@ const CategoryForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.id && !isEdit) {
-      toast.error('Category ID is required');
-      return;
-    }
-    
     setSaving(true);
     try {
-      let imgUrl = formData.img;
-      let lqip = formData.lqip || '';
+      let relativePath = formData.img;
       
       if (croppedBlob) {
-        // Optimize: resize to 1200px, convert to WebP, generate blur placeholder
-        const { optimizedBlob, lqip: blurDataUri } = await optimizeImage(croppedBlob);
-        lqip = blurDataUri;
+        // Optimize: resize to 1200px, convert to WebP
+        const { optimizedBlob } = await optimizeImage(croppedBlob);
 
-        const filename = `categories/${formData.id || id}-${Date.now()}.webp`;
-        const storageRef = ref(storage, filename);
-        await uploadBytes(storageRef, optimizedBlob);
-        imgUrl = await getDownloadURL(storageRef);
+        const filename = `categories/${Date.now()}.webp`;
+        const { error: uploadError } = await supabase.storage.from('media').upload(filename, optimizedBlob);
+        if (uploadError) throw uploadError;
+        relativePath = filename;
       }
 
-      const categoryData = {
-        name: formData.name,
-        subtitle: formData.subtitle,
-        shortDesc: formData.shortDesc,
-        longDesc: formData.longDesc,
-        categoryType: formData.categoryType,
-        tag: formData.tag,
-        img: imgUrl,
-        lqip,
-        updatedAt: new Date()
+      const clientData = {
+        ...formData,
+        img: relativePath
       };
 
+      const dbData = mapCategoryToDB(clientData);
+
       if (isEdit) {
-        await updateDoc(doc(db, 'categories', id), categoryData);
+        const { error } = await supabase.from('categories').update(dbData).eq('id', id);
+        if (error) throw error;
         toast.success('Category updated successfully');
       } else {
-        categoryData.createdAt = new Date();
-        await setDoc(doc(db, 'categories', formData.id), categoryData);
+        const { error } = await supabase.from('categories').insert(dbData);
+        if (error) throw error;
         toast.success('Category created successfully');
       }
       navigate('/categories');
@@ -181,7 +171,7 @@ const CategoryForm = () => {
           <label className="form-label">Subtitle</label>
           <input 
             type="text" name="subtitle" className="form-control" 
-            value={formData.subtitle} onChange={handleChange} 
+            value={formData.subtitle || ''} onChange={handleChange} 
             placeholder="Optional descriptive subtitle"
           />
         </div>
@@ -190,7 +180,7 @@ const CategoryForm = () => {
           <label className="form-label">Short Description</label>
           <textarea 
             name="shortDesc" className="form-control" rows="2"
-            value={formData.shortDesc} onChange={handleChange} 
+            value={formData.shortDesc || ''} onChange={handleChange} 
             placeholder="Brief introduction displayed on card widgets"
           ></textarea>
         </div>
@@ -199,7 +189,7 @@ const CategoryForm = () => {
           <label className="form-label">Long Description</label>
           <textarea 
             name="longDesc" className="form-control" rows="4"
-            value={formData.longDesc} onChange={handleChange} 
+            value={formData.longDesc || ''} onChange={handleChange} 
             placeholder="Detailed editorial copy for the category collection page"
           ></textarea>
         </div>
@@ -217,7 +207,15 @@ const CategoryForm = () => {
             <label className="form-label">Display Tag</label>
             <input 
               type="text" name="tag" className="form-control" placeholder="e.g. Statement Piece, Bestseller"
-              value={formData.tag} onChange={handleChange} 
+              value={formData.tag || ''} onChange={handleChange} 
+            />
+          </div>
+
+          <div className="form-group" style={{flex: '1 1 100px'}}>
+            <label className="form-label">Display Order</label>
+            <input 
+              type="number" name="displayOrder" className="form-control" 
+              value={formData.displayOrder || 0} onChange={handleChange} 
             />
           </div>
         </div>

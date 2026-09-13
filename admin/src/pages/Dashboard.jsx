@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getCountFromServer } from 'firebase/firestore';
-import { db } from '../firebase';
+import { supabase } from '../supabase';
 import { Link } from 'react-router-dom';
-import { List, Package, FolderPlus, FilePlus2, Sparkles, Activity } from 'lucide-react';
+import { List, Package, FolderPlus, FilePlus2, Activity, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({ categories: 0, products: 0 });
+  const [stats, setStats] = useState({ categories: 0, products: 0, inquiries: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const catCol = collection(db, 'categories');
-        const prodCol = collection(db, 'products');
-        
-        const catCount = await getCountFromServer(catCol);
-        const prodCount = await getCountFromServer(prodCol);
+        const [{ count: catCount }, { count: prodCount }, { count: inqCount }] = await Promise.all([
+          supabase.from('categories').select('*', { count: 'exact', head: true }),
+          supabase.from('products').select('*', { count: 'exact', head: true }),
+          supabase.from('inquiries').select('*', { count: 'exact', head: true })
+        ]);
         
         setStats({
-          categories: catCount.data().count,
-          products: prodCount.data().count
+          categories: catCount || 0,
+          products: prodCount || 0,
+          inquiries: inqCount || 0
         });
       } catch (error) {
         console.error("Error fetching stats:", error);
@@ -55,7 +55,7 @@ const Dashboard = () => {
           </div>
         </header>
         <div className="skeleton-dashboard">
-          {[1, 2].map(i => (
+          {[1, 2, 3].map(i => (
             <div key={i} className="glass-panel skeleton-stat-box skeleton" />
           ))}
         </div>
@@ -79,7 +79,7 @@ const Dashboard = () => {
         </motion.div>
       </header>
 
-      <motion.div className="dashboard-stats" variants={itemVariants}>
+      <motion.div className="dashboard-stats" variants={itemVariants} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
         <motion.div 
           className="glass-panel stat-card"
           whileHover={{ y: -4, borderColor: 'var(--primary-glow)' }}
@@ -90,7 +90,6 @@ const Dashboard = () => {
             <p className="stat-label">Total Categories</p>
           </div>
           
-          {/* Decorative glowing orb */}
           <div style={{
             position: 'absolute',
             right: '-20px',
@@ -127,6 +126,35 @@ const Dashboard = () => {
             width: '100px',
             height: '100px',
             background: 'radial-gradient(circle, rgba(217, 119, 6, 0.15), transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(20px)',
+            pointerEvents: 'none'
+          }} />
+        </motion.div>
+
+        <motion.div 
+          className="glass-panel stat-card"
+          whileHover={{ y: -4, borderColor: 'rgba(16, 185, 129, 0.5)' }}
+        >
+          <div className="stat-icon-wrapper" style={{ 
+            color: '#10b981', 
+            backgroundColor: 'rgba(16, 185, 129, 0.15)',
+            borderColor: 'rgba(16, 185, 129, 0.2)'
+          }}>
+            <Mail size={28} strokeWidth={2.5} />
+          </div>
+          <div>
+            <h3 className="stat-value">{stats.inquiries}</h3>
+            <p className="stat-label">Total Inquiries</p>
+          </div>
+          
+          <div style={{
+            position: 'absolute',
+            right: '-20px',
+            top: '-20px',
+            width: '100px',
+            height: '100px',
+            background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%)',
             borderRadius: '50%',
             filter: 'blur(20px)',
             pointerEvents: 'none'

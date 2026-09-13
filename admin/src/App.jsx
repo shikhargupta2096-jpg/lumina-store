@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase';
+import { supabase } from './supabase';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Sidebar from './components/Sidebar';
@@ -14,6 +13,7 @@ import Categories from './pages/Categories';
 import CategoryForm from './pages/CategoryForm';
 import Products from './pages/Products';
 import ProductForm from './pages/ProductForm';
+import Inquiries from './pages/Inquiries';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -77,6 +77,14 @@ const AnimatedRoutes = () => {
             </motion.div>
           </ProtectedRoute>
         } />
+
+        <Route path="/inquiries" element={
+          <ProtectedRoute>
+            <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{height: '100%'}}>
+              <Inquiries />
+            </motion.div>
+          </ProtectedRoute>
+        } />
       </Routes>
     </AnimatePresence>
   );
@@ -87,11 +95,17 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
       setLoading(false);
     });
-    return () => unsubscribe();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   if (loading) {
