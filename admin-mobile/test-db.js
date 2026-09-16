@@ -1,0 +1,1 @@
+fetch('https://hykotrvfvzbhupaefaax.supabase.co/rest/v1/categories?select=id,name,img&limit=3', {headers: {apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5a290cnZmdnpiaHVwYWVmYWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NjE5MDEsImV4cCI6MjEwNDUzNzkwMX0.OYYixQZf551o0OD4D_2eexXsUHexy3Gm6dHByPxlpao'}}).then(r=>r.text()).then(console.log)

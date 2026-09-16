@@ -37,6 +37,19 @@ const Inquiries = () => {
 
   useEffect(() => {
     fetchInquiries(page);
+    
+    // Subscribe to realtime updates for new inquiries
+    const subscription = supabase
+      .channel('public:inquiries')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'inquiries' }, (payload) => {
+        // If it's a new insert or an update, we should refresh the list
+        fetchInquiries(page);
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(subscription);
+    };
   }, [page]);
 
   const handleDelete = async (id) => {
@@ -49,6 +62,17 @@ const Inquiries = () => {
       } catch (error) {
         toast.error('Error deleting inquiry');
       }
+    }
+  };
+
+  const handleUpdateStatus = async (id, newStatus) => {
+    try {
+      const { error } = await supabase.from('inquiries').update({ status: newStatus }).eq('id', id);
+      if (error) throw error;
+      toast.success('Status updated');
+      setInquiries(prev => prev.map(inq => inq.id === id ? { ...inq, status: newStatus } : inq));
+    } catch (error) {
+      toast.error('Error updating status');
     }
   };
 
@@ -124,6 +148,7 @@ const Inquiries = () => {
                   <th style={{padding: '16px', fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em'}}>Customer</th>
                   <th style={{padding: '16px', fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em'}}>Interest</th>
                   <th style={{padding: '16px', fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em'}}>Details</th>
+                  <th style={{padding: '16px', fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em'}}>Status</th>
                   <th style={{padding: '16px', fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em'}}>Date</th>
                   <th style={{padding: '16px', fontSize: '12px', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'right'}}>Actions</th>
                 </tr>
@@ -171,6 +196,35 @@ const Inquiries = () => {
                       }}>
                         {inq.details || '-'}
                       </p>
+                    </td>
+                    <td style={{padding: '16px'}}>
+                      <select 
+                        value={inq.status}
+                        onChange={(e) => handleUpdateStatus(inq.id, e.target.value)}
+                        style={{
+                          backgroundColor: inq.status === 'new' ? 'rgba(59, 130, 246, 0.1)' : 
+                                           inq.status === 'contacted' ? 'rgba(200, 169, 110, 0.1)' : 
+                                           'rgba(16, 185, 129, 0.1)',
+                          color: inq.status === 'new' ? '#3b82f6' : 
+                                 inq.status === 'contacted' ? '#c8a96e' : 
+                                 '#10b981',
+                          border: `1px solid ${inq.status === 'new' ? 'rgba(59, 130, 246, 0.3)' : 
+                                            inq.status === 'contacted' ? 'rgba(200, 169, 110, 0.3)' : 
+                                            'rgba(16, 185, 129, 0.3)'}`,
+                          borderRadius: '12px',
+                          padding: '4px 8px',
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          textTransform: 'capitalize',
+                          outline: 'none',
+                          cursor: 'pointer',
+                          appearance: 'none',
+                        }}
+                      >
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="closed">Closed</option>
+                      </select>
                     </td>
                     <td style={{padding: '16px', fontSize: '13px', color: 'var(--text-secondary)', whiteSpace: 'nowrap'}}>
                       {formatDate(inq.createdAt)}

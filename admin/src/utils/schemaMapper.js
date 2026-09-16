@@ -72,5 +72,29 @@ export const mapInquiryFromDB = (dbInquiry) => ({
   interest: dbInquiry.interest,
   details: dbInquiry.details,
   source: dbInquiry.source,
+  status: dbInquiry.status || 'new',
   createdAt: dbInquiry.created_at,
+});
+
+export const mapInquiryToDB = (clientInquiry) => {
+  const dbData = {
+    name: clientInquiry.name,
+    email: clientInquiry.email,
+    interest: clientInquiry.interest,
+    details: clientInquiry.details,
+    source: clientInquiry.source,
+    status: clientInquiry.status,
+  };
+  if (clientInquiry.id) dbData.id = clientInquiry.id;
+  return dbData;
+};
+
+export const mapNotificationFromDB = (dbNotification) => ({
+  id: dbNotification.id,
+  userId: dbNotification.user_id,
+  inquiryId: dbNotification.inquiry_id,
+  title: dbNotification.title,
+  body: dbNotification.body,
+  isRead: dbNotification.is_read,
+  createdAt: dbNotification.created_at,
 });

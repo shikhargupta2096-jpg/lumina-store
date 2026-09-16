@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, List, Package, LogOut, User, Mail } from 'lucide-react';
+import { LayoutDashboard, List, Package, LogOut, User, Mail, Bell } from 'lucide-react';
 import { supabase } from '../supabase';
 import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNotifications } from '../contexts/NotificationContext';
+import NotificationPanel from './NotificationPanel';
 
 const Topbar = () => {
   const [userName, setUserName] = useState('');
+  const [showNotifications, setShowNotifications] = useState(false);
+  const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
 
   const formatNameFromEmail = (email) => {
     if (!email) return '';
@@ -106,7 +110,72 @@ const Topbar = () => {
       </nav>
 
       {/* User Actions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', width: '200px', justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', width: '280px', justifyContent: 'flex-end' }}>
+        {/* Notification Bell */}
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setShowNotifications(!showNotifications)}
+            title="Notifications"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '40px',
+              height: '40px',
+              background: showNotifications ? 'rgba(200, 169, 110, 0.1)' : 'transparent',
+              border: '1px solid rgba(255,255,255,0.05)',
+              color: showNotifications ? 'var(--primary)' : 'var(--text-muted)',
+              cursor: 'pointer',
+              borderRadius: '50%',
+              transition: 'all 0.2s',
+              position: 'relative',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(200, 169, 110, 0.1)';
+              e.currentTarget.style.color = 'var(--primary)';
+              e.currentTarget.style.borderColor = 'rgba(200, 169, 110, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              if (!showNotifications) {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--text-muted)';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
+              }
+            }}
+          >
+            <Bell size={18} />
+            {unreadCount > 0 && (
+              <span style={{
+                position: 'absolute',
+                top: '-2px',
+                right: '-2px',
+                minWidth: '18px',
+                height: '18px',
+                borderRadius: '9px',
+                backgroundColor: '#c8a96e',
+                color: '#0A0A0B',
+                fontSize: '10px',
+                fontWeight: '700',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0 4px',
+                lineHeight: 1,
+              }}>
+                {unreadCount > 99 ? '99+' : unreadCount}
+              </span>
+            )}
+          </button>
+          <NotificationPanel
+            isOpen={showNotifications}
+            onClose={() => setShowNotifications(false)}
+            notifications={notifications}
+            unreadCount={unreadCount}
+            markAsRead={markAsRead}
+            markAllAsRead={markAllAsRead}
+          />
+        </div>
+
         {userName && (
           <div style={{
             display: 'flex',

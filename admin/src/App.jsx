@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import Topbar from './components/Topbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -132,12 +133,14 @@ function App() {
       }} />
       
       {user ? (
-        <div className="app-container">
-          <Topbar />
-          <main className="main-content">
-            <AnimatedRoutes />
-          </main>
-        </div>
+        <NotificationProvider>
+          <div className="app-container">
+            <Topbar />
+            <main className="main-content">
+              <AnimatedRoutes />
+            </main>
+          </div>
+        </NotificationProvider>
       ) : (
         <Routes>
           <Route path="*" element={<Login />} />
